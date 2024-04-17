@@ -2,41 +2,205 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Hugo on Kyten 鸢舞</title>
-        <link>http://localhost:1313/categories/hugo/</link>
+        <link>https://lutianen.github.io/categories/hugo/</link>
         <description>Recent content in Hugo on Kyten 鸢舞</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Kyten (鸢舞)</copyright>
-        <lastBuildDate>Wed, 17 Apr 2024 21:42:02 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 17 Apr 2024 21:42:02 +0800</lastBuildDate><atom:link href="https://lutianen.github.io/categories/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>GitHub Pages &#43; Hugo 建博客站</title>
-        <link>http://localhost:1313/p/github-pages--hugo-%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AB%99/</link>
+        <link>https://lutianen.github.io/p/github-pages--hugo-%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AB%99/</link>
         <pubDate>Wed, 17 Apr 2024 21:42:02 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/github-pages--hugo-%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AB%99/</guid>
+        <guid>https://lutianen.github.io/p/github-pages--hugo-%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AB%99/</guid>
         <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;版权声明：本文为博主原创文章，遵循 &lt;a class=&#34;link&#34; href=&#34;https://creativecommons.org/licenses/by-nc-sa/4.0/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;CC BY-NC-SA 4.0&lt;/a&gt; 版权协议，禁止商用，转载请附上原文出处链接和本声明。&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
 &lt;p&gt;在博客网站搭建完成之后，有充分的理由相信，自己在未来很长一段时间内将不会再次重复建站。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;天有不测风云，为了防止各种意外情况发生而导致本博客网站无法正常使用以及自己忘记搭建流程，因此记录整个博客搭建流程。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;效果&#34;&gt;
     &lt;a href=&#34;#%e6%95%88%e6%9e%9c&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
     效果
-&lt;/h2&gt;&lt;h2 id=&#34;相关知识简介&#34;&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://lutianen.github.io/img/Kyten-blog-outline.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;效果图&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;相关知识简介&#34;&gt;
     &lt;a href=&#34;#%e7%9b%b8%e5%85%b3%e7%9f%a5%e8%af%86%e7%ae%80%e4%bb%8b&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
     相关知识简介
 &lt;/h2&gt;&lt;h3 id=&#34;github-pages&#34;&gt;
     &lt;a href=&#34;#github-pages&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
     Github Pages
 &lt;/h3&gt;&lt;p&gt;GitHub Pages 是一个免费的静态网站托管服务，它允许用户通过 GitHub 存储库来托管和发布网页，可以使用它来展示项目文档、博客或个人简历。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lutianen.github.io/img/github-pages-intro.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;github pages&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;现阶段，Github Pages 支持公共存储库的免费的托管；对于私有仓库，需要进行缴费。&lt;/p&gt;
 &lt;h3 id=&#34;hugo&#34;&gt;
     &lt;a href=&#34;#hugo&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
     Hugo
 &lt;/h3&gt;&lt;p&gt;官方号称，&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hugo&lt;/a&gt; 是世界上最快的网站建设框架(The world’s fastest framework for building websites)。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://lutianen.github.io/img/hugo-intro.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Hugo&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;步骤&#34;&gt;
+    &lt;a href=&#34;#%e6%ad%a5%e9%aa%a4&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    步骤
+&lt;/h2&gt;&lt;h3 id=&#34;github-仓库创建&#34;&gt;
+    &lt;a href=&#34;#github-%e4%bb%93%e5%ba%93%e5%88%9b%e5%bb%ba&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    Github 仓库创建
+&lt;/h3&gt;&lt;p&gt;需要创建两个仓库，一个用于网站源码管理(&lt;code&gt;sA&lt;/code&gt;)，一个用于网站部署(&lt;code&gt;sB&lt;/code&gt;):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sA&lt;/code&gt; 可以是 &lt;code&gt;public&lt;/code&gt;，也可以是 &lt;code&gt;private&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sB&lt;/code&gt; 仓库的名称必须是 &lt;code&gt;username.github.io&lt;/code&gt;，同时还需要添加 &lt;code&gt;README.md&lt;/code&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;使用-hugo-创建网站&#34;&gt;
+    &lt;a href=&#34;#%e4%bd%bf%e7%94%a8-hugo-%e5%88%9b%e5%bb%ba%e7%bd%91%e7%ab%99&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    使用 Hugo 创建网站
+&lt;/h3&gt;&lt;p&gt;首先，使用 Git 将 &lt;code&gt;sA&lt;/code&gt; 拉取下来:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone https://github.com/lutianen/kyten-blog.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后，进入本地的 &lt;code&gt;sA&lt;/code&gt; 目录（即，&lt;code&gt;kyten-blog&lt;/code&gt;）下，使用 hugo 建站：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Linux: Install&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog $ sudo pacman -S hugo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog $ hugo version 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 建站，然后将生成的内容复制到 `sA` 仓库中&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog $ hugo new kyten-blog
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog $ mv kyten-blog/ .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog $ rm kyten-blog -rf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;hugo-设置网站主题&#34;&gt;
+    &lt;a href=&#34;#hugo-%e8%ae%be%e7%bd%ae%e7%bd%91%e7%ab%99%e4%b8%bb%e9%a2%98&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    Hugo 设置网站主题
+&lt;/h3&gt;&lt;p&gt;可以从 &lt;a class=&#34;link&#34; href=&#34;https://themes.gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Hugo Themes&lt;/a&gt; 挑选合适的主题进行应用：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog $ &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; themes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog/themes $ git clone https://github.com/kakawait/hugo-tranquilpeak-theme.git tranquilpeak
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;安装 Hugo 主题后，根据个人情况修改相应的配置文件即可；&lt;/p&gt;
+&lt;h3 id=&#34;文章管理&#34;&gt;
+    &lt;a href=&#34;#%e6%96%87%e7%ab%a0%e7%ae%a1%e7%90%86&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    文章管理
+&lt;/h3&gt;&lt;h4 id=&#34;启动-hugo-server&#34;&gt;
+    &lt;a href=&#34;#%e5%90%af%e5%8a%a8-hugo-server&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    启动 Hugo server
+&lt;/h4&gt;&lt;p&gt;启动本地 server：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog $ hugo server -D
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;浏览器打开 &lt;a class=&#34;link&#34; href=&#34;http://localhost:1313/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://localhost:1313/&lt;/a&gt; 进行预览；&lt;/p&gt;
+&lt;h4 id=&#34;新建文章&#34;&gt;
+    &lt;a href=&#34;#%e6%96%b0%e5%bb%ba%e6%96%87%e7%ab%a0&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    新建文章
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog $ hugo new content &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;post/Golang/Go.md&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# `post/Golang/Go.md` 表明 markdown 的路径&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;github-pages-部署&#34;&gt;
+    &lt;a href=&#34;#github-pages-%e9%83%a8%e7%bd%b2&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    Github Pages 部署
+&lt;/h3&gt;&lt;h4 id=&#34;构建-hugo-网站相关静态文件&#34;&gt;
+    &lt;a href=&#34;#%e6%9e%84%e5%bb%ba-hugo-%e7%bd%91%e7%ab%99%e7%9b%b8%e5%85%b3%e9%9d%99%e6%80%81%e6%96%87%e4%bb%b6&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    构建 Hugo 网站相关静态文件
+&lt;/h4&gt;&lt;p&gt;Hugo 将构建完成的静态内容保存到 &lt;code&gt;sA&lt;/code&gt; 仓库中的 &lt;code&gt;public&lt;/code&gt; 文件夹中；&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog $ hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;部署&#34;&gt;
+    &lt;a href=&#34;#%e9%83%a8%e7%bd%b2&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    部署
+&lt;/h4&gt;&lt;p&gt;进入 &lt;code&gt;public&lt;/code&gt; 目录，利用 Git 进行管理该文件夹，并推送到远程 &lt;code&gt;sB&lt;/code&gt; 仓库中：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog/public $ git init
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog/public $ git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;first commit&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog/public $ git branch -M master
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog/public $ git remote add origin https://github.com/lutianen/test.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/kyten-blog/public $ git push -u origin master
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;problem-and-solution&#34;&gt;
+    &lt;a href=&#34;#problem-and-solution&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    Problem And Solution
+&lt;/h2&gt;&lt;h3 id=&#34;添加图片&#34;&gt;
+    &lt;a href=&#34;#%e6%b7%bb%e5%8a%a0%e5%9b%be%e7%89%87&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
+    添加图片
+&lt;/h3&gt;&lt;p&gt;Hugo 的配置文件和文章中的引用图片都是以 static 作为根目录，因此图片无法显示的解决方案如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将图片放入 &lt;code&gt;static/img&lt;/code&gt; 目录下&lt;/li&gt;
+&lt;li&gt;在文章中的图片引用方式为：&lt;code&gt;/img/xxx.png&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;无法采用 Typora 等软件进行预览，需要在网页中进行预览: &lt;a class=&#34;link&#34; href=&#34;http://localhost:1313/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://localhost:1313/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2 id=&#34;references&#34;&gt;
     &lt;a href=&#34;#references&#34; class=&#34;header-anchor&#34;&gt;#&lt;/a&gt;
     References

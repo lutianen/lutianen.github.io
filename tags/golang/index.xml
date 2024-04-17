@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Golang on Kyten 鸢舞</title>
-        <link>http://localhost:1313/tags/golang/</link>
+        <link>https://lutianen.github.io/tags/golang/</link>
         <description>Recent content in Golang on Kyten 鸢舞</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Kyten (鸢舞)</copyright>
-        <lastBuildDate>Wed, 17 Apr 2024 22:23:09 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/golang/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 17 Apr 2024 22:23:09 +0800</lastBuildDate><atom:link href="https://lutianen.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Go 学习笔记</title>
-        <link>http://localhost:1313/p/go-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+        <link>https://lutianen.github.io/p/go-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Wed, 17 Apr 2024 22:23:09 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/go-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+        <guid>https://lutianen.github.io/p/go-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
         <description></description>
         </item>
         
