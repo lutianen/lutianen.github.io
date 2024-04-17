@@ -346,7 +346,7 @@
 
 
                 <time class="article-time--reading">
-                    2 minute read
+                    3 minute read
                 </time>
             </div>
         
@@ -534,6 +534,67 @@
 </span></span><span class="line"><span class="cl">~/kyten-blog/public $ git branch -M master
 </span></span><span class="line"><span class="cl">~/kyten-blog/public $ git remote add origin https://github.com/lutianen/test.git
 </span></span><span class="line"><span class="cl">~/kyten-blog/public $ git push -u origin master
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>自动化部署：<code>deploy.sh</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash 
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Build the project. </span>
+</span></span><span class="line"><span class="cl">hugo <span class="c1"># if using a theme, replace with hugo -t </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Go To Public folder </span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> public 
+</span></span><span class="line"><span class="cl"><span class="c1"># Add changes to git. </span>
+</span></span><span class="line"><span class="cl">git add . 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Commit changes. </span>
+</span></span><span class="line"><span class="cl"><span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;rebuilding site `date` &#34;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;\033[0;32m</span><span class="nv">$msg</span><span class="s2">\033[0m&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$#</span> -eq <span class="m">1</span> <span class="o">]</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">then</span> <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> 
+</span></span><span class="line"><span class="cl"><span class="k">fi</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;</span><span class="nv">$msg</span><span class="s2">&#34;</span> 
+</span></span><span class="line"><span class="cl"><span class="c1"># Push source and build repos. </span>
+</span></span><span class="line"><span class="cl">git push origin master 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Come Back up to the Project Root </span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ..
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="删除文章">
