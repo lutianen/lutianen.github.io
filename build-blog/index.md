@@ -1,9 +1,15 @@
 # GitHub Pages + Hugo 建博客站
 
 
-> 在博客网站搭建完成之后，有充分的理由相信，自己在未来很长一段时间内将不会再次重复建站。
->
-> **常言道天有不测风云，为了防止各种意外情况发生，导致本博客网站无法正常使用，同时防止自己忘记搭建流程，故记录于此。**
+借助于 Github Pages 提供的静态网站托管服务，并采用了 Hugo 这一开源项目，加快了建站流程，而且有多种开源网站主题可供选择.
+
+<!--more-->
+
+## 前言
+
+在博客网站搭建完成之后，有充分的理由相信，自己在未来很长一段时间内将不会再次重复建站。
+
+**常言道天有不测风云，为了防止各种意外情况发生，导致本博客网站无法正常使用，同时防止自己忘记搭建流程，故记录于此。**
 
 ## 效果
 
@@ -167,9 +173,35 @@ gtag('config', 'G-XXXXXXXXXX');
 
 > **建议添加完成后，在GA分析中进行测试，确保生效**
 
+### 评论系统 - Gitalk
+
+1. 申请注册[新应用](https://github.com/settings/applications/new)，并填写以下相关内容：
+
+    - `Application name`: 随意
+    - `Homepage URL`: 包含 `http/https` 前缀，例如`https://lutianen.github.io`
+    - `Authorization callback URL`: 和上面 `Homepage URL` 保持一致就行
+
+    ![github application](/img/github-application.png)
+
+2. 注册完成后，手动生成 `Client secrets`(*只会出现一次*)，同时获得 `Client ID`.
+
+3. 最后，在主题设置中填写相应信息即可，例如 `LoveIt` 中的 `config.toml`:
+
+    ```TOML
+    [params.page.comment]
+        enable = true
+
+        [params.page.comment.gitalk]
+        enable = true
+        owner = "lutianen"
+        repo = "gitalk"
+        clientId = "xxxxxxxxxxxxxxxxxxxx"
+        clientSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    ```
+
 ## Problem And Solution
 
-### 添加图片
+### 添加图片不显示
 
 Hugo 的配置文件和文章中的引用图片都是以 static 作为根目录，因此图片无法显示的解决方案如下：
 

@@ -10,15 +10,7 @@
     <pubDate>Wed, 17 Apr 2024 21:42:02 &#43;0800</pubDate>
     <author>Kyten</author>
     <guid>https://lutianen.github.io/build-blog/</guid>
-    <description><![CDATA[在博客网站搭建完成之后，有充分的理由相信，自己在未来很长一段时间内将不会再次重复建站。
-常言道天有不测风云，为了防止各种意外情况发生，导致本博客网站无法正常使用，同时防止自己忘记搭建流程，故记录于此。
-效果 相关知识简介 Github Pages GitHub Pages 是一个免费的静态网站托管服务，它允许用户通过 GitHub 存储库来托管和发布网页，可以使用它来展示项目文档、博客或个人简历。
-现阶段，Github Pages 支持公共存储库的免费的托管；对于私有仓库，需要进行缴费。
-Hugo 官方号称，Hugo 是世界上最快的网站建设框架(The world’s fastest framework for building websites)。
-Steps Github 仓库创建 需要创建两个仓库，一个用于网站源码管理(sA)，一个用于网站部署(sB):
-sA 可以是 public，也可以是 private； sB 仓库的名称必须是 username.github.io（username 是 Github Accout 中username，不是 profile 中的 Name），同时还需要添加 README.md； 使用 Hugo 创建网站 首先，使用 Git 将 sA 拉取下来:
-1 ~/ $ git clone https://github.com/lutianen/kyten-blog.git 然后，进入本地的 sA 目录（即，kyten-blog）下，使用 hugo 建站：
-1 2 3 4 5 6 7 8 # Linux: Install ~/kyten-blog $ sudo pacman -S hugo ~/kyten-blog $ hugo version # 建站，然后将生成的内容复制到 `sA` 仓库中 ~/kyten-blog $ hugo new kyten-blog ~/kyten-blog $ mv kyten-blog/ .]]></description>
+    <description><![CDATA[<p>借助于 Github Pages 提供的静态网站托管服务，并采用了 Hugo 这一开源项目，加快了建站流程，而且有多种开源网站主题可供选择.</p>]]></description>
 </item>
 </channel>
 </rss>
