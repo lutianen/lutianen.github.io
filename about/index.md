@@ -1,4 +1,4 @@
-# About Kyten 鸢舞
+# About Kyten
 
 
 ## Special Thanks

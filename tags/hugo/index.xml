@@ -8,7 +8,7 @@
     <title>GitHub Pages &#43; Hugo 建博客站</title>
     <link>https://lutianen.github.io/buildyourblog/</link>
     <pubDate>Wed, 17 Apr 2024 21:42:02 &#43;0800</pubDate>
-    <author>Kyten 鸢舞</author>
+    <author>Kyten</author>
     <guid>https://lutianen.github.io/buildyourblog/</guid>
     <description><![CDATA[在博客网站搭建完成之后，有充分的理由相信，自己在未来很长一段时间内将不会再次重复建站。
 天有不测风云，为了防止各种意外情况发生而导致本博客网站无法正常使用以及自己忘记搭建流程，因此记录整个博客搭建流程。
