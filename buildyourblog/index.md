@@ -148,6 +148,27 @@ cd ..
 
 NOTE：`kyten-blog/public` 中相关文件可以删除，也可以不删除，推荐删除；
 
+### Google Analytics（分析）
+
+首先，在 [GA](https://analytics.google.com/) 网站中注册、设置完成相应选项，即可获取 ID：`G-XXXXXXXXXX`；
+然后在 `layout/_default/baseof.html` 文件中添加以下代码即可：
+
+```HTML
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-XXXXXXXXXX');
+</script>
+```
+
+该段代码获取方法如下：[Google Analytics（分析）](https://www.google.com/analytics/web) -> **管理** -> "媒体资源设置"列中的**数据流** -> 网站 -> 对应的数据流 -> "Google 代码" 下的**查看代码说明** -> "安装说明" 选择**手动添加**
+
+> **建议添加完成后，在GA分析中进行测试，确保生效**
+
 ## Problem And Solution
 
 ### 添加图片
@@ -162,5 +183,6 @@ Hugo 的配置文件和文章中的引用图片都是以 static 作为根目录�
 
 - [Abot Github Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages)
 - [Hugo](https://gohugo.io/)
+- [参考文章](https://zz2summer.github.io/github-pages-hugo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2)
 - [Gitalk 评论系统安装](https://www.gagahappy.com/gitalk-install/)
 
