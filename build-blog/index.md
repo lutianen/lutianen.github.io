@@ -175,6 +175,8 @@ gtag('config', 'G-XXXXXXXXXX');
 
 ### 评论系统 - Gitalk
 
+> 需要注意的是，Gitalk 的评论采用的是 PR/Issue 的方式存储评论，因此，一般需要新建一个专门的 Repo，例如`username/gitalk`.
+
 1. 申请注册[新应用](https://github.com/settings/applications/new)，并填写以下相关内容：
 
     - `Application name`: 随意
