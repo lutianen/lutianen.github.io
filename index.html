@@ -129,6 +129,19 @@
     </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/lutianen" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyten</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-04-17">2024-04-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a>&nbsp;<a href="/categories/software/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Software</a></span></div><div class="content">详细介绍日常使用 Arch Linux 时的各种问题与解决方案，例如 Arch 安装、常用软件推荐等</div><div class="post-footer">
         <a href="/archlinuxnote/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/arch/">Arch</a>,&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/software/">Software</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/build-blog/">GitHub Pages + Hugo 建博客站</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyten</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-04-17">2024-04-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/github-pages/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Github Pages</a>&nbsp;<a href="/categories/hugo/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Hugo</a>&nbsp;<a href="/categories/%E5%8D%9A%E5%AE%A2/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>博客</a>&nbsp;<a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a></span></div><div class="content">在博客网站搭建完成之后，有充分的理由相信，自己在未来很长一段时间内将不会再次重复建站。
+常言道天有不测风云，为了防止各种意外情况发生，导致本博客网站无法正常使用，同时防止自己忘记搭建流程，故记录于此。
+效果 相关知识简介 Github Pages GitHub Pages 是一个免费的静态网站托管服务，它允许用户通过 GitHub 存储库来托管和发布网页，可以使用它来展示项目文档、博客或个人简历。
+现阶段，Github Pages 支持公共存储库的免费的托管；对于私有仓库，需要进行缴费。
+Hugo 官方号称，Hugo 是世界上最快的网站建设框架(The world’s fastest framework for building websites)。
+Steps Github 仓库创建 需要创建两个仓库，一个用于网站源码管理(sA)，一个用于网站部署(sB):
+sA 可以是 public，也可以是 private； sB 仓库的名称必须是 username.github.io（username 是 Github Accout 中username，不是 profile 中的 Name），同时还需要添加 README.md； 使用 Hugo 创建网站 首先，使用 Git 将 sA 拉取下来:
+1 ~/ $ git clone https://github.com/lutianen/kyten-blog.git 然后，进入本地的 sA 目录（即，kyten-blog）下，使用 hugo 建站：
+1 2 3 4 5 6 7 8 # Linux: Install ~/kyten-blog $ sudo pacman -S hugo ~/kyten-blog $ hugo version # 建站，然后将生成的内容复制到 `sA` 仓库中 ~/kyten-blog $ hugo new kyten-blog ~/kyten-blog $ mv kyten-blog/ .</div><div class="post-footer">
+        <a href="/build-blog/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/github-pages/">Github Pages</a>,&nbsp;<a href="/tags/hugo/">Hugo</a>,&nbsp;<a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>,&nbsp;<a href="/tags/linux/">Linux</a></div></div>
 </article></div></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">读书不是为了雄辩和驳斥，也不是为了轻信和盲从，而是为了思考和权衡</div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.125.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
