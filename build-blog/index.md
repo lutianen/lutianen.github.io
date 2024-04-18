@@ -184,4 +184,3 @@ Hugo 的配置文件和文章中的引用图片都是以 static 作为根目录�
 - [参考文章](https://zz2summer.github.io/github-pages-hugo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2)
 - [Gitalk 评论系统安装](https://www.gagahappy.com/gitalk-install/)
 
-
