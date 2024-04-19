@@ -21,14 +21,6 @@
     <description><![CDATA[<p>分享一个好看的 Typora 主题</p>]]></description>
 </item>
 <item>
-    <title>Go 学习笔记</title>
-    <link>https://lutianen.github.io/gonote/</link>
-    <pubDate>Wed, 17 Apr 2024 22:23:09 &#43;0800</pubDate>
-    <author>Kyten</author>
-    <guid>https://lutianen.github.io/gonote/</guid>
-    <description><![CDATA[关于 Golang 的学习笔记，包括基础语法、常见内置数据结构剖析等]]></description>
-</item>
-<item>
     <title>Arch Linux 使用指南</title>
     <link>https://lutianen.github.io/archlinuxnote/</link>
     <pubDate>Wed, 17 Apr 2024 22:11:33 &#43;0800</pubDate>
