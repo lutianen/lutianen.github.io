@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/build-blog\/"
-        },"genre": "posts","keywords": "Github Pages, Hugo, 博客, Linux","wordcount":  472 ,
+        },"genre": "posts","keywords": "Github Pages, Hugo, 博客, Linux","wordcount":  805 ,
         "url": "https:\/\/lutianen.github.io\/build-blog\/","datePublished": "2024-04-17T21:42:02+08:00","dateModified": "2024-04-18T12:57:02+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyten","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
@@ -131,8 +131,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">GitHub Pages + Hugo 建博客站</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyten</a></span>&nbsp;<span class="post-category">included in <a href="/categories/github-pages/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Github Pages</a>&nbsp;<a href="/categories/hugo/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Hugo</a>&nbsp;<a href="/categories/%E5%8D%9A%E5%AE%A2/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>博客</a>&nbsp;<a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-17">2024-04-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;472 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-17">2024-04-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;805 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -163,6 +163,7 @@
         </li>
         <li><a href="#google-analytics分析">Google Analytics（分析）</a></li>
         <li><a href="#评论系统---gitalk">评论系统 - Gitalk</a></li>
+        <li><a href="#网站访客运行时间统计">网站访客、运行时间统计</a></li>
       </ul>
     </li>
     <li><a href="#problem-and-solution">Problem And Solution</a>
@@ -458,7 +459,119 @@
 </div>
 </div></li>
 </ol>
-<h2 id="problem-and-solution">Problem And Solution</h2>
+<h3 id="网站访客运行时间统计">网站访客、运行时间统计</h3>
+<p>在 <code>footer.html</code> 加入以下内容即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-HTML" data-lang="HTML"><span class="line"><span class="cl">{{- /* visitnum */ -}}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="err">\</span><span class="na">cr</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;busuanzi_container_site_pv&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        访问量 <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;busuanzi_value_site_pv&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span> 次
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="ni">&amp;nbsp;</span>|<span class="ni">&amp;nbsp;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;busuanzi_container_site_uv&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        访客数 <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;busuanzi_value_site_uv&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span> 人次
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">br</span><span class="p">&gt;&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">siteTime</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">seconds</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">minutes</span> <span class="o">=</span> <span class="nx">seconds</span> <span class="o">*</span> <span class="mi">60</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">hours</span> <span class="o">=</span> <span class="nx">minutes</span> <span class="o">*</span> <span class="mi">60</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">days</span> <span class="o">=</span> <span class="nx">hours</span> <span class="o">*</span> <span class="mi">24</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">years</span> <span class="o">=</span> <span class="nx">days</span> <span class="o">*</span> <span class="mi">365</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">startYear</span> <span class="o">=</span> <span class="mi">2024</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">startMonth</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">startDate</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">startHour</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">startMinute</span> <span class="o">=</span> <span class="mi">57</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">startSecond</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">todayYear</span> <span class="o">=</span> <span class="nx">today</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">todayMonth</span> <span class="o">=</span> <span class="nx">today</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">todayDate</span> <span class="o">=</span> <span class="nx">today</span><span class="p">.</span><span class="nx">getDate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">todayHour</span> <span class="o">=</span> <span class="nx">today</span><span class="p">.</span><span class="nx">getHours</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">todayMinute</span> <span class="o">=</span> <span class="nx">today</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">todaySecond</span> <span class="o">=</span> <span class="nx">today</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">t1</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">UTC</span><span class="p">(</span><span class="nx">startYear</span><span class="p">,</span> <span class="nx">startMonth</span><span class="p">,</span> <span class="nx">startDate</span><span class="p">,</span> <span class="nx">startHour</span><span class="p">,</span> <span class="nx">startMinute</span><span class="p">,</span> <span class="nx">startSecond</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">t2</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">UTC</span><span class="p">(</span><span class="nx">todayYear</span><span class="p">,</span> <span class="nx">todayMonth</span><span class="p">,</span> <span class="nx">todayDate</span><span class="p">,</span> <span class="nx">todayHour</span><span class="p">,</span> <span class="nx">todayMinute</span><span class="p">,</span> <span class="nx">todaySecond</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">diff</span> <span class="o">=</span> <span class="nx">t2</span> <span class="o">-</span> <span class="nx">t1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">diffYears</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">diff</span> <span class="o">/</span> <span class="nx">years</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">diffDays</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">diff</span> <span class="o">/</span> <span class="nx">days</span><span class="p">)</span> <span class="o">-</span> <span class="nx">diffYears</span> <span class="o">*</span> <span class="mi">365</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">diffHours</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">diff</span> <span class="o">-</span> <span class="p">(</span><span class="nx">diffYears</span> <span class="o">*</span> <span class="mi">365</span> <span class="o">+</span> <span class="nx">diffDays</span><span class="p">)</span> <span class="o">*</span> <span class="nx">days</span><span class="p">)</span> <span class="o">/</span> <span class="nx">hours</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">diffMinutes</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">diff</span> <span class="o">-</span> <span class="p">(</span><span class="nx">diffYears</span> <span class="o">*</span> <span class="mi">365</span> <span class="o">+</span> <span class="nx">diffDays</span><span class="p">)</span> <span class="o">*</span> <span class="nx">days</span> <span class="o">-</span> <span class="nx">diffHours</span> <span class="o">*</span> <span class="nx">hours</span><span class="p">)</span> <span class="o">/</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">minutes</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">diffSeconds</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">diff</span> <span class="o">-</span> <span class="p">(</span><span class="nx">diffYears</span> <span class="o">*</span> <span class="mi">365</span> <span class="o">+</span> <span class="nx">diffDays</span><span class="p">)</span> <span class="o">*</span> <span class="nx">days</span> <span class="o">-</span> <span class="nx">diffHours</span> <span class="o">*</span> <span class="nx">hours</span> <span class="o">-</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">diffMinutes</span> <span class="o">*</span> <span class="nx">minutes</span><span class="p">)</span> <span class="o">/</span> <span class="nx">seconds</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">startYear</span> <span class="o">==</span> <span class="nx">todayYear</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;sitetime&#34;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&#34;已安全运行 &#34;</span> <span class="o">+</span> <span class="nx">diffDays</span> <span class="o">+</span> <span class="s2">&#34; 天 &#34;</span> <span class="o">+</span> <span class="nx">diffHours</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34; 小时 &#34;</span> <span class="o">+</span> <span class="nx">diffMinutes</span> <span class="o">+</span> <span class="s2">&#34; 分钟 &#34;</span> <span class="o">+</span> <span class="nx">diffSeconds</span> <span class="o">+</span> <span class="s2">&#34; 秒&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;sitetime&#34;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&#34;已安全运行 &#34;</span> <span class="o">+</span> <span class="nx">diffYears</span> <span class="o">+</span> <span class="s2">&#34; 年 &#34;</span> <span class="o">+</span> <span class="nx">diffDays</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34; 天 &#34;</span> <span class="o">+</span> <span class="nx">diffHours</span> <span class="o">+</span> <span class="s2">&#34; 小时 &#34;</span> <span class="o">+</span> <span class="nx">diffMinutes</span> <span class="o">+</span> <span class="s2">&#34; 分钟 &#34;</span> <span class="o">+</span> <span class="nx">diffSeconds</span> <span class="o">+</span> <span class="s2">&#34; 秒&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setInterval</span><span class="p">(</span><span class="nx">siteTime</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;sitetime&#34;</span><span class="p">&gt;</span>载入运行时间...<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="problem-and-solution">Problem And Solution</h2>
 <h3 id="添加图片不显示">添加图片不显示</h3>
 <p>Hugo 的配置文件和文章中的引用图片都是以 static 作为根目录，因此图片无法显示的解决方案如下：</p>
 <ol>
@@ -501,7 +614,58 @@
             </noscript></div></article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">读书不是为了雄辩和驳斥，也不是为了轻信和盲从，而是为了思考和权衡</div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.125.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/lutianen" target="_blank">Kyten</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/lutianen" target="_blank">Kyten</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></br><span \cr id="busuanzi_container_site_pv">
+                        访问量 <span id="busuanzi_value_site_pv"></span> 次
+                    </span>
+                    &nbsp;|&nbsp;
+                    <span id="busuanzi_container_site_uv">
+                        访客数 <span id="busuanzi_value_site_uv"></span> 人次
+                    </span>
+                
+                </br><script>
+                    function siteTime() {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = 2024;
+                        var startMonth = 4;
+                        var startDate = 18;
+                        var startHour = 12;
+                        var startMinute = 57;
+                        var startSecond = 2;
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                            minutes);
+                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                            diffMinutes * minutes) / seconds);
+                        if (startYear == todayYear) {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffDays + " 天 " + diffHours +
+                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        } else {
+                            
+                            document.getElementById("sitetime").innerHTML = "已安全运行 " + diffYears + " 年 " + diffDays +
+                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                        }
+                    }
+                    setInterval(siteTime, 1000);
+                </script>
+                <span id="sitetime">载入运行时间...</span>
+            </div>
         </div>
     </footer></div>
 

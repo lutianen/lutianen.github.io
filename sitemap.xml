@@ -2,16 +2,16 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>https://lutianen.github.io/</loc><lastmod>2024-04-20T20:39:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://lutianen.github.io/posts/</loc><lastmod>2024-04-20T20:39:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://lutianen.github.io/categories/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://lutianen.github.io/tags/ci/cd/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://lutianen.github.io/categories/ci/cd/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://lutianen.github.io/tags/golang/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://lutianen.github.io/categories/golang/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://lutianen.github.io/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://lutianen.github.io/tags/linter/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://lutianen.github.io/categories/linter/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://lutianen.github.io/linter-go/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://lutianen.github.io/posts/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://lutianen.github.io/tags/static-check/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://lutianen.github.io/categories/static-check/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://lutianen.github.io/tags/</loc><lastmod>2024-04-19T11:24:23&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
