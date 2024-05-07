@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Profile and Optimize for Go - Kyten 鸢舞</title><meta name="Description" content="Kyten&#39;s Blog Site"><meta property="og:url" content="http://localhost:1313/go-profile/">
+        <title>Profile and Optimize for Go - Kyten 鸢舞</title><meta name="Description" content="Kyten&#39;s Blog Site"><meta property="og:url" content="https://lutianen.github.io/go-profile/">
   <meta property="og:site_name" content="Kyten 鸢舞">
   <meta property="og:title" content="Profile and Optimize for Go">
-  <meta property="og:description" content="Golang 常见的性能剖析 (Profile) 与优化 (Optimize)
-">
+  <meta property="og:description" content="Golang 常见的性能剖析 (Profile) 与优化 (Optimize)">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
-  <meta property="article:section" content="posts">
+    <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-04-20T20:39:50+08:00">
     <meta property="article:modified_time" content="2024-04-20T21:57:10+08:00">
     <meta property="article:tag" content="Golang">
     <meta property="article:tag" content="Profile">
     <meta property="article:tag" content="Optimize">
-    <meta property="og:image" content="http://localhost:1313/Kyten.png">
+    <meta property="og:image" content="https://lutianen.github.io/Kyten.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://localhost:1313/Kyten.png"><meta name="twitter:title" content="Profile and Optimize for Go">
+<meta name="twitter:image" content="https://lutianen.github.io/Kyten.png"><meta name="twitter:title" content="Profile and Optimize for Go">
 <meta name="twitter:description" content="Golang 常见的性能剖析 (Profile) 与优化 (Optimize)">
 <meta name="application-name" content="Kyten">
-<meta name="apple-mobile-web-app-title" content="Kyten"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="http://localhost:1313/go-profile/" /><link rel="prev" href="http://localhost:1313/linter-go/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="Kyten"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://lutianen.github.io/go-profile/" /><link rel="prev" href="https://lutianen.github.io/linter-go/" /><link rel="stylesheet" href="/css/style.min.cf6878db51c51b2d04ae155284a4403dbee8db33e16c066f954c95279c271fcd.css" integrity="sha256-z2h421HFGy0ErhVShKRAPb7o2zPhbAZvlUyVJ5wnH80="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -32,11 +31,11 @@
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/localhost:1313\/go-profile\/"
-        },"genre": "posts","keywords": "Golang, Profile, Optimize","wordcount":  776 ,
-        "url": "http:\/\/localhost:1313\/go-profile\/","datePublished": "2024-04-20T20:39:50+08:00","dateModified": "2024-04-20T21:57:10+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/lutianen.github.io\/go-profile\/"
+        },"genre": "posts","keywords": "Golang, Profile, Optimize","wordcount":  1555 ,
+        "url": "https:\/\/lutianen.github.io\/go-profile\/","datePublished": "2024-04-20T20:39:50+08:00","dateModified": "2024-04-20T21:57:10+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
-            "name": "Kyten","logo": "http:\/\/localhost:1313\/avatar.jpg"},"author": {
+            "name": "Kyten","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
                 "name": "Kyten"
             },"description": ""
@@ -131,8 +130,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Profile and Optimize for Go</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyten</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a>&nbsp;<a href="/categories/profile/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Profile</a>&nbsp;<a href="/categories/optimize/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Optimize</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-20">2024-04-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;776 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-20">2024-04-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1555 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -140,33 +139,43 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#一profile">一、Profile</a>
+    <li><a href="#i-profile">I. Profile</a>
       <ul>
         <li><a href="#压测时需要关注的服务指标">压测时需要关注的服务指标</a></li>
         <li><a href="#压测手段">压测手段</a></li>
       </ul>
     </li>
-    <li><a href="#二optimize">二、Optimize</a>
+    <li><a href="#ii-optimize">II. Optimize</a>
       <ul>
         <li><a href="#优化方向">优化方向</a></li>
         <li><a href="#基本优化流程">基本优化流程</a></li>
-        <li><a href="#字符串拼接">字符串拼接</a></li>
-        <li><a href="#逃逸分析">逃逸分析</a></li>
-        <li><a href="#trasval-2-d-matrix">Trasval 2-D Matrix</a></li>
-        <li><a href="#zero-garbageallocation">Zero Garbage/Allocation</a></li>
-        <li><a href="#false-sharing">False Sharing</a></li>
+        <li><a href="#常见优化场景">常见优化场景</a>
+          <ul>
+            <li><a href="#字符串拼接">字符串拼接</a></li>
+            <li><a href="#逃逸分析">逃逸分析</a></li>
+            <li><a href="#trasval-2-d-matrix">Trasval 2-D Matrix</a></li>
+            <li><a href="#zero-garbage--allocation">Zero Garbage / Allocation</a></li>
+            <li><a href="#false-sharing">False Sharing</a></li>
+            <li><a href="#降低外部命令调用频次">降低外部命令调用频次</a></li>
+            <li><a href="#阻塞导致高延迟">阻塞导致高延迟</a></li>
+            <li><a href="#cpu-使用太高">CPU 使用太高</a></li>
+            <li><a href="#内存占用过高">内存占用过高</a></li>
+            <li><a href="#常见优化场景总结">常见优化场景总结</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#summary">Summary</a></li>
-    <li><a href="#reference">Reference</a></li>
+    <li><a href="#iii-coutinuous-profiling">III. Coutinuous Profiling</a></li>
+    <li><a href="#iv-summary">IV. Summary</a></li>
+    <li><a href="#v-reference">V. Reference</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>Golang 常见的性能剖析 (Profile) 与优化 (Optimize)</p>
-<h2 id="一profile">一、Profile</h2>
+<h2 id="i-profile">I. Profile</h2>
 <p>在进行 <strong>API 压测</strong>、<strong>全链路压测</strong>、<strong>线上生产环境被高峰流量打爆</strong>的过程中随时可能发生故障等问题，例如：</p>
 <ul>
 <li>CPU 占用过高，超过 90%；</li>
-<li>内存爆掉，OOM；</li>
+<li>内存爆掉，<a href="https://en.wikipedia.org/wiki/Out_of_memory" target="_blank" rel="noopener noreffer ">OOM(Out of memory)</a>；</li>
 <li>Goroutine 数量过多，80W；</li>
 <li>线程数超高；</li>
 <li>延迟过高；</li>
@@ -195,9 +204,9 @@
 <li><a href="https://nghttp2.org/documentation/h2load-howto.html" target="_blank" rel="noopener noreffer ">h2load</a>: HTTP/2 benchmarking tool</li>
 <li><a href="https://ghz.sh/" target="_blank" rel="noopener noreffer ">ghz</a>: gRPC benchmarking and load testing tool</li>
 </ul>
-<h2 id="二optimize">二、Optimize</h2>
+<h2 id="ii-optimize">II. Optimize</h2>
 <h3 id="优化方向">优化方向</h3>
-<p><a data-fancybox="gallery" href="/img/优化范围.svg"><img src="/img/优化范围.svg" alt="优化范围"></a></p>
+<p><a data-fancybox="gallery" href="/img/优化范围.svg"><img src="/img/优化范围.svg" alt="优化范围" style="display: block; margin: 0 auto;"></a></p>
 <p>在分析上图的应用程序运行过程，可以发现进行程序优化时，一般从可以从以下方面入手：</p>
 <ul>
 <li>应用层优化: 主要指的是逻辑优化、内存使用优化、CPU 使用优化、阻塞优化等，并且本层优化效果可能优于底层优化；</li>
@@ -210,7 +219,8 @@
 <li><strong>内存占用</strong>：看 Prometheus，内存 RSS / Goroutine 数量 / Goroutine 栈占用 &ndash;&raquo; 如果 Goroutine 数量不多，则重点关注 heap profile 中的 inuse &ndash;&raquo; 定时任务类需要看 alloc</li>
 <li>Goroutine 数量过多 &ndash;&raquo; 从 profile 网页进去看看 Goroutine 的执行情况（在干什么？） &ndash;&raquo; 检查死锁、阻塞等问题 &ndash;&raquo; 个别不在意延迟的选择第三方库优化</li>
 </ol>
-<h3 id="字符串拼接">字符串拼接</h3>
+<h3 id="常见优化场景">常见优化场景</h3>
+<h4 id="字符串拼接">字符串拼接</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -293,7 +303,7 @@
 </span></span><span class="line"><span class="cl">ok      github.com/lutianen/go-test/bench0      2.506s
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="逃逸分析">逃逸分析</h3>
+</div><h4 id="逃逸分析">逃逸分析</h4>
 <p>用户声明的对象，被放在栈上还是堆上？
 可以通过编译器的 escape analysis 来决定 <code>go build -gcflags=&quot;-m&quot; xxx.go</code></p>
 <div class="highlight"><div class="chroma">
@@ -339,7 +349,7 @@
 </div><blockquote>
 <p>TODO: 各种逃逸分析的可能性有哪些？</p>
 </blockquote>
-<h3 id="trasval-2-d-matrix">Trasval 2-D Matrix</h3>
+<h4 id="trasval-2-d-matrix">Trasval 2-D Matrix</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -464,10 +474,12 @@
 </span></span><span class="line"><span class="cl">ok      github.com/lutianen/go-test/bench1      3.676s
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="zero-garbageallocation">Zero Garbage/Allocation</h3>
-<p>Zero Grabage 一般指的是通过利用 <code>sync.Pool</code> 将堆分配完全消灭的优化技术。
-例如，在 http router 框架中应用较多(fasthttp)</p>
-<h3 id="false-sharing">False Sharing</h3>
+</div><h4 id="zero-garbage--allocation">Zero Garbage / Allocation</h4>
+<p>Zero Grabage 一般指的是通过利用 <code>sync.Pool</code> 将堆分配完全消灭的优化技术。</p>
+<p>例如，在 http router 框架 <a href="https://github.com/valyala/fasthttp" target="_blank" rel="noopener noreffer ">fasthttp</a> 中应用较多.</p>
+<p><a data-fancybox="gallery" href="/img/Fasthttp best practices.png"><img src="/img/Fasthttp best practices.png" alt="False Sharing.svg" style="display: block; margin: 0 auto;"></a></p>
+<h4 id="false-sharing">False Sharing</h4>
+<p><a data-fancybox="gallery" href="/img/False Sharing.svg"><img src="/img/False Sharing.svg" alt="False Sharing" style="display: block; margin: 0 auto;"></a></p>
 <p>CPU 运行过程中修改数据是一个 <strong>cache line</strong>为单位，当两个变量<code>A</code>/<code>B</code>满足以下条件：</p>
 <ul>
 <li>在内存中相邻</li>
@@ -504,7 +516,507 @@
 </div><blockquote>
 <p>查看 cache line 大小：<code>cat /sys/devices/system/cpu/cpu&lt;core-num&gt;/cache/index0/coherency_line_size</code></p>
 </blockquote>
-<h2 id="summary">Summary</h2>
+<h4 id="降低外部命令调用频次">降低外部命令调用频次</h4>
+<p>优化前：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">f</span><span class="p">(</span><span class="nx">wr</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">uuid</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">exec</span><span class="p">.</span><span class="nf">Command</span><span class="p">(</span><span class="s">&#34;uuidgen&#34;</span><span class="p">).</span><span class="nf">Output</span><span class="p">()</span> <span class="c1">// Use exec.Command
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">wr</span><span class="p">.</span><span class="nf">Header</span><span class="p">()[</span><span class="s">&#34;Content-Type&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;application/text&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nx">wr</span><span class="p">,</span> <span class="nb">string</span><span class="p">(</span><span class="nx">uuid</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>优化后：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">uuid</span> <span class="s">&#34;github.com/satori/go.uuid&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">f</span><span class="p">(</span><span class="nx">wr</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">uuid</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">uuid</span><span class="p">.</span><span class="nf">NewV4</span><span class="p">()</span> <span class="c1">// Replace exec.Command with existing library
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="nx">wr</span><span class="p">.</span><span class="nf">Header</span><span class="p">()[</span><span class="s">&#34;Content-Type&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;application/text&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nx">wr</span><span class="p">,</span> <span class="nx">uuid</span><span class="p">.</span><span class="nf">String</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>总结：</p>
+<ol>
+<li>线上使用 <code>exec</code> 命令是非常危险的</li>
+<li>采用第三方库代替外部命令</li>
+</ol>
+</blockquote>
+<h4 id="阻塞导致高延迟">阻塞导致高延迟</h4>
+<h5 id="锁阻塞">锁阻塞</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">mtx</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">data</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;hint&#34;</span><span class="p">:</span> <span class="s">&#34;hello wold&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">f</span><span class="p">(</span><span class="nx">wr</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">mtx</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">mtx</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="nx">buf</span> <span class="o">:=</span> <span class="nx">data</span><span class="p">[</span><span class="s">&#34;hint&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="c1">// 临界区内的慢操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">wr</span><span class="p">.</span><span class="nf">Header</span><span class="p">()[</span><span class="s">&#34;Content-Type&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;application/json&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nx">wr</span><span class="p">,</span> <span class="nx">buf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>减小临界区 - 优化后</strong>：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">mtx</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">data</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;hint&#34;</span><span class="p">:</span> <span class="s">&#34;hello wold&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">f</span><span class="p">(</span><span class="nx">wr</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">mtx</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">buf</span> <span class="o">:=</span> <span class="nx">data</span><span class="p">[</span><span class="s">&#34;hint&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">mtx</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="c1">// 慢操作放置于临界区之外
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">wr</span><span class="p">.</span><span class="nf">Header</span><span class="p">()[</span><span class="s">&#34;Content-Type&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;application/json&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nx">wr</span><span class="p">,</span> <span class="nx">buf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在后端系统开发中，锁瓶颈是较常见的问题，例如文件锁
+<a data-fancybox="gallery" href="/img/func-write-with-lock.png"><img src="/img/func-write-with-lock.png" alt="Write with Lock" style="display: block; margin: 0 auto;"></a></p>
+<ul>
+<li>
+<p><strong>双 Buffer 完全干掉锁阻塞</strong></p>
+<blockquote>
+<p>使用双 Buffer / RCU 完全消除读阻塞：全量更新，直接替换原 config</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">updateConfig</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">newConfig</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">MyConfig</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">WhiteList</span><span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kd">struct</span><span class="p">{}),</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Do a lot of compulation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">1000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">newConfig</span><span class="p">.</span><span class="nx">WhiteList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">config</span><span class="p">.</span><span class="nf">Store</span><span class="p">(</span><span class="nx">newConfig</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>使用双 Buffer / RCU 完全消除读阻塞：部分更新，先拷贝原 config，然后更新 key，最后替换</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="c1">// Partial update
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">updateConfig</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">oldConfig</span> <span class="p">=</span> <span class="nf">getConfig</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">newConfig</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">MyConfig</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">WhiteList</span><span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kd">struct</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Copy from old
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="nx">k</span><span class="p">,</span><span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">oldConfig</span><span class="p">.</span><span class="nx">WhiteList</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">newConfig</span><span class="p">.</span><span class="nx">WhiteList</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="p">=</span> <span class="nx">v</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Modify some keys
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">newConfig</span><span class="p">.</span><span class="nx">WhiteList</span><span class="p">[</span><span class="mi">123</span><span class="p">]</span> <span class="p">=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">newConfig</span><span class="p">.</span><span class="nx">WhiteList</span><span class="p">[</span><span class="mi">124</span><span class="p">]</span> <span class="p">=</span> <span class="kd">struct</span><span class="p">{}{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">config</span><span class="p">.</span><span class="nf">Store</span><span class="p">(</span><span class="nx">newConfig</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>NOTE: 当更新可能并发时，则需要在更新时加锁</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>优化锁阻塞瓶颈的手段总结:</p>
+<ol>
+<li>减小临界区：只锁必须锁的对象，临界区内尽量不放慢操作，如 <code>syscall</code></li>
+<li>降低锁粒度：全局锁 -&gt; 对象锁，全局锁 -&gt; 连接锁， 连接锁 -&gt; 请求锁，文件锁 -&gt; 多个文件各种锁</li>
+<li>同步改异步：同步日志 -&gt; 异步日志，若队列满则丢弃，不阻塞业务逻辑</li>
+</ol>
+</blockquote>
+<h4 id="cpu-使用太高">CPU 使用太高</h4>
+<h5 id="编解码使用-cpu-过高">编解码使用 CPU 过高</h5>
+<p>通过更换 json 库，就可以提高系统的吞吐量：本质上是请求的 CPU 使用被优化了（可使用固定 QPS 压测来验证）</p>
+<blockquote>
+<p><code>encoding/json</code> &ndash;&raquo; <code>json &quot;github.com/json-iterator/go&quot;</code></p>
+</blockquote>
+<h5 id="gc-使用-cpu-过高">GC 使用 CPU 过高</h5>
+<ul>
+<li>将变化较少的结构放在堆外，通过 cgo 来管理内存，让 GC 发现不了这些对象，也就不会扫描了</li>
+<li><a href="https://github.com/glycerine/offheap" target="_blank" rel="noopener noreffer "><strong>offheap</strong></a>，可以减少 Go 进程的内存占用和内存使用波动，但要用到 cgo</li>
+</ul>
+<p><a href="https://dgraph.io/blog/post/manual-memory-management-golang-jemalloc/" target="_blank" rel="noopener noreffer ">Manual Memory Management in Go using jemalloc</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">BenchmarkMapWithoutPtrs</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">var</span> <span class="nx">m</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">m</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">i</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">BenchmarkMapWithPtrs</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kd">var</span> <span class="nx">m</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="o">*</span><span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="kd">var</span> <span class="nx">v</span> <span class="p">=</span> <span class="nx">i</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">m</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">v</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl">$ got -bench . -benchmem
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">BenchmarkMapWithoutPtrs-16       <span class="m">3362536</span>               412.1 ns/op           <span class="m">292</span> B/op          <span class="m">1</span> allocs/op
+</span></span><span class="line"><span class="cl">BenchmarkMapWithPtrs-16          <span class="m">2580622</span>               524.8 ns/op           <span class="m">371</span> B/op         <span class="m">11</span> allocs/op
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结论: 当 map 中含有大量的指针 key 时，会给 GC 扫描造成压力</p>
+<p>解决方案（<strong>只适用于内存不紧张，且希望提高整体吞吐量的服务</strong>）：</p>
+<ul>
+<li>调大 GOGC</li>
+<li>程序启动阶段 make 一个全局超大的 slice（如1GB）<em>TODO 如何解决的？</em></li>
+</ul>
+<h4 id="内存占用过高">内存占用过高</h4>
+<h5 id="堆分配导致内存占用过高">堆分配导致内存占用过高</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kd">const</span> <span class="nx">max</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">14</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//go:noinline
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">Steal</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">buf</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nx">max</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">buf</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">buf</span><span class="p">,</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">BenchmarkSteal</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">Steal</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl">$ go <span class="nb">test</span> -bench . -benchmem
+</span></span><span class="line"><span class="cl">BenchmarkSteal-16              <span class="m">1</span>        <span class="m">1386661490</span> ns/op        <span class="m">10764864792</span> B/op              <span class="m">51</span> allocs/op
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="goroutine-数量太多导致内存占用过高">Goroutine 数量太多导致内存占用过高</h5>
+<p><strong>Goroutine 涉及到的占用内存可能如下</strong>：</p>
+<ol>
+<li>
+<p>Goroutine 栈占用的内存(<strong>难优化</strong>，一条 TCP 连接至少对应一个 Goroutine)</p>
+</li>
+<li>
+<p>TCP Read Buffer 占用的内存(<strong>难优化</strong>，因为大部分连接阻塞在 Read 上，Read Buffer 基本没有可以释放的时机)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">f</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">l</span> <span class="nx">net</span><span class="p">.</span><span class="nx">Listener</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">c</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">l</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">		<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="kd">var</span> <span class="nx">buf</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">4096</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">c</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>TCP Writer Buffer 占用的内存(<strong>易优化</strong>，因为活跃连接不多)</p>
+</li>
+</ol>
+<blockquote>
+<p>原因：</p>
+<ol>
+<li><code>gopark(...)</code> 的 Goroutine， 占用内存</li>
+<li>阻塞的 Read Buffer 很难找到时机释放，占用内存</li>
+</ol>
+</blockquote>
+<p><strong>Solution</strong>: 在一些不太重视延迟的场景中（例如推送系统），可以使用某些库进行优化：evio、gev、gnet、easygo、gaio、netpoll</p>
+<blockquote>
+<p>NOTE: <strong>一定要进行在真实业务场景中做压测</strong>，不要相信某些库的 README 中的压测数据</p>
+</blockquote>
+<h4 id="常见优化场景总结">常见优化场景总结</h4>
+<ol>
+<li>CPU 使用太高
+<ul>
+<li>应用逻辑导致
+<ul>
+<li>JSON 序列化
+<ul>
+<li>使用一些优化的 JSON 库替代标准库</li>
+<li>使用二进制编码方式代替 JSON 编码</li>
+<li>同物理节点通信，使用共享内存 IPC，直接干掉序列化开销</li>
+</ul>
+</li>
+<li>MD5 计算 HASH 值成本太高 &ndash;&gt; 使用 <a href="https://github.com/google/cityhash" target="_blank" rel="noopener noreffer ">cityhash</a>, <a href="https://zh.wikipedia.org/zh-cn/Murmur%E5%93%88%E5%B8%8C" target="_blank" rel="noopener noreffer ">murmurhash</a></li>
+<li>其他应用逻辑：只能具体情况具体分析</li>
+</ul>
+</li>
+<li>GC 使用 CPU 过高
+<ul>
+<li>减少堆上对象分配
+<ul>
+<li><code>sync.Pool</code> 进行堆对象重用</li>
+<li><code>Map</code> -&gt; <code>slice</code></li>
+<li>指针 -&gt; 非指针对象</li>
+<li>多个小对象 -&gt; 合并为一个大对象</li>
+</ul>
+</li>
+<li>offheap</li>
+<li>降低 GC 频率
+<ul>
+<li>修改 GOGC</li>
+<li>在程序开始时 <code>make</code> 一个全局大 <code>slice</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>调度相关的函数使用 CPU 过高
+<ul>
+<li>尝试使用 Goroutine Pool，减少 Goroutine 的创建与销毁</li>
+<li>控制最大 Goroutine 数量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>内存使用过高
+<ul>
+<li>堆内存占用内存空间过高
+<ul>
+<li><code>sync.Pool</code> 对象复用</li>
+<li>为不同大小的对象提供不同大小 level 的 <code>sync.Pool</code></li>
+<li>offheap</li>
+</ul>
+</li>
+<li>Goroutine 栈占用过多内存
+<ul>
+<li>减少 Goroutine 数量
+<ul>
+<li>如每个连接一读一写 &ndash;&raquo; 合并为一个连接一个 goroutine</li>
+<li>Goroutine pool 限制最大 goroutine 数量</li>
+<li>使用裸 epoll 库(evio, gev等)修改网络编程方式（只适用于对延迟不敏感的业务）</li>
+</ul>
+</li>
+<li>通过修改代码，减少函数调用层级（难）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>阻塞问题
+<ul>
+<li>上游系统阻塞
+<ul>
+<li>让上游赶紧解决</li>
+</ul>
+</li>
+<li>锁阻塞
+<ul>
+<li>减少临界区范围</li>
+<li>降低锁粒度
+<ul>
+<li>Global Lock &ndash;&raquo; Shareded Lock</li>
+<li>Global Lock &ndash;&raquo; Connection Level Lock</li>
+<li>Connection Level Lock &ndash;&raquo; Request Level Lock</li>
+</ul>
+</li>
+<li>同步改异步
+<ul>
+<li>日志场景：同步日志 &ndash;&raquo; 异步日志</li>
+<li>Metrics 上报场景：<code>select</code> &ndash;&raquo; <code>select</code> + <code>default</code></li>
+</ul>
+</li>
+<li>个别场景使用双 Buffer 完全消灭阻塞</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="iii-coutinuous-profiling">III. Coutinuous Profiling</h2>
+<p>压测是一个蹲点行为，然而真实场景并不美好，它们通常是难以发现的偶发问题：</p>
+<ul>
+<li>该到吃饭的时候，CPU 使用尖刺</li>
+<li>凌晨四点半，系统发生 OOM</li>
+<li>刚睡着的时候，Goroutine 数量爆炸</li>
+<li>产品被部署到客户那里，想登陆客户的环境并不方便</li>
+</ul>
+<p>此时 Coutinuout Profiling 就派上用场了.</p>
+<p><a data-fancybox="gallery" href="/img/Continuous Profiling.svg"><img src="/img/Continuous Profiling.svg" alt="Continuous Profiling" style="display: block; margin: 0 auto;"></a></p>
+<p><strong>自省式的 Profile Dumper</strong>，可以根据 CPU 利用率、Memory 利用率、Goroutine 数量等多个指标检测系统，设置定时周期进行检测，当发现某个指标异常时，自动 Dump file.</p>
+<h2 id="iv-summary">IV. Summary</h2>
 <ol>
 <li>
 <p><code>_pad</code> 优化，针对<strong>多个线程更新同一个结构体内不同的字段</strong>场景有效，而针对<strong>一个线程同时更新整个结构体</strong>的场景意义不大；</p>
@@ -524,15 +1036,14 @@
 </blockquote>
 </li>
 </ol>
-<h2 id="reference">Reference</h2>
+<h2 id="v-reference">V. Reference</h2>
 <ul>
 <li><a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/go-gpp.html" target="_blank" rel="noopener noreffer ">Benchmarks Game</a></li>
 <li><a href="https://github.com/smallnest/go-web-framework-benchmark" target="_blank" rel="noopener noreffer ">Go Web Frame Benchmarks</a></li>
 <li><a href="https://github.com/julienschmidt/go-http-routing-benchmark" target="_blank" rel="noopener noreffer ">Go HTTP Router Benchmark</a></li>
 <li><a href="https://www.techempower.com/benchmarks/" target="_blank" rel="noopener noreffer ">Web 场景跨语言性能对比</a></li>
 <li>《Systems Performance》</li>
-</ul>
-<p>// ## Coutinuous Profiling</p></div><div class="post-footer" id="post-footer">
+</ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -543,7 +1054,7 @@
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/go-profile/" data-title="Profile and Optimize for Go" data-hashtags="Golang,Profile,Optimize"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/go-profile/" data-hashtag="Golang"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="http://localhost:1313/go-profile/"><i class="fab fa-reddit fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/go-profile/" data-title="Profile and Optimize for Go"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/go-profile/" data-title="Profile and Optimize for Go"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="http://localhost:1313/go-profile/" data-title="Profile and Optimize for Go"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://lutianen.github.io/go-profile/" data-title="Profile and Optimize for Go" data-hashtags="Golang,Profile,Optimize"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://lutianen.github.io/go-profile/" data-hashtag="Golang"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://lutianen.github.io/go-profile/"><i class="fab fa-reddit fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://lutianen.github.io/go-profile/" data-title="Profile and Optimize for Go"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://lutianen.github.io/go-profile/" data-title="Profile and Optimize for Go"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="https://lutianen.github.io/go-profile/" data-title="Profile and Optimize for Go"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/baidu.svg" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -557,9 +1068,11 @@
 
     <div class="post-nav"><a href="/linter-go/" class="prev" rel="prev" title="Linter for Go"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Linter for Go</a></div>
 </div>
-</article></div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">读书不是为了雄辩和驳斥，也不是为了轻信和盲从，而是为了思考和权衡</div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.125.3">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">读书不是为了雄辩和驳斥，也不是为了轻信和盲从，而是为了思考和权衡</div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.125.6">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/lutianen" target="_blank">Kyten</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></br><script>
                     function siteTime() {
                         var seconds = 1000;
@@ -612,5 +1125,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":20},"comment":{},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":20},"comment":{"gitalk":{"admin":["lutianen"],"clientID":"c2bc49c0b7268c2f6143","clientSecret":"5b8e0866eb4584bc01f31112a036dea78d79a13a","id":"2024-04-20T20:39:50+08:00","owner":"lutianen","repo":"gitalk","title":"Profile and Optimize for Go"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.d7121d72cd85153ec9d35a888cee3eb28c2700ca763f649a538f6c772d750021.js" integrity="sha256-1xIdcs2FFT7J01qIjO4+sownAMp2P2SaU49sdy11ACE="></script></body>
 </html>
