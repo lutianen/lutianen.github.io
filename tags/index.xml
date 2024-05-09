@@ -4,12 +4,44 @@
         <link>https://lutianen.github.io/tags/</link>
         <description>Tags - Tag - Kyten 鸢舞</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyten)</managingEditor>
-            <webMaster>tianen.xd@gmail.com (Kyten)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 20 Apr 2024 20:39:50 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>tianen.xd@gmail.com (Kyten)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 08 May 2024 11:43:38 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Epoll</title>
+    <link>https://lutianen.github.io/tags/epoll/</link>
+    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
+    <author>Kyten</author>
+    <guid>https://lutianen.github.io/tags/epoll/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Golang</title>
     <link>https://lutianen.github.io/tags/golang/</link>
-    <pubDate>Sat, 20 Apr 2024 20:39:50 &#43;0800</pubDate>
+    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
     <author>Kyten</author>
     <guid>https://lutianen.github.io/tags/golang/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Linux</title>
+    <link>https://lutianen.github.io/tags/linux/</link>
+    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
+    <author>Kyten</author>
+    <guid>https://lutianen.github.io/tags/linux/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Netpoll</title>
+    <link>https://lutianen.github.io/tags/netpoll/</link>
+    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
+    <author>Kyten</author>
+    <guid>https://lutianen.github.io/tags/netpoll/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Network Program</title>
+    <link>https://lutianen.github.io/tags/network-program/</link>
+    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
+    <author>Kyten</author>
+    <guid>https://lutianen.github.io/tags/network-program/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -50,38 +82,6 @@
     <pubDate>Fri, 19 Apr 2024 11:24:23 &#43;0800</pubDate>
     <author>Kyten</author>
     <guid>https://lutianen.github.io/tags/static-check/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Markdown</title>
-    <link>https://lutianen.github.io/tags/markdown/</link>
-    <pubDate>Thu, 18 Apr 2024 21:50:17 &#43;0800</pubDate>
-    <author>Kyten</author>
-    <guid>https://lutianen.github.io/tags/markdown/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Software</title>
-    <link>https://lutianen.github.io/tags/software/</link>
-    <pubDate>Thu, 18 Apr 2024 21:50:17 &#43;0800</pubDate>
-    <author>Kyten</author>
-    <guid>https://lutianen.github.io/tags/software/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Theme</title>
-    <link>https://lutianen.github.io/tags/theme/</link>
-    <pubDate>Thu, 18 Apr 2024 21:50:17 &#43;0800</pubDate>
-    <author>Kyten</author>
-    <guid>https://lutianen.github.io/tags/theme/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Typora</title>
-    <link>https://lutianen.github.io/tags/typora/</link>
-    <pubDate>Thu, 18 Apr 2024 21:50:17 &#43;0800</pubDate>
-    <author>Kyten</author>
-    <guid>https://lutianen.github.io/tags/typora/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
