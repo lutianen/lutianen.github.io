@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/netpoll-of-network-program-for-golang\/"
-        },"genre": "posts","keywords": "Netpoll, Epoll, Network Program, Golang, Linux","wordcount":  2029 ,
+        },"genre": "posts","keywords": "Netpoll, Epoll, Network Program, Golang, Linux","wordcount":  2046 ,
         "url": "https:\/\/lutianen.github.io\/netpoll-of-network-program-for-golang\/","datePublished": "2024-05-08T11:43:38+08:00","dateModified": "2024-05-08T11:43:38+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyten","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
@@ -132,7 +132,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Netpoll of Network Program for Golang</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyten</a></span>&nbsp;<span class="post-category">included in <a href="/categories/netpoll/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Netpoll</a>&nbsp;<a href="/categories/epoll/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Epoll</a>&nbsp;<a href="/categories/network-program/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Network Program</a>&nbsp;<a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a>&nbsp;<a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-08">2024-05-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2029 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-08">2024-05-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2046 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -153,10 +153,14 @@
       </ul>
     </li>
     <li><a href="#v-netpoll-执行流程">V. netpoll 执行流程</a></li>
-    <li><a href="#reference">Reference</a></li>
+    <li><a href="#vi-总结">VI. 总结</a></li>
+    <li><a href="#vii-reference">VII. Reference</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>深入剖析 Golang 网络编程之 Netpoll，主要涉及 Linux 环境下的 Epoll 初始化、 Go 网络编程基本流程（Listen、Accept、Read、Write）以及netpoll 执行流程</p>
+<blockquote>
+<p>本文所涉及的源码版本：<a href="https://github.com/golang/go/tree/release-branch.go1.22/src" target="_blank" rel="noopener noreffer ">v1.22.3</a></p>
+</blockquote>
 <h2 id="i-基础概念">I. 基础概念</h2>
 <p><strong>网络编程，是允许不同计算机上的程序通过网络通信的开发过程，涉及多种协议（HTTP、TCP/IP等）以及不同编程语言的应用</strong>。</p>
 <h2 id="ii-应用示例">II. 应用示例</h2>
@@ -182,38 +186,14 @@
 </span><span class="lnt">18
 </span><span class="lnt">19
 </span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;net&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;time&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;net&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">l</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;127.0.0.1:2333&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nx">t</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nf">AfterFunc</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Timer tick...\r\n&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">})</span>
-</span></span><span class="line"><span class="cl">    <span class="k">defer</span> <span class="nx">t</span><span class="p">.</span><span class="nf">Stop</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">l</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">net</span><span class="p">.</span><span class="nf">Listen</span><span class="p">(</span><span class="s">&#34;tcp&#34;</span><span class="p">,</span> <span class="s">&#34;127.0.0.1:2333&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">		<span class="nx">conn</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">l</span><span class="p">.</span><span class="nf">Accept</span><span class="p">()</span>
@@ -222,7 +202,7 @@
 </span></span><span class="line"><span class="cl">			<span class="k">defer</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">			<span class="nx">buf</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="mi">4096</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">_</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">_</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">conn</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">			<span class="nx">conn</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">		<span class="p">}()</span>
@@ -415,12 +395,13 @@
 <li><strong><code>poll.FD</code> 结构含有 <code>SysFile</code> 和 <code>pollDesc</code> 类型的成员，以及 <code>fdMutex</code> 类型的 <code>fdmu</code></strong></li>
 </ul>
 <h2 id="iv-tcp-网络编程基本流程">IV. TCP 网络编程基本流程</h2>
+<p>本部分涉及众多函数调用，为了描述清晰，采用了图的形式，其中，每一块第一行表示该块所表示的函数名称，其他部分表示该函数中关键函数调用。</p>
 <h3 id="创建-tcp-socket-并监听">创建 TCP socket 并监听</h3>
 <p><a data-fancybox="gallery" href="/img/golang-netpoll-listen.svg"><img src="/img/golang-netpoll-listen.svg" alt="golang-netpoll-listen.svg" style="display: block; margin: 0 auto;"></a></p>
-<p><strong>需要注意的是，在执行 <code>net.(*netFD).listenStream</code> 之前，由于 <code>maxListenerBacklog</code> 函数调用了 <code>open(&quot;/proc/sys/net/core/somaxconn&quot;)</code>，则会导致 epoll 底层红黑树的提前创建: <code>runtime.netpollinit</code> -&gt; <code>syscall.EpollCreate1</code> -&gt; <code>Syscall6(SYS_EPOLL_CREATE1, uintptr(flags), 0, 0, 0, 0, 0)</code></strong>.</p>
 <blockquote>
 <p>NOTE</p>
-<p>当启用 Timer 时，也存在提前初始化 netpoll 的可能，原因：
+<p><strong>需要注意的是，在执行 <code>net.(*netFD).listenStream</code> 之前，由于 <code>maxListenerBacklog</code> 函数调用了 <code>open(&quot;/proc/sys/net/core/somaxconn&quot;)</code>，则会导致 epoll 底层红黑树的提前创建: <code>runtime.netpollinit</code> -&gt; <code>syscall.EpollCreate1</code> -&gt; <code>Syscall6(SYS_EPOLL_CREATE1, uintptr(flags), 0, 0, 0, 0, 0)</code></strong>.</p>
+<p>另外，当启用 Timer 时，也存在提前初始化 netpoll 的可能，原因：
 <strong>Timers rely on the network poller</strong></p>
 <p><code>time.NewTimer</code> -&gt; <code>runtime.startTimer</code> -&gt; <code>runtime.addtimer</code> -&gt; <code>runtime.doaddtimer</code> -&gt; <code>netpollGenericInit()</code></p>
 <div class="highlight"><div class="chroma">
@@ -973,7 +954,20 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="reference">Reference</h2>
+</div><h2 id="vi-总结">VI. 总结</h2>
+<ol>
+<li>
+<p>Golang 通过对 Linux 内核提供的 <code>epoll</code> 实现进行封装，实现了<strong>同步编程异步执行</strong>的效果，其核心数据结构是 <code>netFD</code>，并将 <code>Sysfd</code> 与 <code>pollDesc</code> 结构绑定。
+当某个 <code>netFD</code> 产生 <code>EAGAIN</code> 错误时，则当前 Goroutine 将会被存储到其对应的 <code>pollDesc</code> 中，同时 Goroutine 会 <code>gopark()</code>，直至这个 <code>netFD</code> 再次发生读写事件，会将此 Goroutine 设置为 ready 并放入 <code>toRun</code> 队列等待重新运行，而底层事件通知机制就是 epoll.</p>
+</li>
+<li>
+<p>Golang 中 netpoll 的创建与初始化的可能来源：Timer、读文件、TCP Listen.</p>
+</li>
+<li>
+<p>如下的调度和 GC 关键函数 <code>startTheWorldWithSema</code>、<code>findrunnable</code>、<code>pollWork</code>、<code>sysmon</code> 都会进行 <code>netpoll</code> 执行流程，检查是否存在 ready 状态的 FD.</p>
+</li>
+</ol>
+<h2 id="vii-reference">VII. Reference</h2>
 <ul>
 <li><a href="https://github.com/golang/go/blob/release-branch.go1.22/src/runtime/netpoll.go" target="_blank" rel="noopener noreffer ">runtime/netpoll.go</a></li>
 <li><a href="https://github.com/golang/go/blob/release-branch.go1.22/src/runtime/netpoll_epoll.go" target="_blank" rel="noopener noreffer ">runtime/netpoll_epoll.go</a></li>
