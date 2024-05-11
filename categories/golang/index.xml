@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Golang - Category - Kyten 鸢舞</title>
+        <title>Golang - Category - Kyden 鸢舞</title>
         <link>https://lutianen.github.io/categories/golang/</link>
-        <description>Golang - Category - Kyten 鸢舞</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyten)</managingEditor>
-            <webMaster>tianen.xd@gmail.com (Kyten)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 08 May 2024 11:43:38 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/categories/golang/" rel="self" type="application/rss+xml" /><item>
+        <description>Golang - Category - Kyden 鸢舞</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyden)</managingEditor>
+            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 08 May 2024 11:43:38 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/categories/golang/" rel="self" type="application/rss+xml" /><item>
     <title>Netpoll of Network Program for Golang</title>
     <link>https://lutianen.github.io/netpoll-of-network-program-for-golang/</link>
     <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/netpoll-of-network-program-for-golang/</guid>
     <description><![CDATA[<p>深入剖析 Golang 网络编程之 Netpoll，主要涉及 Linux 环境下的 Epoll 初始化、 Go 网络编程基本流程（Listen、Accept、Read、Write）以及netpoll 执行流程</p>]]></description>
 </item>
@@ -16,7 +16,7 @@
     <title>Profile and Optimize for Go</title>
     <link>https://lutianen.github.io/go-profile/</link>
     <pubDate>Sat, 20 Apr 2024 20:39:50 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/go-profile/</guid>
     <description><![CDATA[<p>Golang 常见的性能剖析 (Profile) 与优化 (Optimize)</p>]]></description>
 </item>
@@ -24,7 +24,7 @@
     <title>Linter for Go</title>
     <link>https://lutianen.github.io/linter-go/</link>
     <pubDate>Fri, 19 Apr 2024 11:24:23 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/linter-go/</guid>
     <description><![CDATA[<p>各种流行的 Go Linter 介绍，例如 Gocyclo、bodyclose、sqlrows、GolangCI-Lint、reviewdog等</p>]]></description>
 </item>

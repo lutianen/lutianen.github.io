@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Epoll - Tag - Kyten 鸢舞</title>
+        <title>Epoll - Tag - Kyden 鸢舞</title>
         <link>https://lutianen.github.io/tags/epoll/</link>
-        <description>Epoll - Tag - Kyten 鸢舞</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyten)</managingEditor>
-            <webMaster>tianen.xd@gmail.com (Kyten)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 08 May 2024 11:43:38 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/tags/epoll/" rel="self" type="application/rss+xml" /><item>
+        <description>Epoll - Tag - Kyden 鸢舞</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyden)</managingEditor>
+            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 08 May 2024 11:43:38 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/tags/epoll/" rel="self" type="application/rss+xml" /><item>
     <title>Netpoll of Network Program for Golang</title>
     <link>https://lutianen.github.io/netpoll-of-network-program-for-golang/</link>
     <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/netpoll-of-network-program-for-golang/</guid>
     <description><![CDATA[<p>深入剖析 Golang 网络编程之 Netpoll，主要涉及 Linux 环境下的 Epoll 初始化、 Go 网络编程基本流程（Listen、Accept、Read、Write）以及netpoll 执行流程</p>]]></description>
 </item>

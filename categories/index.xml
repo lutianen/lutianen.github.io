@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Categories - Category - Kyten 鸢舞</title>
+        <title>Categories - Category - Kyden 鸢舞</title>
         <link>https://lutianen.github.io/categories/</link>
-        <description>Categories - Category - Kyten 鸢舞</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyten)</managingEditor>
-            <webMaster>tianen.xd@gmail.com (Kyten)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 08 May 2024 11:43:38 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <description>Categories - Category - Kyden 鸢舞</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyden)</managingEditor>
+            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 08 May 2024 11:43:38 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/categories/" rel="self" type="application/rss+xml" /><item>
     <title>Epoll</title>
     <link>https://lutianen.github.io/categories/epoll/</link>
     <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/categories/epoll/</guid>
     <description><![CDATA[]]></description>
 </item>
@@ -16,7 +16,7 @@
     <title>Golang</title>
     <link>https://lutianen.github.io/categories/golang/</link>
     <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/categories/golang/</guid>
     <description><![CDATA[]]></description>
 </item>
@@ -24,7 +24,7 @@
     <title>Linux</title>
     <link>https://lutianen.github.io/categories/linux/</link>
     <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/categories/linux/</guid>
     <description><![CDATA[]]></description>
 </item>
@@ -32,7 +32,7 @@
     <title>Netpoll</title>
     <link>https://lutianen.github.io/categories/netpoll/</link>
     <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/categories/netpoll/</guid>
     <description><![CDATA[]]></description>
 </item>
@@ -40,7 +40,7 @@
     <title>Network Program</title>
     <link>https://lutianen.github.io/categories/network-program/</link>
     <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/categories/network-program/</guid>
     <description><![CDATA[]]></description>
 </item>
@@ -48,7 +48,7 @@
     <title>Optimize</title>
     <link>https://lutianen.github.io/categories/optimize/</link>
     <pubDate>Sat, 20 Apr 2024 20:39:50 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/categories/optimize/</guid>
     <description><![CDATA[]]></description>
 </item>
@@ -56,7 +56,7 @@
     <title>Profile</title>
     <link>https://lutianen.github.io/categories/profile/</link>
     <pubDate>Sat, 20 Apr 2024 20:39:50 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/categories/profile/</guid>
     <description><![CDATA[]]></description>
 </item>
@@ -64,7 +64,7 @@
     <title>CI/CD</title>
     <link>https://lutianen.github.io/categories/ci/cd/</link>
     <pubDate>Fri, 19 Apr 2024 11:24:23 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/categories/ci/cd/</guid>
     <description><![CDATA[]]></description>
 </item>
@@ -72,7 +72,7 @@
     <title>Linter</title>
     <link>https://lutianen.github.io/categories/linter/</link>
     <pubDate>Fri, 19 Apr 2024 11:24:23 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/categories/linter/</guid>
     <description><![CDATA[]]></description>
 </item>
@@ -80,7 +80,7 @@
     <title>Static Check</title>
     <link>https://lutianen.github.io/categories/static-check/</link>
     <pubDate>Fri, 19 Apr 2024 11:24:23 &#43;0800</pubDate>
-    <author>Kyten</author>
+    <author>Kyden</author>
     <guid>https://lutianen.github.io/categories/static-check/</guid>
     <description><![CDATA[]]></description>
 </item>
