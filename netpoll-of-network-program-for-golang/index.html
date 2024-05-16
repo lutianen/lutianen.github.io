@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-05-08T11:43:38+08:00">
-    <meta property="article:modified_time" content="2024-05-16T14:57:16+08:00">
+    <meta property="article:modified_time" content="2024-05-16T15:20:30+08:00">
     <meta property="article:tag" content="Netpoll">
     <meta property="article:tag" content="Epoll">
     <meta property="article:tag" content="Network Program">
@@ -36,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/netpoll-of-network-program-for-golang\/"
-        },"genre": "posts","keywords": "Netpoll, Epoll, Network Program, Golang, Linux","wordcount":  2053 ,
-        "url": "https:\/\/lutianen.github.io\/netpoll-of-network-program-for-golang\/","datePublished": "2024-05-08T11:43:38+08:00","dateModified": "2024-05-16T14:57:16+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"genre": "posts","keywords": "Netpoll, Epoll, Network Program, Golang, Linux","wordcount":  2182 ,
+        "url": "https:\/\/lutianen.github.io\/netpoll-of-network-program-for-golang\/","datePublished": "2024-05-08T11:43:38+08:00","dateModified": "2024-05-16T15:20:30+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
@@ -134,8 +134,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Netpoll of Network Program for Golang</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyden</a></span>&nbsp;<span class="post-category">included in <a href="/categories/netpoll/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Netpoll</a>&nbsp;<a href="/categories/epoll/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Epoll</a>&nbsp;<a href="/categories/network-program/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Network Program</a>&nbsp;<a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a>&nbsp;<a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-08">2024-05-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2053 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-08">2024-05-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2182 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -145,6 +145,13 @@
   <ul>
     <li><a href="#i-基础概念">I. 基础概念</a>
       <ul>
+        <li><a href="#同步异步并发模型">同步、异步、并发模型</a>
+          <ul>
+            <li><a href="#io模型中的同步">IO模型中的同步</a></li>
+            <li><a href="#io-模型中的异步">IO 模型中的异步</a></li>
+            <li><a href="#并发模式">并发模式</a></li>
+          </ul>
+        </li>
         <li><a href="#linux-epoll">Linux Epoll</a></li>
       </ul>
     </li>
@@ -169,8 +176,89 @@
 </blockquote>
 <h2 id="i-基础概念">I. 基础概念</h2>
 <p><strong>网络编程，是允许不同计算机上的程序通过网络通信的开发过程，涉及多种协议（HTTP、TCP/IP等）以及不同编程语言的应用</strong>。</p>
+<h3 id="同步异步并发模型">同步、异步、并发模型</h3>
+<table>
+<thead>
+<tr>
+<th>IO 模型</th>
+<th style="text-align:left">读写操作和阻塞阶段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>阻塞 IO</td>
+<td style="text-align:left">程序阻塞于读写函数</td>
+</tr>
+<tr>
+<td>IO 复用</td>
+<td style="text-align:left">程序阻塞于 IO 复用系统调用，但可同时监听多个 IO 事件；对 IO 本身的读写操作是非阻塞的</td>
+</tr>
+<tr>
+<td>SIGIO 信号</td>
+<td style="text-align:left">信号触发读写就绪事件，用户程序执行读写操作；程序本身没有阻塞阶段</td>
+</tr>
+<tr>
+<td>异步 IO</td>
+<td style="text-align:left">内核执行读写操作并触发读写完成事件；程序没有阻塞阶段</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>主要用于区分内核向应用程序通知的是何种 IO 事件（就绪事件 or 完成事件），以及由谁来完成 IO 读写（应用程序 or 内核）</strong></p>
+</blockquote>
+<h4 id="io模型中的同步">IO模型中的同步</h4>
+<ul>
+<li><strong>同步</strong> IO 模型，指的是应用程序发起 IO 操作后，必须等待 IO 操作完成后才能继续执行后续的操作，即 IO 操作的结果需要立即返回给应用程序；在此期间，应用程序处于阻塞状态，无法做其他操作。</li>
+<li>优点：编程模型简单</li>
+<li>缺点：效率较低（应用程序的执行速度被 IO 操作所限制）</li>
+</ul>
+<blockquote>
+<p><strong>对于操作系统内核来说，同步 IO 操作是指在内核处理 IO 请求时需要等待</strong></p>
+</blockquote>
+<h4 id="io-模型中的异步">IO 模型中的异步</h4>
+<ul>
+<li><strong>异步</strong> IO 模型，指的是应用程序发起 IO 操作后，无须等待 IO 操作完成，可以立即进行后续的操作；在此期间，操作系统负责把 IO 操作的结果返回给应用程序；</li>
+<li>优点：可以充分利用系统资源，提高 IO 操作的效率</li>
+<li>缺点：编程模型相对复杂</li>
+</ul>
+<blockquote>
+<p><strong>对于操作系统内核来说，异步 IO 操作指的是，在内核处理 IO 请求时无需等待，立即返回</strong></p>
+</blockquote>
+<h4 id="并发模式">并发模式</h4>
+<blockquote>
+<p><strong>并发模式，指的是 I/O 处理单元和多个逻辑单元之间协调完成任务的方法</strong></p>
+</blockquote>
 <h3 id="linux-epoll">Linux Epoll</h3>
 <p><a data-fancybox="gallery" href="/img/Epoll-Linux.svg"><img src="/img/Epoll-Linux.svg" alt="Epoll-Linux" style="display: block; margin: 0 auto;"></a></p>
+<ul>
+<li>
+<p>epoll 在内核里使用<strong>红黑树(Red-black tree)来跟踪进程所有待检测的文件描述字 <code>fd</code></strong>，把需要监控的 socket 通过 <code>epoll_ctl()</code> 函数加入内核中的红黑树里（红黑树是个高效的数据结构，增删改一般时间复杂度是 <code>O(logn)</code>）</p>
+</li>
+<li>
+<p>epoll 使用<strong>事件驱动</strong>的机制，在内核里<strong>维护了一个链表(List)来记录就绪事件</strong>。
+当某个 socket 有事件发生时，内核通过<strong>回调函数</strong>将其加入到这个就绪事件列表中。
+当用户调用 <code>epoll_wait()</code> 函数时，<strong>只</strong>会返回有事件发生的文件描述符的个数，不需要像 select/poll 那样轮询扫描整个 socket 集合，大大提高了检测的效率</p>
+</li>
+<li>
+<p>两种触发模式</p>
+<ul>
+<li><strong>Level trigger</strong>：服务器端不断地从 epoll_wait 中苏醒，直到内核缓冲区数据被 read 函数读完才结束</li>
+<li><strong>Edge trigger</strong>：服务器端只会从 epoll_wait 中苏醒一次</li>
+</ul>
+</li>
+<li>
+<p>事件宏</p>
+<ul>
+<li><code>EPOLLIN</code> 表示对应的文件描述符<strong>可读（包括对端 socket 正常关闭）</strong></li>
+<li><code>EPOLLOUT</code> 表示对应的文件描述符<strong>可写</strong></li>
+<li><code>EPOLLPRI</code> 表示对应的文件描述符<strong>有紧急的数据可读（带外数据）</strong></li>
+<li><code>EPOLLERR</code> 表示对应的文件描述符<strong>发生错误</strong></li>
+<li><code>EPOLLHUP</code> 表示对应的文件描述符<strong>被挂断</strong></li>
+<li><code>EPOLLET</code> 将 EPOLL 设为<strong>边缘触发模式</strong>（默认电平触发）</li>
+<li><code>EPOLLONESHOT</code> <strong>只监听一次事件</strong>，当监听完这次事件之后，如果还需要继续监听这个 socket 的话，需要再次把这个 socket 加入到内核中的事件注册表中</li>
+</ul>
+</li>
+</ul>
 <h2 id="ii-应用示例">II. 应用示例</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -988,8 +1076,8 @@
         <div class="post-info-line">
             <div class="post-info-mod">
                 <span>Updated on 2024-05-16
-                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/501aa6d9ed756167ceec1b43de460cc0cbd9287a" target="_blank" title="commit by 501aa6d9ed756167ceec1b43de460cc0cbd9287a: Add: Linux Epoll">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>501aa6d</a></span>
+                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/e6220da36c2839ff740c25ada5a35818293e7283" target="_blank" title="commit by e6220da36c2839ff740c25ada5a35818293e7283: Add: 同步、异步、并发模型">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>e6220da</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

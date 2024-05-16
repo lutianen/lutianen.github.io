@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Process - Tag - Kyden 鸢舞</title>
+        <link>http://localhost:1313/tags/process/</link>
+        <description>Process - Tag - Kyden 鸢舞</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyden)</managingEditor>
+            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 15 May 2024 13:41:49 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/process/" rel="self" type="application/rss+xml" /><item>
+    <title>GMP of Go</title>
+    <link>http://localhost:1313/gmp-of-go/</link>
+    <pubDate>Wed, 15 May 2024 13:41:49 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>http://localhost:1313/gmp-of-go/</guid>
+    <description><![CDATA[<p>Golang 深入理解 GMP</p>]]></description>
+</item>
+</channel>
+</rss>
