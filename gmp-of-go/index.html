@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>GMP of Go - Kyden 鸢舞</title><meta name="Description" content="Kyden&#39;s Blog Site"><meta property="og:url" content="http://localhost:1313/gmp-of-go/">
+        <title>深入理解 GMP - Kyden 鸢舞</title><meta name="Description" content="Kyden&#39;s Blog Site"><meta property="og:url" content="https://lutianen.github.io/gmp-of-go/">
   <meta property="og:site_name" content="Kyden 鸢舞">
-  <meta property="og:title" content="GMP of Go">
-  <meta property="og:description" content="Golang 深入理解 GMP">
+  <meta property="og:title" content="深入理解 GMP">
+  <meta property="og:description" content="深入理解 GMP: Go 的调度流程本质上是一个生产-消费流程.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-05-15T13:41:49+08:00">
-    <meta property="article:modified_time" content="2024-05-15T13:41:49+08:00">
+    <meta property="article:modified_time" content="2024-05-17T01:04:08+08:00">
     <meta property="article:tag" content="Golang">
     <meta property="article:tag" content="GMP">
     <meta property="article:tag" content="Goroutine">
     <meta property="article:tag" content="Machine">
     <meta property="article:tag" content="Process">
-    <meta property="og:image" content="http://localhost:1313/Kyden.png">
+    <meta property="og:image" content="https://lutianen.github.io/Kyden.png">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="http://localhost:1313/Kyden.png">
-  <meta name="twitter:title" content="GMP of Go">
-  <meta name="twitter:description" content="Golang 深入理解 GMP">
+  <meta name="twitter:image" content="https://lutianen.github.io/Kyden.png">
+  <meta name="twitter:title" content="深入理解 GMP">
+  <meta name="twitter:description" content="深入理解 GMP: Go 的调度流程本质上是一个生产-消费流程.">
 <meta name="application-name" content="Kyden">
-<meta name="apple-mobile-web-app-title" content="Kyden"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="http://localhost:1313/gmp-of-go/" /><link rel="prev" href="http://localhost:1313/netpoll-of-network-program-for-golang/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="Kyden"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://lutianen.github.io/gmp-of-go/" /><link rel="prev" href="https://lutianen.github.io/netpoll-of-network-program-for-golang/" /><link rel="stylesheet" href="/css/style.min.cf6878db51c51b2d04ae155284a4403dbee8db33e16c066f954c95279c271fcd.css" integrity="sha256-z2h421HFGy0ErhVShKRAPb7o2zPhbAZvlUyVJ5wnH80="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "GMP of Go",
+        "headline": "深入理解 GMP",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/localhost:1313\/gmp-of-go\/"
-        },"genre": "posts","keywords": "Golang, GMP, Goroutine, Machine, Process","wordcount":  3 ,
-        "url": "http:\/\/localhost:1313\/gmp-of-go\/","datePublished": "2024-05-15T13:41:49+08:00","dateModified": "2024-05-15T13:41:49+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/lutianen.github.io\/gmp-of-go\/"
+        },"genre": "posts","keywords": "Golang, GMP, Goroutine, Machine, Process","wordcount":  172 ,
+        "url": "https:\/\/lutianen.github.io\/gmp-of-go\/","datePublished": "2024-05-15T13:41:49+08:00","dateModified": "2024-05-17T01:04:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
-            "name": "Kyden","logo": "http:\/\/localhost:1313\/avatar.jpg"},"author": {
+            "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
                 "name": "Kyden"
             },"description": ""
@@ -132,26 +132,140 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content always-active" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">GMP of Go</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">深入理解 GMP</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyden</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a>&nbsp;<a href="/categories/gmp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>GMP</a>&nbsp;<a href="/categories/goroutine/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Goroutine</a>&nbsp;<a href="/categories/machine/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Machine</a>&nbsp;<a href="/categories/process/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Process</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-15">2024-05-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-15">2024-05-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;172 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>Golang 深入理解 GMP</p></div><div class="post-footer" id="post-footer">
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#进程process线程-thread-与协程-co-routine">进程(Process)、线程 (Thread) 与协程 (Co-routine)</a>
+      <ul>
+        <li><a href="#进程-process">进程 Process</a></li>
+        <li><a href="#线程-thread">线程 Thread</a></li>
+        <li><a href="#协程-co-routine">协程 Co-routine</a>
+          <ul>
+            <li><a href="#co-routine-分类">Co-routine 分类</a></li>
+            <li><a href="#co-routine-特点">Co-routine 特点</a></li>
+          </ul>
+        </li>
+        <li><a href="#goroutine">Goroutine</a></li>
+        <li><a href="#golang-调度"><strong>Golang 调度</strong></a>
+          <ul>
+            <li><a href="#调度组件">调度组件</a></li>
+            <li><a href="#调度流程">调度流程</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>深入理解 GMP: Go 的调度流程本质上是一个生产-消费流程.</p>
+<h2 id="进程process线程-thread-与协程-co-routine">进程(Process)、线程 (Thread) 与协程 (Co-routine)</h2>
+<h3 id="进程-process">进程 Process</h3>
+<p>在操作系统中，进程使用<strong>进程控制块 (PCB, Process Control Block)</strong> 数据结构 <code>task_struct</code> 来描述，PCB 是进程存在的唯一标识。</p>
+<ul>
+<li>
+<p>进程是指在系统中正在运行的一个应用程序，程序一旦运行就是进程；</p>
+</li>
+<li>
+<p>进程可以认为是程序执行的一个实例，进程是系统进行资源分配的最小单位，且每个进程拥有独立的地址空间；</p>
+</li>
+<li>
+<p>一个进程无法直接访问到另一个进程的变量和数据结构，如果希望一个进程去访问另一个进程的资源，需要使用进程间的通信，如<code>fifo</code>、<code>pipe</code>、<code>signal</code>、<code>socket</code> 等；</p>
+</li>
+<li>
+<p>进程调度算法：先来先服务调度算法、短作业优先调度算法、最短剩余作业优先调度算法、最高响应比优先调度算法、最高优先级优先调度算法、时间片轮转算法（公平调度，$20 - 50 ms$）、多级反馈队列调度算法($最高优先级 + 时间片轮转$)；</p>
+</li>
+</ul>
+<h3 id="线程-thread">线程 Thread</h3>
+<p><strong>用户态线程</strong>，是基于用户态的线程管理库来实现的，<strong>线程控制块 (Thread Control Block)</strong> 也是在库里实现，操作系统只能看到整个进程的PCB，即进程与用户线程属于<strong>多对一</strong>的模型。</p>
+<p><strong>内核态线程(Thread)</strong>，是由操作系统管理，对应的 TCB 存储在操作系统里，且其创建、销毁、调度都由操作系统完成；</p>
+<p><strong>轻量级线程 LWP(Light-weight process)</strong>，是由内核支持的用户线程，一个进程可以有一个或多个 LWP，每个 LWP 是跟内核线程一对一映射的，即 LWP 都是由一个内核线程支持，而且 LWP 是由内核管理并像普通进程一样被调度。
+<strong>在大多数系统中，LWP 和 普通进程的区别在于，LWP 只有一个最小的执行上下文和调度程序所需的统计信息。</strong></p>
+<ul>
+<li>线程是进程的一个实体，是进程的一条执行路径；</li>
+<li>线程是比进程更小的独立运行的基本单位</li>
+<li><strong>一个程序至少存在一个进程，一个进程可以有多个($&gt;=1$)线程</strong></li>
+</ul>
+<blockquote>
+<p><strong>进程与线程的区别</strong></p>
+<ul>
+<li>进程是资源（包括内存、打开的文件等）分配的单位，线程是 CPU 调度的单位；</li>
+<li>进程拥有一个完整的资源平台，而线程只独享必不可少的资源，如寄存器和栈；</li>
+<li><strong>同一进程的线程共享本进程的地址空间，而进程之间则是独立的地址空间</strong>；</li>
+<li><strong>同一进程内的线程共享本地的资源，但是进程之间的资源是独立的</strong>；</li>
+<li><strong>一个进程崩溃后，在保护模式下不会对其他进程产生影响，但是一个线程崩溃整个进程崩溃，即多进程比多线程健壮</strong>；</li>
+<li>进程切换，消耗的资源大（主要是虚拟地址空间的切换开销），线程同样具有就绪、阻塞、执行三种基本状态，同样具有状态之间的转换关系；</li>
+<li>多进程、多线程都可以并发执行，线程能减少并发执行的时间和空间开销；</li>
+<li>每个独立的进程有一个程序入口、程序出口；线程不能独立运行，必须依存于应用程序中，有应用程序提供多个线程执行控制；</li>
+</ul>
+</blockquote>
+<h3 id="协程-co-routine">协程 Co-routine</h3>
+<p><strong>协程</strong>，又称 &ldquo;微线程&rdquo;，表现为一个可以 suspend 和 resume 的函数。</p>
+<p>实现协程的关键点：<strong>在于如何保存、恢复和切换上下文</strong>，协程切换只涉及基本的CPU上下文切换（CPU寄存器）.</p>
+<p>所有的协程共用的都是一个栈，即系统栈，也就也不必我们自行去给协程分配栈，因为是函数调用，我们当然也不必去显示的保存寄存器的值；</p>
+<h4 id="co-routine-分类">Co-routine 分类</h4>
+<p><strong>有栈 (stackful) 协程</strong>：实现类似于内核态线程的实现，不同协程的切换还是要切换对应的栈上下文，只是不用陷入内核，例如 goroutine、libco</p>
+<p><strong>无栈 (stackless) 协程</strong>：无栈协程的上下文都会放到公共内存中，在协程切换时使用状态机来切换，而不用切换对应的上下文（都已经在堆中），相比有栈协程更轻量，例如 C++20、Rust、JavaScript；<strong>==本质就是一个状态机（state machine），即同一协程协程的切换本质不过是指令指针寄存器的改变==</strong></p>
+<h4 id="co-routine-特点">Co-routine 特点</h4>
+<ul>
+<li>一个线程可以有多个协程；协程不是被操作系统内核管理，而是完全由程序控制；</li>
+<li>协程的开销远远小于线程；协程拥有自己的寄存器上下文和栈，在进行协程调度时，将寄存器上下文和栈保存到其他地方，在切换回来时恢复先前保存的寄存器上下文和栈；</li>
+<li>每个协程表示一个执行单元，有自己的本地数据，与其他协程共享全局数据和其他资源；</li>
+<li>跨平台、跨体系架构、无需线程上下文切换的开销、方便切换控制流，简化编程模型；</li>
+<li>协程的执行效率极高，和多线程相比，线程数量越多，协程的性能优势越明显；</li>
+</ul>
+<h3 id="goroutine">Goroutine</h3>
+<p>Golang 为提供更加容易使用的并发工具，基于 GMP 模型实现了 goroutine 和 channel。</p>
+<p>Goroutine 属于 Co-routine 的概念，非常轻量，一个 goroutine 初始空间只占几 KB 且可伸缩，使得在有限空间内支持大量 goroutine 并发。</p>
+<h3 id="golang-调度"><strong>Golang 调度</strong></h3>
+<h4 id="调度组件">调度组件</h4>
+<ul>
+<li>G：Goroutine，一个计算任务. 由需要执行的代码和其上下文组成，上下文包括：当前代码位置、栈空间(初始2K，可增长)、状态等。</li>
+<li>M：Machine，系统线程，执行实体。与 C 语言中的线程相同，通过 <code>clone</code> 创建。</li>
+<li>P: Processor，虚拟处理器，包含了 G 运行所需的资源，因此 M 必须获得 P 才能执行代码，否则必须陷入休眠（后台监控线程除外）。可理解为一种 token，有这个 token，才有在物理 CPU 核心上执行的权限。</li>
+</ul>
+<h4 id="调度流程">调度流程</h4>
+<p>Go 的调度流程本质上是一个<strong>生产-消费</strong>流程：</p>
+<p><a data-fancybox="gallery" href="/img/Go 调度本质.svg"><img src="/img/Go 调度本质.svg" alt="GMP" style="display: block; margin: 0 auto;"></a></p>
+<p>为了实现简单、高效地调度 Goroutine，Golang 采用了 GMP 模型如下图所示：</p>
+<p><a data-fancybox="gallery" href="/img/GMP.svg"><img src="/img/GMP.svg" alt="GMP" style="display: block; margin: 0 auto;"></a></p>
+<ul>
+<li><code>global run queue</code>: 存放等待运行的 G</li>
+<li><code>local run queue</code>: 256 大小的 array，用于存放等待运行的 G</li>
+<li><code>runnext</code>: 存放下一个将要运行的 G</li>
+</ul>
+<blockquote>
+<p>由于将 Golang 的调度流程看作<strong>生产者-消费者</strong>流程，因此接下来将分别从生产者、消费者两个方面深入了解。</p>
+</blockquote>
+<h5 id="goroutine-的生产端"><strong>Goroutine</strong> 的生产端</h5>
+<p>Goroutine 生产流程：</p>
+<p><a data-fancybox="gallery" href="/img/Goroutine-Producer.svg"><img src="/img/Goroutine-Producer.svg" alt="Goroutine-Producer" style="display: block; margin: 0 auto;"></a></p>
+<p><a href="https://www.figma.com/proto/gByIPDf4nRr6No4dNYjn3e/bootstrap?page-id=242%3A7&amp;node-id=242%3A215&amp;viewport=516%2C209%2C0.07501539587974548&amp;scaling=scale-down-width" target="_blank" rel="noopener noreffer ">ref</a></p>
+<h5 id="goroutine-的消费端"><strong>Goroutine</strong> 的消费端</h5>
+<p>Goroutine 消费流程：</p>
+<p><a data-fancybox="gallery" href="/img/Goroutine-Consumer.svg"><img src="/img/Goroutine-Consumer.svg" alt="Goroutine-Consumer" style="display: block; margin: 0 auto;"></a></p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.yuque.com/aceld/golang/srxd6d#0810e304" target="_blank" rel="noopener noreffer ">Golang的协程调度器原理及GMP设计思想</a></li>
+</ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-05-15</span>
+                <span>Updated on 2024-05-17
+                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/52f451b0e7b43196fc9942374bcaf3356072e2d3" target="_blank" title="commit by 52f451b0e7b43196fc9942374bcaf3356072e2d3: Add: 深入理解 GMP">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>52f451b</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/gmp-of-go/" data-title="GMP of Go" data-hashtags="Golang,GMP,Goroutine,Machine,Process"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/gmp-of-go/" data-hashtag="Golang"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="http://localhost:1313/gmp-of-go/"><i class="fab fa-reddit fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/gmp-of-go/" data-title="GMP of Go"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/gmp-of-go/" data-title="GMP of Go"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="http://localhost:1313/gmp-of-go/" data-title="GMP of Go"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://lutianen.github.io/gmp-of-go/" data-title="深入理解 GMP" data-hashtags="Golang,GMP,Goroutine,Machine,Process"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://lutianen.github.io/gmp-of-go/" data-hashtag="Golang"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://lutianen.github.io/gmp-of-go/"><i class="fab fa-reddit fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://lutianen.github.io/gmp-of-go/" data-title="深入理解 GMP"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://lutianen.github.io/gmp-of-go/" data-title="深入理解 GMP"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 百度" data-sharer="baidu" data-url="https://lutianen.github.io/gmp-of-go/" data-title="深入理解 GMP"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/baidu.svg" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -165,7 +279,9 @@
 
     <div class="post-nav"><a href="/netpoll-of-network-program-for-golang/" class="prev" rel="prev" title="Netpoll of Network Program for Golang"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Netpoll of Network Program for Golang</a></div>
 </div>
-</article></div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">读书不是为了雄辩和驳斥，也不是为了轻信和盲从，而是为了思考和权衡</div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.126.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/lutianen" target="_blank">Kyden</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></br><script>
@@ -220,5 +336,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":20},"comment":{},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":20},"comment":{"gitalk":{"admin":["lutianen"],"clientID":"c2bc49c0b7268c2f6143","clientSecret":"5b8e0866eb4584bc01f31112a036dea78d79a13a","id":"2024-05-15T13:41:49+08:00","owner":"lutianen","repo":"gitalk","title":"深入理解 GMP"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.d7121d72cd85153ec9d35a888cee3eb28c2700ca763f649a538f6c772d750021.js" integrity="sha256-1xIdcs2FFT7J01qIjO4+sownAMp2P2SaU49sdy11ACE="></script></body>
 </html>
