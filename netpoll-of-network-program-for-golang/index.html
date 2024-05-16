@@ -12,16 +12,18 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-05-08T11:43:38+08:00">
-    <meta property="article:modified_time" content="2024-05-11T14:41:58+08:00">
+    <meta property="article:modified_time" content="2024-05-16T14:57:16+08:00">
     <meta property="article:tag" content="Netpoll">
     <meta property="article:tag" content="Epoll">
     <meta property="article:tag" content="Network Program">
     <meta property="article:tag" content="Golang">
     <meta property="article:tag" content="Linux">
     <meta property="og:image" content="https://lutianen.github.io/Kyden.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lutianen.github.io/Kyden.png"><meta name="twitter:title" content="Netpoll of Network Program for Golang">
-<meta name="twitter:description" content="深入剖析 Golang 网络编程之 Netpoll，主要涉及 Linux 环境下的 Epoll 初始化、 Go 网络编程基本流程（Listen、Accept、Read、Write）以及netpoll 执行流程">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://lutianen.github.io/Kyden.png">
+  <meta name="twitter:title" content="Netpoll of Network Program for Golang">
+  <meta name="twitter:description" content="深入剖析 Golang 网络编程之 Netpoll，主要涉及 Linux 环境下的 Epoll 初始化、 Go 网络编程基本流程（Listen、Accept、Read、Write）以及netpoll 执行流程">
 <meta name="application-name" content="Kyden">
 <meta name="apple-mobile-web-app-title" content="Kyden"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://lutianen.github.io/netpoll-of-network-program-for-golang/" /><link rel="prev" href="https://lutianen.github.io/go-profile/" /><link rel="stylesheet" href="/css/style.min.cf6878db51c51b2d04ae155284a4403dbee8db33e16c066f954c95279c271fcd.css" integrity="sha256-z2h421HFGy0ErhVShKRAPb7o2zPhbAZvlUyVJ5wnH80="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -34,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/netpoll-of-network-program-for-golang\/"
-        },"genre": "posts","keywords": "Netpoll, Epoll, Network Program, Golang, Linux","wordcount":  2046 ,
-        "url": "https:\/\/lutianen.github.io\/netpoll-of-network-program-for-golang\/","datePublished": "2024-05-08T11:43:38+08:00","dateModified": "2024-05-11T14:41:58+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"genre": "posts","keywords": "Netpoll, Epoll, Network Program, Golang, Linux","wordcount":  2053 ,
+        "url": "https:\/\/lutianen.github.io\/netpoll-of-network-program-for-golang\/","datePublished": "2024-05-08T11:43:38+08:00","dateModified": "2024-05-16T14:57:16+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
@@ -132,7 +134,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Netpoll of Network Program for Golang</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyden</a></span>&nbsp;<span class="post-category">included in <a href="/categories/netpoll/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Netpoll</a>&nbsp;<a href="/categories/epoll/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Epoll</a>&nbsp;<a href="/categories/network-program/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Network Program</a>&nbsp;<a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a>&nbsp;<a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-08">2024-05-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2046 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-08">2024-05-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2053 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -141,18 +143,22 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#i-基础概念">I. 基础概念</a></li>
+    <li><a href="#i-基础概念">I. 基础概念</a>
+      <ul>
+        <li><a href="#linux-epoll">Linux Epoll</a></li>
+      </ul>
+    </li>
     <li><a href="#ii-应用示例">II. 应用示例</a></li>
     <li><a href="#iii-相关数据结构">III. 相关数据结构</a></li>
     <li><a href="#iv-tcp-网络编程基本流程">IV. TCP 网络编程基本流程</a>
       <ul>
-        <li><a href="#创建-tcp-socket-并监听">创建 TCP socket 并监听</a></li>
-        <li><a href="#获取-tcp-连接">获取 TCP 连接</a></li>
-        <li><a href="#tcp-连接读数据">TCP 连接读数据</a></li>
-        <li><a href="#tcp-连接写数据">TCP 连接写数据</a></li>
+        <li><a href="#创建-tcp-socket-并监听-netlisten">创建 TCP socket 并监听: <code>net.Listen</code></a></li>
+        <li><a href="#获取-tcp-连接-nettcplisteneraccept">获取 TCP 连接: <code>net.(*TCPListener).Accept</code></a></li>
+        <li><a href="#tcp-连接读数据-nettcpconnread">TCP 连接读数据: <code>net.(*TCPConn).Read</code></a></li>
+        <li><a href="#tcp-连接写数据-nettcpconnwrite">TCP 连接写数据: <code>net.(*TCPConn).Write</code></a></li>
       </ul>
     </li>
-    <li><a href="#v-netpoll-执行流程">V. netpoll 执行流程</a></li>
+    <li><a href="#v-netpoll-执行流程-netpoll">V. netpoll 执行流程: <code>netpoll</code></a></li>
     <li><a href="#vi-总结">VI. 总结</a></li>
     <li><a href="#vii-reference">VII. Reference</a></li>
   </ul>
@@ -163,6 +169,8 @@
 </blockquote>
 <h2 id="i-基础概念">I. 基础概念</h2>
 <p><strong>网络编程，是允许不同计算机上的程序通过网络通信的开发过程，涉及多种协议（HTTP、TCP/IP等）以及不同编程语言的应用</strong>。</p>
+<h3 id="linux-epoll">Linux Epoll</h3>
+<p><a data-fancybox="gallery" href="/img/Epoll-Linux.svg"><img src="/img/Epoll-Linux.svg" alt="Epoll-Linux" style="display: block; margin: 0 auto;"></a></p>
 <h2 id="ii-应用示例">II. 应用示例</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -396,7 +404,7 @@
 </ul>
 <h2 id="iv-tcp-网络编程基本流程">IV. TCP 网络编程基本流程</h2>
 <p>本部分涉及众多函数调用，为了描述清晰，采用了图的形式，其中，每一块第一行表示该块所表示的函数名称，其他部分表示该函数中关键函数调用。</p>
-<h3 id="创建-tcp-socket-并监听">创建 TCP socket 并监听</h3>
+<h3 id="创建-tcp-socket-并监听-netlisten">创建 TCP socket 并监听: <code>net.Listen</code></h3>
 <p><a data-fancybox="gallery" href="/img/golang-netpoll-listen.svg"><img src="/img/golang-netpoll-listen.svg" alt="golang-netpoll-listen.svg" style="display: block; margin: 0 auto;"></a></p>
 <blockquote>
 <p>NOTE</p>
@@ -431,13 +439,13 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
-<h3 id="获取-tcp-连接">获取 TCP 连接</h3>
+<h3 id="获取-tcp-连接-nettcplisteneraccept">获取 TCP 连接: <code>net.(*TCPListener).Accept</code></h3>
 <p><a data-fancybox="gallery" href="/img/golang-netpoll-accept.svg"><img src="/img/golang-netpoll-accept.svg" alt="golang-netpoll-accept.svg" style="display: block; margin: 0 auto;"></a></p>
-<h3 id="tcp-连接读数据">TCP 连接读数据</h3>
+<h3 id="tcp-连接读数据-nettcpconnread">TCP 连接读数据: <code>net.(*TCPConn).Read</code></h3>
 <p><a data-fancybox="gallery" href="/img/golang-netpoll-read.svg"><img src="/img/golang-netpoll-read.svg" alt="golang-netpoll-read.svg" style="display: block; margin: 0 auto;"></a></p>
-<h3 id="tcp-连接写数据">TCP 连接写数据</h3>
+<h3 id="tcp-连接写数据-nettcpconnwrite">TCP 连接写数据: <code>net.(*TCPConn).Write</code></h3>
 <p><a data-fancybox="gallery" href="/img/golang-netpoll-write.svg"><img src="/img/golang-netpoll-write.svg" alt="golang-netpoll-write.svg" style="display: block; margin: 0 auto;"></a></p>
-<h2 id="v-netpoll-执行流程">V. netpoll 执行流程</h2>
+<h2 id="v-netpoll-执行流程-netpoll">V. netpoll 执行流程: <code>netpoll</code></h2>
 <p>在调度和 GC 的关键点上都会检查一次 netpoll，确定是否存在 ready 状态的 FD：</p>
 <ul>
 <li>
@@ -979,9 +987,9 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-05-11
-                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/243d94a9c49c0e0d2c7946de86fb02a0813ab345" target="_blank" title="commit by 243d94a9c49c0e0d2c7946de86fb02a0813ab345: Fix: &#34;Kyten&#34; -&gt; &#34;Kyden&#34;">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>243d94a</a></span>
+                <span>Updated on 2024-05-16
+                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/501aa6d9ed756167ceec1b43de460cc0cbd9287a" target="_blank" title="commit by 501aa6d9ed756167ceec1b43de460cc0cbd9287a: Add: Linux Epoll">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>501aa6d</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -1004,7 +1012,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">读书不是为了雄辩和驳斥，也不是为了轻信和盲从，而是为了思考和权衡</div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.125.7">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">读书不是为了雄辩和驳斥，也不是为了轻信和盲从，而是为了思考和权衡</div><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.126.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/lutianen" target="_blank">Kyden</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></br><script>
                     function siteTime() {
                         var seconds = 1000;
