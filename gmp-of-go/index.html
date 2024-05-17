@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-05-15T13:41:49+08:00">
-    <meta property="article:modified_time" content="2024-05-17T01:04:08+08:00">
+    <meta property="article:modified_time" content="2024-05-17T11:46:30+08:00">
     <meta property="article:tag" content="Golang">
     <meta property="article:tag" content="GMP">
     <meta property="article:tag" content="Goroutine">
@@ -36,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/gmp-of-go\/"
-        },"genre": "posts","keywords": "Golang, GMP, Goroutine, Machine, Process","wordcount":  172 ,
-        "url": "https:\/\/lutianen.github.io\/gmp-of-go\/","datePublished": "2024-05-15T13:41:49+08:00","dateModified": "2024-05-17T01:04:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"genre": "posts","keywords": "Golang, GMP, Goroutine, Machine, Process","wordcount":  179 ,
+        "url": "https:\/\/lutianen.github.io\/gmp-of-go\/","datePublished": "2024-05-15T13:41:49+08:00","dateModified": "2024-05-17T11:46:30+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
@@ -134,7 +134,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">深入理解 GMP</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyden</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a>&nbsp;<a href="/categories/gmp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>GMP</a>&nbsp;<a href="/categories/goroutine/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Goroutine</a>&nbsp;<a href="/categories/machine/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Machine</a>&nbsp;<a href="/categories/process/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Process</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-15">2024-05-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;172 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-15">2024-05-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;179 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -247,20 +247,25 @@
 <h5 id="goroutine-的生产端"><strong>Goroutine</strong> 的生产端</h5>
 <p>Goroutine 生产流程：</p>
 <p><a data-fancybox="gallery" href="/img/Goroutine-Producer.svg"><img src="/img/Goroutine-Producer.svg" alt="Goroutine-Producer" style="display: block; margin: 0 auto;"></a></p>
-<p><a href="https://www.figma.com/proto/gByIPDf4nRr6No4dNYjn3e/bootstrap?page-id=242%3A7&amp;node-id=242%3A215&amp;viewport=516%2C209%2C0.07501539587974548&amp;scaling=scale-down-width" target="_blank" rel="noopener noreffer ">ref</a></p>
 <h5 id="goroutine-的消费端"><strong>Goroutine</strong> 的消费端</h5>
+<blockquote>
+<p>TODO</p>
+<p>关于消费端函数调用链还需完善！！！</p>
+</blockquote>
 <p>Goroutine 消费流程：</p>
 <p><a data-fancybox="gallery" href="/img/Goroutine-Consumer.svg"><img src="/img/Goroutine-Consumer.svg" alt="Goroutine-Consumer" style="display: block; margin: 0 auto;"></a></p>
 <h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.yuque.com/aceld/golang/srxd6d#0810e304" target="_blank" rel="noopener noreffer ">Golang的协程调度器原理及GMP设计思想</a></li>
+<li><a href="https://www.figma.com/proto/gByIPDf4nRr6No4dNYjn3e/bootstrap?page-id=242%3A7&amp;node-id=242%3A215&amp;viewport=516%2C209%2C0.07501539587974548&amp;scaling=scale-down-width" target="_blank" rel="noopener noreffer ">Golang 生产-消费调度流程: Producer</a></li>
+<li><a href="https://www.figma.com/proto/gByIPDf4nRr6No4dNYjn3e/bootstrap?page-id=143%3A212&amp;node-id=143%3A213&amp;viewport=134%2C83%2C0.06213996931910515&amp;scaling=scale-down-width" target="_blank" rel="noopener noreffer ">Golang 生产-消费调度流程: Consumer</a></li>
 </ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
                 <span>Updated on 2024-05-17
-                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/52f451b0e7b43196fc9942374bcaf3356072e2d3" target="_blank" title="commit by 52f451b0e7b43196fc9942374bcaf3356072e2d3: Add: 深入理解 GMP">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>52f451b</a></span>
+                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/d63167dc0336a18c01fc766a990fcbf4579e969c" target="_blank" title="commit by d63167dc0336a18c01fc766a990fcbf4579e969c: 1. Update 深入理解 GMP 2. Rename drwaio file">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>d63167d</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
