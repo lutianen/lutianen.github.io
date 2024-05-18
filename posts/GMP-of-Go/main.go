@@ -2,21 +2,25 @@ package main
 
 import (
 	"fmt"
-	"sync"
+	"net"
 )
 
 func main() {
-	wg := sync.WaitGroup{}
-	fmt.Println("Hello, World!")
+	l, _ := net.Listen("tcp", ":6633")
 
-	wg.Add(1)
-	go f(&wg)
+	for {
+		conn, _ := l.Accept()
 
-	wg.Wait()
-}
+		go func() {
+			defer conn.Close()
 
-func f(wg *sync.WaitGroup) {
-	defer wg.Done()
+			var buf = make([]byte, 512)
+			n, _ := conn.Read(buf)
+			fmt.Printf("Read from %d byte data.\r\n", n)
 
-	fmt.Println("goroutine")
+			buf = make([]byte, 0)
+			n, _ = conn.Write(buf)
+			fmt.Printf("Write to %d byte data.\r\n", n)
+		}()
+	}
 }
