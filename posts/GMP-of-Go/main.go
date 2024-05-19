@@ -2,25 +2,26 @@ package main
 
 import (
 	"fmt"
-	"net"
+	"sync"
+	"time"
 )
 
+var mtx sync.Mutex
+
 func main() {
-	l, _ := net.Listen("tcp", ":6633")
+	go func() {
+		mtx.Lock()
+		defer mtx.Unlock()
 
-	for {
-		conn, _ := l.Accept()
+		fmt.Printf("Start\n")
+		time.Sleep(time.Second * 10)
+		fmt.Printf("End\n")
+	}()
 
-		go func() {
-			defer conn.Close()
+	time.Sleep(time.Second) // Ensure child goroutine gets the mutex before main goroutine
 
-			var buf = make([]byte, 512)
-			n, _ := conn.Read(buf)
-			fmt.Printf("Read from %d byte data.\r\n", n)
-
-			buf = make([]byte, 0)
-			n, _ = conn.Write(buf)
-			fmt.Printf("Write to %d byte data.\r\n", n)
-		}()
-	}
+	fmt.Printf("Try to acquire mutex\n")
+	mtx.Lock()
+	fmt.Printf("Main goroutine\n")
+	mtx.Unlock()
 }
