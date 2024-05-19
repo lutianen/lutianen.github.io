@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-05-15T13:41:49+08:00">
-    <meta property="article:modified_time" content="2024-05-19T15:46:09+08:00">
+    <meta property="article:modified_time" content="2024-05-19T22:08:04+08:00">
     <meta property="article:tag" content="Golang">
     <meta property="article:tag" content="GMP">
     <meta property="article:tag" content="Goroutine">
@@ -36,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/gmp-of-go\/"
-        },"genre": "posts","keywords": "Golang, GMP, Goroutine, Machine, Process","wordcount":  4440 ,
-        "url": "https:\/\/lutianen.github.io\/gmp-of-go\/","datePublished": "2024-05-15T13:41:49+08:00","dateModified": "2024-05-19T15:46:09+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"genre": "posts","keywords": "Golang, GMP, Goroutine, Machine, Process","wordcount":  4556 ,
+        "url": "https:\/\/lutianen.github.io\/gmp-of-go\/","datePublished": "2024-05-15T13:41:49+08:00","dateModified": "2024-05-19T22:08:04+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
@@ -134,8 +134,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">深入理解 GMP</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyden</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a>&nbsp;<a href="/categories/gmp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>GMP</a>&nbsp;<a href="/categories/goroutine/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Goroutine</a>&nbsp;<a href="/categories/machine/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Machine</a>&nbsp;<a href="/categories/process/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Process</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-15">2024-05-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4440 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;21 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-15">2024-05-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4556 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;22 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -163,7 +163,7 @@
             <li><a href="#调度流程">调度流程</a></li>
           </ul>
         </li>
-        <li><a href="#goroutine-阻塞场景解析">Goroutine 阻塞场景解析</a>
+        <li><a href="#runtime-可拦截-goroutine-阻塞场景解析">runtime 可拦截 goroutine 阻塞场景解析</a>
           <ul>
             <li><a href="#场景-i-延迟">场景 I: 延迟</a></li>
             <li><a href="#场景-ii-channel-send--recv-chan--select">场景 II: Channel send / recv (<code>chan</code> / <code>select</code>)</a></li>
@@ -171,9 +171,13 @@
             <li><a href="#场景-iv-锁阻塞">场景 IV: 锁阻塞</a></li>
           </ul>
         </li>
+        <li><a href="#runtime-不可拦截-goroutine-阻塞场景解析">runtime 不可拦截 goroutine 阻塞场景解析</a></li>
       </ul>
     </li>
-    <li><a href="#iii-reference">III. Reference</a></li>
+    <li><a href="#iii-sysmon">III. Sysmon</a></li>
+    <li><a href="#iv-summary">IV. Summary</a></li>
+    <li><a href="#v-q--a">V. Q &amp; A</a></li>
+    <li><a href="#vi-reference">VI. Reference</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>深入理解 GMP: Go 的调度流程本质上是一个生产-消费流程.</p>
@@ -1003,10 +1007,10 @@
 </blockquote>
 <p>Goroutine 消费流程：</p>
 <p><a data-fancybox="gallery" href="/img/Kyden-blog-Goroutine-Consumer.svg"><img src="/img/Kyden-blog-Goroutine-Consumer.svg" alt="Kyden-blog-Goroutine-Consumer" style="display: block; margin: 0 auto;"></a></p>
-<h3 id="goroutine-阻塞场景解析">Goroutine 阻塞场景解析</h3>
+<h3 id="runtime-可拦截-goroutine-阻塞场景解析">runtime 可拦截 goroutine 阻塞场景解析</h3>
 <p>Goroutine 属于协程的一种，因此存在运行态、阻塞态等各种状态。
 那么 goroutine 什么情况下会发生阻塞？ 当 goroutine 发生阻塞时，GMP 模型如何应对？</p>
-<p>显然，当 goroutine 发生阻塞，GMP 模型并不会阻塞调度循环，
+<p>显然，当 goroutine 发生可被 runtime 拦截的阻塞时，GMP 模型并不会阻塞调度循环，
 而是把 goroutine 挂起，即让 <code>g</code> 先进某个数据结构，待 <code>ready</code> 后在继续执行，并不会占用线程，
 同时线程会进入 <code>schedule</code>，继续消费队列，执行其他的 <code>g</code>.</p>
 <h4 id="场景-i-延迟">场景 I: 延迟</h4>
@@ -1724,15 +1728,53 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><a data-fancybox="gallery" href="/img/Kyden-blog-semTable.svg"><img src="/img/Kyden-blog-semTable.svg" alt="Kyden-blog-semTable" style="display: block; margin: 0 auto;"></a></p>
-<blockquote>
+<h3 id="runtime-不可拦截-goroutine-阻塞场景解析">runtime 不可拦截 goroutine 阻塞场景解析</h3>
+<p><code>time.Sleep</code> / <code>channel send</code> / <code>channel recv</code> / <code>select</code> / <code>net read</code> / <code>net write</code> / <code>sync.Mutex</code> 等阻塞场景可被 runtime 拦截，然而仍存在一些阻塞情况是 runtime 无法拦截的，例如：<strong>在执行 C 代码或阻塞在 syscall 上时，必须占用一个线程</strong>。</p>
+<h2 id="iii-sysmon">III. Sysmon</h2>
+<p>system monitor，高优先级，在专有线程中执行，不需要绑定 <code>p</code>.</p>
+<h2 id="iv-summary">IV. Summary</h2>
+<ul>
+<li>Runtime 构成：<strong>Scheduler</strong>、<strong>Netpoll</strong>、<strong>内存管理</strong>、<strong>垃圾回收</strong></li>
+<li>GMP：M - 任务消费者；G - 计算任务；P - 可以使用 CPU 的 token</li>
+<li>GMP 中的队列抽象：P 的本地 runnext 字段 &ndash;&raquo; P 的 local run queue &ndash;&raquo; global run queue；采用多级队列减少锁竞争</li>
+<li>调度循环：线程 M 在持有 P 的情况下不断消费运行队列中的 G 的过程</li>
+<li>处理阻塞：
+<ul>
+<li>runtime 可以接管的阻塞：channel send / recv，sync.Mutex，net read / write，select，time.Sleep</li>
+<li>runtime 不可接管的阻塞：syscall，cgo，长时间运行需要剥离 P 执行；</li>
+</ul>
+</li>
+<li>sysmon：
+<ul>
+<li>一个后台高级优先级循环，执行时不需要绑定任何的 P</li>
+<li>负责：
+<ul>
+<li>检查是否已经没有活动线程，如果是则崩溃</li>
+<li>轮询 netpoll</li>
+<li>剥离在 syscall 上阻塞的 M 的 P</li>
+<li>发信号，抢占已经执行时间过长的 G</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="v-q--a">V. Q &amp; A</h2>
+<ol>
+<li>
 <p>为什么阻塞等待的 goroutine，有时表现为 <code>g</code> 有时表现为 <code>sudog</code> ？</p>
 <ul>
 <li><code>sudog</code> (pseudo-g) 表示等待列表中的 <code>g</code>，例如用于在 channel 上的 <code>send</code>/<code>recv</code>.</li>
 <li><code>g</code> 与同步对象是多对多的关系: 一个 <code>g</code> 可以出现在多个等待列表中，因此一个 <code>g</code> 可能有多个 <code>sudog</code>；</li>
 <li>很多 <code>g</code> 可能在等待同一个同步对象，因此一个对象可能有很多 <code>sudog</code></li>
-</ul>
+<li>
+<blockquote>
+<p>一个 <code>g</code> 可能对应多个 <code>sudog</code>，比如一个 <code>g</code> 会同时 <code>select</code> 多个 channel</p>
 </blockquote>
-<h2 id="iii-reference">III. Reference</h2>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="vi-reference">VI. Reference</h2>
 <ul>
 <li><a href="https://www.yuque.com/aceld/golang/srxd6d#0810e304" target="_blank" rel="noopener noreffer ">Golang的协程调度器原理及GMP设计思想</a></li>
 <li><a href="https://www.figma.com/proto/gByIPDf4nRr6No4dNYjn3e/bootstrap?page-id=242%3A7&amp;node-id=242%3A215&amp;viewport=516%2C209%2C0.07501539587974548&amp;scaling=scale-down-width" target="_blank" rel="noopener noreffer ">Golang 生产-消费调度流程: Producer</a></li>
@@ -1753,8 +1795,8 @@
         <div class="post-info-line">
             <div class="post-info-mod">
                 <span>Updated on 2024-05-19
-                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/735b5127343fe5857b272e48f8104a5464fab33a" target="_blank" title="commit by 735b5127343fe5857b272e48f8104a5464fab33a: Add: 深入理解 GMP - 场景 IV: 锁阻塞">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>735b512</a></span>
+                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/587175271727ecca61089c745ed5b86220c31c3f" target="_blank" title="commit by 587175271727ecca61089c745ed5b86220c31c3f: Update: 深入理解 GMP">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>5871752</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
