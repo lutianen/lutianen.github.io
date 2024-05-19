@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-05-15T13:41:49+08:00">
-    <meta property="article:modified_time" content="2024-05-19T22:08:04+08:00">
+    <meta property="article:modified_time" content="2024-05-19T22:36:46+08:00">
     <meta property="article:tag" content="Golang">
     <meta property="article:tag" content="GMP">
     <meta property="article:tag" content="Goroutine">
@@ -36,8 +36,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/gmp-of-go\/"
-        },"genre": "posts","keywords": "Golang, GMP, Goroutine, Machine, Process","wordcount":  4556 ,
-        "url": "https:\/\/lutianen.github.io\/gmp-of-go\/","datePublished": "2024-05-15T13:41:49+08:00","dateModified": "2024-05-19T22:08:04+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"genre": "posts","keywords": "Golang, GMP, Goroutine, Machine, Process","wordcount":  4751 ,
+        "url": "https:\/\/lutianen.github.io\/gmp-of-go\/","datePublished": "2024-05-15T13:41:49+08:00","dateModified": "2024-05-19T22:36:46+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
@@ -134,8 +134,8 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">深入理解 GMP</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyden</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a>&nbsp;<a href="/categories/gmp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>GMP</a>&nbsp;<a href="/categories/goroutine/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Goroutine</a>&nbsp;<a href="/categories/machine/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Machine</a>&nbsp;<a href="/categories/process/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Process</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-15">2024-05-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4556 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;22 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-15">2024-05-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4751 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;23 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -163,6 +163,7 @@
             <li><a href="#调度流程">调度流程</a></li>
           </ul>
         </li>
+        <li><a href="#goroutine-切换成本">Goroutine 切换成本</a></li>
         <li><a href="#runtime-可拦截-goroutine-阻塞场景解析">runtime 可拦截 goroutine 阻塞场景解析</a>
           <ul>
             <li><a href="#场景-i-延迟">场景 I: 延迟</a></li>
@@ -1007,7 +1008,58 @@
 </blockquote>
 <p>Goroutine 消费流程：</p>
 <p><a data-fancybox="gallery" href="/img/Kyden-blog-Goroutine-Consumer.svg"><img src="/img/Kyden-blog-Goroutine-Consumer.svg" alt="Kyden-blog-Goroutine-Consumer" style="display: block; margin: 0 auto;"></a></p>
-<h3 id="runtime-可拦截-goroutine-阻塞场景解析">runtime 可拦截 goroutine 阻塞场景解析</h3>
+<h3 id="goroutine-切换成本">Goroutine 切换成本</h3>
+<p><code>gobuf</code> 描述了一个 Goroutine 所有现场，从一个 <code>g</code> 切换到另一个 <code>g</code>，只要把这几个现场字段保存下来，再将 <code>g</code> 入队，M 就可以执行其他 <code>g</code> 了，无需进入内核态。</p>
+<p><code>gobuf</code> 数据结构如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">gobuf</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// The offsets of sp, pc, and g are known to (hard-coded in) libmach.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// ctxt is unusual with respect to GC: it may be a
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// heap-allocated funcval, so GC needs to track it, but it
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// needs to be set and cleared from assembly, where it&#39;s
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// difficult to have write barriers. However, ctxt is really a
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// saved, live register, and we only ever exchange it between
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// the real register and the gobuf. Hence, we treat it as a
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// root during stack scanning, which means assembly that saves
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// and restores it doesn&#39;t need write barriers. It&#39;s still
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// typed as a pointer so that any other writes from Go get
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// write barriers.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">sp</span>   <span class="kt">uintptr</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">pc</span>   <span class="kt">uintptr</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">g</span>    <span class="nx">guintptr</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">ctxt</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">ret</span>  <span class="kt">uintptr</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">lr</span>   <span class="kt">uintptr</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">bp</span>   <span class="kt">uintptr</span> <span class="c1">// for framepointer-enabled architectures
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="runtime-可拦截-goroutine-阻塞场景解析">runtime 可拦截 goroutine 阻塞场景解析</h3>
 <p>Goroutine 属于协程的一种，因此存在运行态、阻塞态等各种状态。
 那么 goroutine 什么情况下会发生阻塞？ 当 goroutine 发生阻塞时，GMP 模型如何应对？</p>
 <p>显然，当 goroutine 发生可被 runtime 拦截的阻塞时，GMP 模型并不会阻塞调度循环，
@@ -1740,7 +1792,12 @@
 <li>调度循环：线程 M 在持有 P 的情况下不断消费运行队列中的 G 的过程</li>
 <li>处理阻塞：
 <ul>
-<li>runtime 可以接管的阻塞：channel send / recv，sync.Mutex，net read / write，select，time.Sleep</li>
+<li>runtime 可以接管的阻塞：
+<ul>
+<li>channel send / recv，sync.Mutex，net read / write，select，time.Sleep</li>
+<li>所有 runtime 可接管的阻塞都是通过 <code>gopark</code> / <code>goparkunlock</code> 挂起，<code>goready</code> 恢复</li>
+</ul>
+</li>
 <li>runtime 不可接管的阻塞：syscall，cgo，长时间运行需要剥离 P 执行；</li>
 </ul>
 </li>
@@ -1779,6 +1836,8 @@
 <li><a href="https://www.yuque.com/aceld/golang/srxd6d#0810e304" target="_blank" rel="noopener noreffer ">Golang的协程调度器原理及GMP设计思想</a></li>
 <li><a href="https://www.figma.com/proto/gByIPDf4nRr6No4dNYjn3e/bootstrap?page-id=242%3A7&amp;node-id=242%3A215&amp;viewport=516%2C209%2C0.07501539587974548&amp;scaling=scale-down-width" target="_blank" rel="noopener noreffer ">Golang 生产-消费调度流程: Producer</a></li>
 <li><a href="https://www.figma.com/proto/gByIPDf4nRr6No4dNYjn3e/bootstrap?page-id=143%3A212&amp;node-id=143%3A213&amp;viewport=134%2C83%2C0.06213996931910515&amp;scaling=scale-down-width" target="_blank" rel="noopener noreffer ">Golang 生产-消费调度流程: Consumer</a></li>
+<li><a href="https://xargin.com/shrink-go-threads/" target="_blank" rel="noopener noreffer ">极端情况下收缩 Go 的线程数</a></li>
+<li><a href="https://github.com/golang-design/history#scheduler" target="_blank" rel="noopener noreffer ">Go Scheduler 变更史</a></li>
 <li><a href="https://github.com/golang/go/blob/release-branch.go1.10/src/internal/poll/fd_poll_runtime.go" target="_blank" rel="noopener noreffer ">internal/poll/fd_poll_runtime.go</a></li>
 <li><a href="https://github.com/golang/go/blob/release-branch.go1.10/src/internal/poll/fd_unix.go" target="_blank" rel="noopener noreffer ">internal/poll/fd_unix.go</a></li>
 <li><a href="https://github.com/golang/go/blob/release-branch.go1.10/src/net/fd_unix.go" target="_blank" rel="noopener noreffer ">net/fd_unix.go</a></li>
@@ -1795,8 +1854,8 @@
         <div class="post-info-line">
             <div class="post-info-mod">
                 <span>Updated on 2024-05-19
-                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/587175271727ecca61089c745ed5b86220c31c3f" target="_blank" title="commit by 587175271727ecca61089c745ed5b86220c31c3f: Update: 深入理解 GMP">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>5871752</a></span>
+                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/6729b77f0c4550997e2bf37589088e2ce284cd03" target="_blank" title="commit by 6729b77f0c4550997e2bf37589088e2ce284cd03: Add: Goroutine 切换成本">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>6729b77</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
