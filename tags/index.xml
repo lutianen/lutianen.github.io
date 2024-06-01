@@ -4,20 +4,52 @@
         <link>https://lutianen.github.io/tags/</link>
         <description>Tags - Tag - Kyden 鸢舞</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyden)</managingEditor>
-            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 15 May 2024 13:41:49 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>GMP</title>
-    <link>https://lutianen.github.io/tags/gmp/</link>
-    <pubDate>Wed, 15 May 2024 13:41:49 &#43;0800</pubDate>
+            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 19 May 2024 22:47:26 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Escape Analysis</title>
+    <link>https://lutianen.github.io/tags/escape-analysis/</link>
+    <pubDate>Sun, 19 May 2024 22:47:26 &#43;0800</pubDate>
     <author>Kyden</author>
-    <guid>https://lutianen.github.io/tags/gmp/</guid>
+    <guid>https://lutianen.github.io/tags/escape-analysis/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Golang</title>
     <link>https://lutianen.github.io/tags/golang/</link>
-    <pubDate>Wed, 15 May 2024 13:41:49 &#43;0800</pubDate>
+    <pubDate>Sun, 19 May 2024 22:47:26 &#43;0800</pubDate>
     <author>Kyden</author>
     <guid>https://lutianen.github.io/tags/golang/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Heap</title>
+    <link>https://lutianen.github.io/tags/heap/</link>
+    <pubDate>Sun, 19 May 2024 22:47:26 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/tags/heap/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Stack</title>
+    <link>https://lutianen.github.io/tags/stack/</link>
+    <pubDate>Sun, 19 May 2024 22:47:26 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/tags/stack/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>逃逸分析</title>
+    <link>https://lutianen.github.io/tags/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90/</link>
+    <pubDate>Sun, 19 May 2024 22:47:26 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/tags/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>GMP</title>
+    <link>https://lutianen.github.io/tags/gmp/</link>
+    <pubDate>Wed, 15 May 2024 13:41:49 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/tags/gmp/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -50,38 +82,6 @@
     <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
     <author>Kyden</author>
     <guid>https://lutianen.github.io/tags/epoll/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Linux</title>
-    <link>https://lutianen.github.io/tags/linux/</link>
-    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
-    <author>Kyden</author>
-    <guid>https://lutianen.github.io/tags/linux/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Netpoll</title>
-    <link>https://lutianen.github.io/tags/netpoll/</link>
-    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
-    <author>Kyden</author>
-    <guid>https://lutianen.github.io/tags/netpoll/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Network Program</title>
-    <link>https://lutianen.github.io/tags/network-program/</link>
-    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
-    <author>Kyden</author>
-    <guid>https://lutianen.github.io/tags/network-program/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Optimize</title>
-    <link>https://lutianen.github.io/tags/optimize/</link>
-    <pubDate>Sat, 20 Apr 2024 20:39:50 &#43;0800</pubDate>
-    <author>Kyden</author>
-    <guid>https://lutianen.github.io/tags/optimize/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

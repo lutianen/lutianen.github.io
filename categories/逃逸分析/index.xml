@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>逃逸分析 - Category - Kyden 鸢舞</title>
+        <link>https://lutianen.github.io/categories/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90/</link>
+        <description>逃逸分析 - Category - Kyden 鸢舞</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyden)</managingEditor>
+            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 19 May 2024 22:47:26 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/categories/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90/" rel="self" type="application/rss+xml" /><item>
+    <title>Golang Escape Analysis</title>
+    <link>https://lutianen.github.io/golang-escape-analysis/</link>
+    <pubDate>Sun, 19 May 2024 22:47:26 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/golang-escape-analysis/</guid>
+    <description><![CDATA[<p>深入理解 Golang Escape Analysis：变量何时逃逸？</p>]]></description>
+</item>
+</channel>
+</rss>
