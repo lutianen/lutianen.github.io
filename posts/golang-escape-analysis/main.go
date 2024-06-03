@@ -2,9 +2,14 @@ package main
 
 import "fmt"
 
+func f(a *int) {
+	fmt.Printf("%v\n", *a)
+	return
+}
+
 func main() {
-	dat := make(map[string]interface{})
-	dat["BlogName"] = "Kyden's Blog"
-	val := dat["BlogName"]
-	fmt.Printf("%v\n", val)
+	a := 10
+	fn := f
+	fn(&a)
+	fmt.Printf("a = %v\n", a)
 }
