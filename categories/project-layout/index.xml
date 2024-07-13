@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Project Layout - Category - Kyden 鸢舞</title>
+        <link>http://localhost:1313/categories/project-layout/</link>
+        <description>Project Layout - Category - Kyden 鸢舞</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyden)</managingEditor>
+            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 13 Jul 2024 21:04:57 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/project-layout/" rel="self" type="application/rss+xml" /><item>
+    <title>Stardard Go Project Layout</title>
+    <link>http://localhost:1313/go-proj-layout/</link>
+    <pubDate>Sat, 13 Jul 2024 21:04:57 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>http://localhost:1313/go-proj-layout/</guid>
+    <description><![CDATA[<p>Go 应用程序项目的基本布局介绍</p>]]></description>
+</item>
+</channel>
+</rss>
