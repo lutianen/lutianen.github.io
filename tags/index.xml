@@ -4,7 +4,15 @@
         <link>https://lutianen.github.io/tags/</link>
         <description>Tags - Tag - Kyden 鸢舞</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyden)</managingEditor>
-            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 13 Jul 2024 21:04:57 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 28 Jul 2024 10:13:24 &#43;0800</lastBuildDate><atom:link href="https://lutianen.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Design Patten</title>
+    <link>https://lutianen.github.io/tags/design-patten/</link>
+    <pubDate>Sun, 28 Jul 2024 10:13:24 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/tags/design-patten/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Golang</title>
     <link>https://lutianen.github.io/tags/golang/</link>
     <pubDate>Sat, 13 Jul 2024 21:04:57 &#43;0800</pubDate>
@@ -74,14 +82,6 @@
     <pubDate>Wed, 15 May 2024 13:41:49 &#43;0800</pubDate>
     <author>Kyden</author>
     <guid>https://lutianen.github.io/tags/gmp/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Goroutine</title>
-    <link>https://lutianen.github.io/tags/goroutine/</link>
-    <pubDate>Wed, 15 May 2024 13:41:49 &#43;0800</pubDate>
-    <author>Kyden</author>
-    <guid>https://lutianen.github.io/tags/goroutine/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
