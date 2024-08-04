@@ -84,5 +84,85 @@
     <guid>https://lutianen.github.io/categories/gmp/</guid>
     <description><![CDATA[]]></description>
 </item>
+<item>
+    <title>Goroutine</title>
+    <link>https://lutianen.github.io/categories/goroutine/</link>
+    <pubDate>Wed, 15 May 2024 13:41:49 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/categories/goroutine/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Machine</title>
+    <link>https://lutianen.github.io/categories/machine/</link>
+    <pubDate>Wed, 15 May 2024 13:41:49 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/categories/machine/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Process</title>
+    <link>https://lutianen.github.io/categories/process/</link>
+    <pubDate>Wed, 15 May 2024 13:41:49 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/categories/process/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Epoll</title>
+    <link>https://lutianen.github.io/categories/epoll/</link>
+    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/categories/epoll/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Linux</title>
+    <link>https://lutianen.github.io/categories/linux/</link>
+    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/categories/linux/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Netpoll</title>
+    <link>https://lutianen.github.io/categories/netpoll/</link>
+    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/categories/netpoll/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Network Program</title>
+    <link>https://lutianen.github.io/categories/network-program/</link>
+    <pubDate>Wed, 08 May 2024 11:43:38 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/categories/network-program/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Optimize</title>
+    <link>https://lutianen.github.io/categories/optimize/</link>
+    <pubDate>Sat, 20 Apr 2024 20:39:50 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/categories/optimize/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Profile</title>
+    <link>https://lutianen.github.io/categories/profile/</link>
+    <pubDate>Sat, 20 Apr 2024 20:39:50 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/categories/profile/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>CI/CD</title>
+    <link>https://lutianen.github.io/categories/ci/cd/</link>
+    <pubDate>Fri, 19 Apr 2024 11:24:23 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/categories/ci/cd/</guid>
+    <description><![CDATA[]]></description>
+</item>
 </channel>
 </rss>
