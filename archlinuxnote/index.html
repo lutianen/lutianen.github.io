@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-04-17T22:11:33+08:00">
-    <meta property="article:modified_time" content="2024-07-03T10:08:05+08:00">
+    <meta property="article:modified_time" content="2024-08-11T15:13:22+08:00">
     <meta property="article:tag" content="Arch">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Software">
@@ -34,8 +34,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/archlinuxnote\/"
-        },"genre": "posts","keywords": "Arch, Linux, Software","wordcount":  2006 ,
-        "url": "https:\/\/lutianen.github.io\/archlinuxnote\/","datePublished": "2024-04-17T22:11:33+08:00","dateModified": "2024-07-03T10:08:05+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"genre": "posts","keywords": "Arch, Linux, Software","wordcount":  1981 ,
+        "url": "https:\/\/lutianen.github.io\/archlinuxnote\/","datePublished": "2024-04-17T22:11:33+08:00","dateModified": "2024-08-11T15:13:22+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
@@ -132,7 +132,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Arch Linux 使用指南</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyden</a></span>&nbsp;<span class="post-category">included in <a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a>&nbsp;<a href="/categories/software/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Software</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-17">2024-04-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2006 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-17">2024-04-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1981 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -448,8 +448,8 @@
 </span></span><span class="line"><span class="cl">grub-mkconfig -o /boot/grub/grub.cfg
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Create user and usergroup</span>
-</span></span><span class="line"><span class="cl">useradd -m -G wheel tianen
-</span></span><span class="line"><span class="cl">passwd tianen
+</span></span><span class="line"><span class="cl">useradd -m -G wheel kyden
+</span></span><span class="line"><span class="cl">passwd kyden
 </span></span><span class="line"><span class="cl">---
 </span></span><span class="line"><span class="cl">键入密码
 </span></span><span class="line"><span class="cl">---
@@ -460,7 +460,7 @@
 </span></span><span class="line"><span class="cl">---
 </span></span><span class="line"><span class="cl">取消注释：<span class="sb">`</span>%wheel <span class="nv">ALL</span><span class="o">=(</span>ALL:ALL<span class="o">)</span> ALL<span class="sb">`</span>
 </span></span><span class="line"><span class="cl">---
-</span></span><span class="line"><span class="cl">su - tianen
+</span></span><span class="line"><span class="cl">su - kyden
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># KDE</span>
 </span></span><span class="line"><span class="cl">sudo pacman -S plasma xorg nvidia dolphin konsole fish noto-fonts-cjk noto-fonts-emoji
@@ -749,11 +749,11 @@
 <li>可添加待上传到远程仓库的项目文件</li>
 </ul>
 </li>
-<li>远程仓库和本地仓库关联 - <code>git remote add origin git@github.com:lutianen/System4CE7</code></li>
+<li>远程仓库和本地仓库关联 - <code>git remote add origin git@github.com:lutianen/&lt;repository name&gt;</code></li>
 <li>项目文件添加、提交、推送
 <ul>
 <li><code>git add file</code></li>
-<li><code>git commit -m 'commit statements' file</code></li>
+<li><code>git commit -m '&lt;commit statements&gt;' file</code></li>
 <li><code>git push -u origin master</code>
 <ul>
 <li>*由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来</li>
@@ -783,8 +783,8 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Set environment variable in `.config/fish/config.sh` or `/etc/profile` or `~/.profile`</span>
 </span></span><span class="line"><span class="cl">GOROOT /usr/lib/go
-</span></span><span class="line"><span class="cl">GOPATH /home/tianen/goProj
-</span></span><span class="line"><span class="cl">GOBIN /home/tianen/goProj/bin
+</span></span><span class="line"><span class="cl">GOPATH /home/kyden/goProj
+</span></span><span class="line"><span class="cl">GOBIN /home/kyden/goProj/bin
 </span></span><span class="line"><span class="cl">PATH <span class="nv">$GOPATH</span>/bin <span class="nv">$GOROOT</span>/bin <span class="nv">$GOBIN</span> <span class="nv">$PATH</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -817,7 +817,7 @@
 </ul>
 <hr>
 <h3 id="mysql">MySQL</h3>
-<p>很多linux发行版都放弃了对mysql的支持（原因自行百度）转而支持mariadb（mysql的另一个分支），Archlinux就是其中之一，mariadb具有和mysql一模一样的操作命令，所以完全不用考虑迁移兼容的问题</p>
+<p>很多linux发行版都放弃了对mysql的支持（原因自行 Google）转而支持mariadb（mysql的另一个分支），Archlinux就是其中之一，mariadb具有和mysql一模一样的操作命令，所以完全不用考虑迁移兼容的问题</p>
 <ul>
 <li>
 <p>安装mariadb: <code>sudo pacman -Sy mariadb</code></p>
@@ -880,7 +880,7 @@
 </span></span><span class="line"><span class="cl">sudo vim /etc/fstab
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># &lt;device&gt; &lt;dir&gt; &lt;type&gt; &lt;options&gt; &lt;dump&gt; &lt;fsck&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">UUID</span><span class="o">=</span>111915F1111915F1 /home/tianen/doc ntfs3 defaults <span class="m">0</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="nv">UUID</span><span class="o">=</span>111915F1111915F1 /home/kyden/doc ntfs3 defaults <span class="m">0</span> <span class="m">0</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -904,8 +904,8 @@
 <hr>
 <h3 id="scp-文件上传下载"><code>scp</code> 文件上传、下载</h3>
 <ul>
-<li>上传 <code>scp .\cifar-10-python.tar.gz lutianen@10.xxx.xxx.xxx:/home/lutianen/</code></li>
-<li>下载  <code>scp root@10.xxx.xxx.xxx:/var/tmp/a.txt /var</code></li>
+<li>上传 <code>scp ./cifar-10-python.tar.gz kyden@&lt;ip&gt;:/home/kyden/</code></li>
+<li>下载  <code>scp kyden@&lt;ip&gt;:/var/tmp/a.txt /var</code></li>
 </ul>
 <hr>
 <h3 id="picgo">picgo</h3>
@@ -961,7 +961,7 @@
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;picBed&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;current&#34;</span><span class="p">:</span> <span class="s2">&#34;github&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;github&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">      <span class="nt">&#34;repo&#34;</span><span class="p">:</span> <span class="s2">&#34;lutianen/PicBed&#34;</span><span class="p">,</span> <span class="c1">// 设定仓库名：上文在 GitHub 创建的仓库 `lutianen/PicBed`
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;repo&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;userName&gt;/PicBed&#34;</span><span class="p">,</span> <span class="c1">// 设定仓库名：上文在 GitHub 创建的仓库 `&lt;userName&gt;/PicBed`
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nt">&#34;branch&#34;</span><span class="p">:</span> <span class="s2">&#34;master&#34;</span><span class="p">,</span> <span class="c1">// 设定分支名：`master`
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nt">&#34;token&#34;</span><span class="p">:</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span><span class="p">,</span> <span class="c1">// 设定 Token：上文生成的 toke
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="c1">// 指定存储路径：为空的话会上传到根目录，也可以指定路径
@@ -979,37 +979,7 @@
 </div></li>
 </ol>
 <h4 id="picgo-app-not-recommend">picgo app 【Not Recommend】</h4>
-<ol>
-<li>
-<p><strong>安装 picgo</strong>: <code>yay -S picgo</code></p>
-</li>
-<li>
-<p><strong>picgo 配置 github</strong></p>
-<ul>
-<li>
-<p>github 获取 <strong>token</strong>: 见 <strong>picgo-core</strong> 配置</p>
-</li>
-<li>
-<p>PicGo 配置</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://cdn.jsdelivr.net/gh/lutianen/PicBed@master/image-20230912222947951.png"
-        data-srcset="https://cdn.jsdelivr.net/gh/lutianen/PicBed@master/image-20230912222947951.png, https://cdn.jsdelivr.net/gh/lutianen/PicBed@master/image-20230912222947951.png 1.5x, https://cdn.jsdelivr.net/gh/lutianen/PicBed@master/image-20230912222947951.png 2x"
-        data-sizes="auto"
-        alt="https://cdn.jsdelivr.net/gh/lutianen/PicBed@master/image-20230912222947951.png"
-        title="image-20230912222947951" /></p>
-<ul>
-<li>设定仓库名：上文在 GitHub 创建的仓库 <code>lutianen/PicBed</code></li>
-<li>设定分支名：<code>master</code></li>
-<li>设定 Token：上文生成的 token</li>
-<li>指定存储路径：为空的话会上传到跟目录，也可以指定路径</li>
-<li>设定自定义域名：可以为空，这里为了使用 CDN 加快图片的访问速度，按这样格式填写：<a href="https://cdn.jsdelivr.net/gh/lutianen/PicBed/@master" target="_blank" rel="noopener noreffer ">https://cdn.jsdelivr.net/gh/lutianen/PicBed/@master</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
+<p>略</p>
 <hr>
 <h3 id="virtualbox">VirtualBox</h3>
 <div class="highlight"><div class="chroma">
@@ -1543,9 +1513,9 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-07-03
-                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/c3fec397aad0de941a7c50658326de32d89bf1ad" target="_blank" title="commit by c3fec397aad0de941a7c50658326de32d89bf1ad: Add: Optional tag for clash-verge">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>c3fec39</a></span>
+                <span>Updated on 2024-08-11
+                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/33fbeba23c42cd5f258719be398ef62909b1efc7" target="_blank" title="commit by 33fbeba23c42cd5f258719be398ef62909b1efc7: Update: Linux Note.">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>33fbeba</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
