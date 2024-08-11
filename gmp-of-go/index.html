@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-05-15T13:41:49+08:00">
-    <meta property="article:modified_time" content="2024-06-01T21:13:06+08:00">
+    <meta property="article:modified_time" content="2024-08-11T16:02:26+08:00">
     <meta property="article:tag" content="Golang">
     <meta property="article:tag" content="GMP">
     <meta property="article:tag" content="Goroutine">
@@ -37,7 +37,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/gmp-of-go\/"
         },"genre": "posts","keywords": "Golang, GMP, Goroutine, Machine, Process","wordcount":  4866 ,
-        "url": "https:\/\/lutianen.github.io\/gmp-of-go\/","datePublished": "2024-05-15T13:41:49+08:00","dateModified": "2024-06-01T21:13:06+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "https:\/\/lutianen.github.io\/gmp-of-go\/","datePublished": "2024-05-15T13:41:49+08:00","dateModified": "2024-08-11T16:02:26+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
@@ -1025,9 +1025,9 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </ul>
 <h4 id="调度流程">调度流程</h4>
 <p>Go 的调度流程本质上是一个<strong>生产-消费</strong>流程：</p>
-<p><a data-fancybox="gallery" href="/img/Go 调度本质.svg"><img src="/img/Go 调度本质.svg" alt="GMP" style="display: block; margin: 0 auto;"></a></p>
+<p><a data-fancybox="gallery" href="/posts/GMP-of-Go/Go-调度本质.svg"><img src="/posts/GMP-of-Go/Go-调度本质.svg" alt="GMP" style="display: block; margin: 0 auto;"></a></p>
 <p>为了实现简单、高效地调度 Goroutine，Golang 采用了 GMP 模型如下图所示：</p>
-<p><a data-fancybox="gallery" href="/img/GMP.svg"><img src="/img/GMP.svg" alt="GMP" style="display: block; margin: 0 auto;"></a></p>
+<p><a data-fancybox="gallery" href="/posts/GMP-of-Go/GMP.svg"><img src="/GMP-of-Go/GMP.svg" alt="GMP" style="display: block; margin: 0 auto;"></a></p>
 <ul>
 <li><code>global run queue</code>: 存放等待运行的 G</li>
 <li><code>local run queue</code>: 256 大小的 array，用于存放等待运行的 G</li>
@@ -1038,14 +1038,14 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </blockquote>
 <h5 id="goroutine-的生产端"><strong>Goroutine</strong> 的生产端</h5>
 <p>Goroutine 生产流程：</p>
-<p><a data-fancybox="gallery" href="/img/Goroutine-Producer.svg"><img src="/img/Goroutine-Producer.svg" alt="Goroutine-Producer" style="display: block; margin: 0 auto;"></a></p>
+<p><a data-fancybox="gallery" href="/posts/GMP-of-Go/Goroutine-Producer.svg"><img src="/posts/GMP-of-Go/Goroutine-Producer.svg" alt="Goroutine-Producer" style="display: block; margin: 0 auto;"></a></p>
 <h5 id="goroutine-的消费端"><strong>Goroutine</strong> 的消费端</h5>
 <blockquote>
 <p>TODO</p>
 <p>关于消费端函数调用链还需完善！！！</p>
 </blockquote>
 <p>Goroutine 消费流程：</p>
-<p><a data-fancybox="gallery" href="/img/Kyden-blog-Goroutine-Consumer.svg"><img src="/img/Kyden-blog-Goroutine-Consumer.svg" alt="Kyden-blog-Goroutine-Consumer" style="display: block; margin: 0 auto;"></a></p>
+<p><a data-fancybox="gallery" href="/posts/GMP-of-Go/Kyden-blog-Goroutine-Consumer.svg"><img src="/posts/GMP-of-Go/Kyden-blog-Goroutine-Consumer.svg" alt="Kyden-blog-Goroutine-Consumer" style="display: block; margin: 0 auto;"></a></p>
 <h3 id="goroutine-切换成本">Goroutine 切换成本</h3>
 <p><code>gobuf</code> 描述了一个 Goroutine 所有现场，从一个 <code>g</code> 切换到另一个 <code>g</code>，只要把这几个现场字段保存下来，再将 <code>g</code> 入队，M 就可以执行其他 <code>g</code> 了，无需进入内核态。</p>
 <p><code>gobuf</code> 数据结构如下</p>
@@ -1624,7 +1624,7 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </span></span><span class="line"><span class="cl">                <span class="nf">gopark</span><span class="p">(</span><span class="nx">unlockf</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">g</span><span class="p">,</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">)</span> <span class="kt">bool</span><span class="p">,</span> <span class="nx">lock</span> <span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">,</span> <span class="nx">reason</span> <span class="nx">waitReason</span><span class="p">,</span> <span class="nx">traceReason</span> <span class="nx">traceBlockReason</span><span class="p">,</span> <span class="nx">traceskip</span> <span class="kt">int</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>有关 <code>net.Conn</code> 读写详细内容，可参考<a href="http://localhost:1313/netpoll-of-network-program-for-golang/" target="_blank" rel="noopener noreffer ">Netpoll of Network Program for Golang</a></p>
+</div><p>有关 <code>net.Conn</code> 读写详细内容，可参考<a href="https://lutianen.github.io/netpoll-of-network-program-for-golang/" target="_blank" rel="noopener noreffer ">Netpoll of Network Program for Golang</a></p>
 <h4 id="场景-iv-锁阻塞">场景 IV: 锁阻塞</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1817,7 +1817,7 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><a data-fancybox="gallery" href="/img/Kyden-blog-semTable.svg"><img src="/img/Kyden-blog-semTable.svg" alt="Kyden-blog-semTable" style="display: block; margin: 0 auto;"></a></p>
+</div><p><a data-fancybox="gallery" href="/posts/GMP-of-Go/Kyden-blog-semTable.svg"><img src="/posts/GMP-of-Go/Kyden-blog-semTable.svg" alt="Kyden-blog-semTable" style="display: block; margin: 0 auto;"></a></p>
 <h3 id="runtime-不可拦截-goroutine-阻塞场景解析">runtime 不可拦截 goroutine 阻塞场景解析</h3>
 <p><code>time.Sleep</code> / <code>channel send</code> / <code>channel recv</code> / <code>select</code> / <code>net read</code> / <code>net write</code> / <code>sync.Mutex</code> 等阻塞场景可被 runtime 拦截，然而仍存在一些阻塞情况是 runtime 无法拦截的，例如：<strong>在执行 C 代码或阻塞在 syscall 上时，必须占用一个线程</strong>。</p>
 <h2 id="iii-sysmon">III. Sysmon</h2>
@@ -1891,9 +1891,11 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-06-01
-                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/b196f5e47b193eb6ba5a0b9bdcde5a45ffd1ada2" target="_blank" title="commit by b196f5e47b193eb6ba5a0b9bdcde5a45ffd1ada2: Add: The description of Channel.">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b196f5e</a></span>
+                <span>Updated on 2024-08-11
+                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/e3cfa84718f7eda46a119902de5af5c5a86b23e5" target="_blank" title="commit by e3cfa84718f7eda46a119902de5af5c5a86b23e5: Update content and move images.">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>e3cfa84</a></span>
+            </div><div class="post-info-license">
+                <span>CC BY-NC-SA 4.0</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
