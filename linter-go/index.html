@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-04-19T11:24:23+08:00">
-    <meta property="article:modified_time" content="2024-07-28T10:06:13+08:00">
+    <meta property="article:modified_time" content="2024-08-11T16:31:42+08:00">
     <meta property="article:tag" content="Golang">
     <meta property="article:tag" content="Linter">
     <meta property="article:tag" content="Static Check">
@@ -35,8 +35,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/linter-go\/"
-        },"genre": "posts","keywords": "Golang, Linter, Static Check, CI\/CD","wordcount":  656 ,
-        "url": "https:\/\/lutianen.github.io\/linter-go\/","datePublished": "2024-04-19T11:24:23+08:00","dateModified": "2024-07-28T10:06:13+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"genre": "posts","keywords": "Golang, Linter, Static Check, CI\/CD","wordcount":  654 ,
+        "url": "https:\/\/lutianen.github.io\/linter-go\/","datePublished": "2024-04-19T11:24:23+08:00","dateModified": "2024-08-11T16:31:42+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
@@ -133,7 +133,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linter for Go</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyden</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a>&nbsp;<a href="/categories/linter/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linter</a>&nbsp;<a href="/categories/static-check/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Static Check</a>&nbsp;<a href="/categories/ci/cd/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CI/CD</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-19">2024-04-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;656 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-19">2024-04-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;654 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -461,7 +461,7 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go vet -vettool<span class="o">=</span><span class="k">$(</span>which sqlrows<span class="k">)</span> main.go                  <span class="o">(</span>base<span class="o">)</span> 
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go vet -vettool<span class="o">=</span><span class="k">$(</span>which sqlrows<span class="k">)</span> main.go
 </span></span><span class="line"><span class="cl"><span class="c1"># command-line-arguments</span>
 </span></span><span class="line"><span class="cl">./main.go:10:11: using rows before checking <span class="k">for</span> errors
 </span></span></code></pre></td></tr></table>
@@ -473,7 +473,7 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go vet -vettool<span class="o">=</span><span class="k">$(</span>which sqlrows<span class="k">)</span> main.go                  <span class="o">(</span>base<span class="o">)</span> 
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go vet -vettool<span class="o">=</span><span class="k">$(</span>which sqlrows<span class="k">)</span> main.go
 </span></span><span class="line"><span class="cl"><span class="c1"># command-line-arguments</span>
 </span></span><span class="line"><span class="cl">./main.go:9:33: rows.Close must be called
 </span></span></code></pre></td></tr></table>
@@ -505,10 +505,10 @@
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/img/golangci-linter-default.png"
-        data-srcset="/img/golangci-linter-default.png, /img/golangci-linter-default.png 1.5x, /img/golangci-linter-default.png 2x"
+        data-src="/posts/linter-go/golangci-linter-default.png"
+        data-srcset="/posts/linter-go/golangci-linter-default.png, /posts/linter-go/golangci-linter-default.png 1.5x, /posts/linter-go/golangci-linter-default.png 2x"
         data-sizes="auto"
-        alt="/img/golangci-linter-default.png"
+        alt="/posts/linter-go/golangci-linter-default.png"
         title="GolangCI-Linter Default config" /></p>
 <p>还可以通过传递 <code>-E</code>/<code>--enable</code> 参数来启动 Linter，传递 <code>-D</code>/<code>--disable</code> 来禁用 Linter</p>
 <div class="highlight"><div class="chroma">
@@ -557,9 +557,9 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-07-28
-                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/dcf545d142360edd0a143a273da58ad01f228e56" target="_blank" title="commit by dcf545d142360edd0a143a273da58ad01f228e56: Update: The command of installing golangci-lint">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>dcf545d</a></span>
+                <span>Updated on 2024-08-11
+                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/b0c93ee41f0466dcdbd10ade766dd60f4b1b1cc0" target="_blank" title="commit by b0c93ee41f0466dcdbd10ade766dd60f4b1b1cc0: Update content and move images.">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>b0c93ee</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
