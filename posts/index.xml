@@ -1727,9 +1727,13 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </ul>
 <h4 id="调度流程">调度流程</h4>
 <p>Go 的调度流程本质上是一个<strong>生产-消费</strong>流程：</p>
-<p><a data-fancybox="gallery" href="/posts/GMP-of-Go/Go-调度本质.svg"></a></p>
+<figure>
+</figure>
+
 <p>为了实现简单、高效地调度 Goroutine，Golang 采用了 GMP 模型如下图所示：</p>
-<p><a data-fancybox="gallery" href="/posts/GMP-of-Go/GMP.svg"></a></p>
+<figure>
+</figure>
+
 <ul>
 <li><code>global run queue</code>: 存放等待运行的 G</li>
 <li><code>local run queue</code>: 256 大小的 array，用于存放等待运行的 G</li>
@@ -1740,14 +1744,18 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </blockquote>
 <h5 id="goroutine-的生产端"><strong>Goroutine</strong> 的生产端</h5>
 <p>Goroutine 生产流程：</p>
-<p><a data-fancybox="gallery" href="/posts/GMP-of-Go/Goroutine-Producer.svg"></a></p>
+<figure>
+</figure>
+
 <h5 id="goroutine-的消费端"><strong>Goroutine</strong> 的消费端</h5>
 <blockquote>
 <p>TODO</p>
 <p>关于消费端函数调用链还需完善！！！</p>
 </blockquote>
 <p>Goroutine 消费流程：</p>
-<p><a data-fancybox="gallery" href="/posts/GMP-of-Go/Kyden-blog-Goroutine-Consumer.svg"></a></p>
+<figure>
+</figure>
+
 <h3 id="goroutine-切换成本">Goroutine 切换成本</h3>
 <p><code>gobuf</code> 描述了一个 Goroutine 所有现场，从一个 <code>g</code> 切换到另一个 <code>g</code>，只要把这几个现场字段保存下来，再将 <code>g</code> 入队，M 就可以执行其他 <code>g</code> 了，无需进入内核态。</p>
 <p><code>gobuf</code> 数据结构如下</p>
@@ -2519,7 +2527,9 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><a data-fancybox="gallery" href="/posts/GMP-of-Go/Kyden-blog-semTable.svg"></a></p>
+</div><figure>
+</figure>
+
 <h3 id="runtime-不可拦截-goroutine-阻塞场景解析">runtime 不可拦截 goroutine 阻塞场景解析</h3>
 <p><code>time.Sleep</code> / <code>channel send</code> / <code>channel recv</code> / <code>select</code> / <code>net read</code> / <code>net write</code> / <code>sync.Mutex</code> 等阻塞场景可被 runtime 拦截，然而仍存在一些阻塞情况是 runtime 无法拦截的，例如：<strong>在执行 C 代码或阻塞在 syscall 上时，必须占用一个线程</strong>。</p>
 <h2 id="iii-sysmon">III. Sysmon</h2>
@@ -2656,7 +2666,9 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 <p><strong>并发模式，指的是 I/O 处理单元和多个逻辑单元之间协调完成任务的方法</strong></p>
 </blockquote>
 <h3 id="linux-epoll">Linux Epoll</h3>
-<p><a data-fancybox="gallery" href="/posts/netpoll-of-network-program-for-golang/Epoll-Linux.svg"></a></p>
+<figure>
+</figure>
+
 <ul>
 <li>
 <p>epoll 在内核里使用<strong>红黑树(Red-black tree)来跟踪进程所有待检测的文件描述字 <code>fd</code></strong>，把需要监控的 socket 通过 <code>epoll_ctl()</code> 函数加入内核中的红黑树里（红黑树是个高效的数据结构，增删改一般时间复杂度是 <code>O(logn)</code>）</p>
@@ -2920,7 +2932,9 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 <h2 id="iv-tcp-网络编程基本流程">IV. TCP 网络编程基本流程</h2>
 <p>本部分涉及众多函数调用，为了描述清晰，采用了图的形式，其中，每一块第一行表示该块所表示的函数名称，其他部分表示该函数中关键函数调用。</p>
 <h3 id="创建-tcp-socket-并监听-netlisten">创建 TCP socket 并监听: <code>net.Listen</code></h3>
-<p><a data-fancybox="gallery" href="/posts/netpoll-of-network-program-for-golang/golang-netpoll-listen.svg"></a></p>
+<figure>
+</figure>
+
 <blockquote>
 <p>NOTE</p>
 <p><strong>需要注意的是，在执行 <code>net.(*netFD).listenStream</code> 之前，由于 <code>maxListenerBacklog</code> 函数调用了 <code>open(&quot;/proc/sys/net/core/somaxconn&quot;)</code>，则会导致 epoll 底层红黑树的提前创建: <code>runtime.netpollinit</code> -&gt; <code>syscall.EpollCreate1</code> -&gt; <code>Syscall6(SYS_EPOLL_CREATE1, uintptr(flags), 0, 0, 0, 0, 0)</code></strong>.</p>
@@ -2955,11 +2969,17 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </div>
 </div></blockquote>
 <h3 id="获取-tcp-连接-nettcplisteneraccept">获取 TCP 连接: <code>net.(*TCPListener).Accept</code></h3>
-<p><a data-fancybox="gallery" href="/posts/netpoll-of-network-program-for-golang/golang-netpoll-accept.svg"></a></p>
+<figure>
+</figure>
+
 <h3 id="tcp-连接读数据-nettcpconnread">TCP 连接读数据: <code>net.(*TCPConn).Read</code></h3>
-<p><a data-fancybox="gallery" href="/posts/netpoll-of-network-program-for-golang/golang-netpoll-read.svg"></a></p>
+<figure>
+</figure>
+
 <h3 id="tcp-连接写数据-nettcpconnwrite">TCP 连接写数据: <code>net.(*TCPConn).Write</code></h3>
-<p><a data-fancybox="gallery" href="/posts/netpoll-of-network-program-for-golang/golang-netpoll-write.svg"></a></p>
+<figure>
+</figure>
+
 <h2 id="v-netpoll-执行流程-netpoll">V. netpoll 执行流程: <code>netpoll</code></h2>
 <p>在调度和 GC 的关键点上都会检查一次 netpoll，确定是否存在 ready 状态的 FD：</p>
 <ul>
@@ -3609,7 +3629,9 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </blockquote>
 <h2 id="ii-optimize">II. Optimize</h2>
 <h3 id="优化方向">优化方向</h3>
-<p><a data-fancybox="gallery" href="/go-profile/优化范围.svg"></a></p>
+<figure>
+</figure>
+
 <p>在分析上图的应用程序运行过程，可以发现进行程序优化时，一般从可以从以下方面入手：</p>
 <ul>
 <li>应用层优化: 主要指的是逻辑优化、内存使用优化、CPU 使用优化、阻塞优化等，并且本层优化效果可能优于底层优化；</li>
@@ -3880,9 +3902,13 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </div><h4 id="zero-garbage--allocation">Zero Garbage / Allocation</h4>
 <p>Zero Grabage 一般指的是通过利用 <code>sync.Pool</code> 将堆分配完全消灭的优化技术。</p>
 <p>例如，在 http router 框架 <a href="https://github.com/valyala/fasthttp" target="_blank" rel="noopener noreffer ">fasthttp</a> 中应用较多.</p>
-<p><a data-fancybox="gallery" href="/go-profile/Fasthttp-best-practices.png"></a></p>
+<figure>
+</figure>
+
 <h4 id="false-sharing">False Sharing</h4>
-<p><a data-fancybox="gallery" href="/go-profile/False-Sharing.svg"></a></p>
+<figure>
+</figure>
+
 <p>CPU 运行过程中修改数据是一个 <strong>cache line</strong>为单位，当两个变量<code>A</code>/<code>B</code>满足以下条件：</p>
 <ul>
 <li>在内存中相邻</li>
@@ -4043,7 +4069,9 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>在后端系统开发中，锁瓶颈是较常见的问题，例如文件锁
-<a data-fancybox="gallery" href="/go-profile/func-write-with-lock.png"></a></p>
+<figure>
+</figure>
+</p>
 <ul>
 <li>
 <p><strong>双 Buffer 完全干掉锁阻塞</strong></p>
@@ -4417,7 +4445,9 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 <li>产品被部署到客户那里，想登陆客户的环境并不方便</li>
 </ul>
 <p>此时 Coutinuout Profiling 就派上用场了.</p>
-<p><a data-fancybox="gallery" href="/go-profile/Continuous-Profiling.svg"></a></p>
+<figure>
+</figure>
+
 <p><strong>自省式的 Profile Dumper</strong>，可以根据 CPU 利用率、Memory 利用率、Goroutine 数量等多个指标检测系统，设置定时周期进行检测，当发现某个指标异常时，自动 Dump file.</p>
 <h2 id="iv-summary">IV. Summary</h2>
 <ol>
@@ -4789,7 +4819,9 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </div><h3 id="usage-3">Usage</h3>
 <p>在不进行任何配置的情况下，GolangCI-Lint 将默认采用启动以下 Linters:
 <code>errcheck</code>, <code>gosimple</code>, <code>govet</code>, <code>ineffassign</code>, <code>staticcheck</code>, <code>unused</code></p>
-<p></p>
+<figure>
+</figure>
+
 <p>还可以通过传递 <code>-E</code>/<code>--enable</code> 参数来启动 Linter，传递 <code>-D</code>/<code>--disable</code> 来禁用 Linter</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -4844,7 +4876,9 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
     <description><![CDATA[<p>分享一个好看的 Typora 主题</p>
 <h2 id="效果">效果</h2>
 <p>本 Typora 软件主题是在 <a href="https://theme.typora.io/theme/Purple/" target="_blank" rel="noopener noreffer "><code>Purple</code></a> 之上修改而来，具体效果如下：</p>
-<p></p>
+<figure>
+</figure>
+
 <h2 id="source">Source</h2>
 <p>由于实现源码太长，给出下载连接：<a href="https://github.com/lutianen/Notes/blob/main/Markdown/Kyden.css" target="_blank" rel="noopener noreffer ">Kyden.css</a></p>
 <h2 id="reference">Reference</h2>
@@ -6118,15 +6152,21 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 <p>在博客网站搭建完成之后，有充分的理由相信，自己在未来很长一段时间内将不会再次重复建站。</p>
 <p><strong>常言道天有不测风云，为了防止各种意外情况发生，导致本博客网站无法正常使用，同时防止自己忘记搭建流程，记录于此。</strong></p>
 <h2 id="ii-效果">II. 效果</h2>
-<p></p>
+<figure>
+</figure>
+
 <h2 id="iii-相关知识简介">III. 相关知识简介</h2>
 <h3 id="github-pages">Github Pages</h3>
 <p>GitHub Pages 是一个免费的静态网站托管服务，它允许用户通过 GitHub 存储库来托管和发布网页，可以使用它来展示项目文档、博客或个人简历。</p>
-<p></p>
+<figure>
+</figure>
+
 <p>现阶段，Github Pages 支持公共存储库的免费的托管；对于私有仓库，需要进行缴费。</p>
 <h3 id="hugo">Hugo</h3>
 <p>官方号称，<a href="https://gohugo.io/" target="_blank" rel="noopener noreffer ">Hugo</a> 是世界上最快的网站建设框架(The world’s fastest framework for building websites)。</p>
-<p></p>
+<figure>
+</figure>
+
 <h2 id="iv-steps">IV. Steps</h2>
 <h3 id="github-仓库创建">Github 仓库创建</h3>
 <p>需要创建两个仓库，一个用于网站源码管理(<code>sA</code>)，一个用于网站部署(<code>sB</code>):</p>

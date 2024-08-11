@@ -113,7 +113,9 @@
 </blockquote>
 <h2 id="ii-optimize">II. Optimize</h2>
 <h3 id="优化方向">优化方向</h3>
-<p><a data-fancybox="gallery" href="/go-profile/优化范围.svg"></a></p>
+<figure>
+</figure>
+
 <p>在分析上图的应用程序运行过程，可以发现进行程序优化时，一般从可以从以下方面入手：</p>
 <ul>
 <li>应用层优化: 主要指的是逻辑优化、内存使用优化、CPU 使用优化、阻塞优化等，并且本层优化效果可能优于底层优化；</li>
@@ -384,9 +386,13 @@
 </div><h4 id="zero-garbage--allocation">Zero Garbage / Allocation</h4>
 <p>Zero Grabage 一般指的是通过利用 <code>sync.Pool</code> 将堆分配完全消灭的优化技术。</p>
 <p>例如，在 http router 框架 <a href="https://github.com/valyala/fasthttp" target="_blank" rel="noopener noreffer ">fasthttp</a> 中应用较多.</p>
-<p><a data-fancybox="gallery" href="/go-profile/Fasthttp-best-practices.png"></a></p>
+<figure>
+</figure>
+
 <h4 id="false-sharing">False Sharing</h4>
-<p><a data-fancybox="gallery" href="/go-profile/False-Sharing.svg"></a></p>
+<figure>
+</figure>
+
 <p>CPU 运行过程中修改数据是一个 <strong>cache line</strong>为单位，当两个变量<code>A</code>/<code>B</code>满足以下条件：</p>
 <ul>
 <li>在内存中相邻</li>
@@ -547,7 +553,9 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>在后端系统开发中，锁瓶颈是较常见的问题，例如文件锁
-<a data-fancybox="gallery" href="/go-profile/func-write-with-lock.png"></a></p>
+<figure>
+</figure>
+</p>
 <ul>
 <li>
 <p><strong>双 Buffer 完全干掉锁阻塞</strong></p>
@@ -921,7 +929,9 @@
 <li>产品被部署到客户那里，想登陆客户的环境并不方便</li>
 </ul>
 <p>此时 Coutinuout Profiling 就派上用场了.</p>
-<p><a data-fancybox="gallery" href="/go-profile/Continuous-Profiling.svg"></a></p>
+<figure>
+</figure>
+
 <p><strong>自省式的 Profile Dumper</strong>，可以根据 CPU 利用率、Memory 利用率、Goroutine 数量等多个指标检测系统，设置定时周期进行检测，当发现某个指标异常时，自动 Dump file.</p>
 <h2 id="iv-summary">IV. Summary</h2>
 <ol>

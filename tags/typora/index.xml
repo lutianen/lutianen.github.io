@@ -13,7 +13,9 @@
     <description><![CDATA[<p>分享一个好看的 Typora 主题</p>
 <h2 id="效果">效果</h2>
 <p>本 Typora 软件主题是在 <a href="https://theme.typora.io/theme/Purple/" target="_blank" rel="noopener noreffer "><code>Purple</code></a> 之上修改而来，具体效果如下：</p>
-<p></p>
+<figure>
+</figure>
+
 <h2 id="source">Source</h2>
 <p>由于实现源码太长，给出下载连接：<a href="https://github.com/lutianen/Notes/blob/main/Markdown/Kyden.css" target="_blank" rel="noopener noreffer ">Kyden.css</a></p>
 <h2 id="reference">Reference</h2>

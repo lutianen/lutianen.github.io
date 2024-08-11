@@ -340,7 +340,9 @@
 </div><h3 id="usage-3">Usage</h3>
 <p>在不进行任何配置的情况下，GolangCI-Lint 将默认采用启动以下 Linters:
 <code>errcheck</code>, <code>gosimple</code>, <code>govet</code>, <code>ineffassign</code>, <code>staticcheck</code>, <code>unused</code></p>
-<p></p>
+<figure>
+</figure>
+
 <p>还可以通过传递 <code>-E</code>/<code>--enable</code> 参数来启动 Linter，传递 <code>-D</code>/<code>--disable</code> 来禁用 Linter</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

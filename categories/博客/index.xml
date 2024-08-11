@@ -15,15 +15,21 @@
 <p>在博客网站搭建完成之后，有充分的理由相信，自己在未来很长一段时间内将不会再次重复建站。</p>
 <p><strong>常言道天有不测风云，为了防止各种意外情况发生，导致本博客网站无法正常使用，同时防止自己忘记搭建流程，记录于此。</strong></p>
 <h2 id="ii-效果">II. 效果</h2>
-<p></p>
+<figure>
+</figure>
+
 <h2 id="iii-相关知识简介">III. 相关知识简介</h2>
 <h3 id="github-pages">Github Pages</h3>
 <p>GitHub Pages 是一个免费的静态网站托管服务，它允许用户通过 GitHub 存储库来托管和发布网页，可以使用它来展示项目文档、博客或个人简历。</p>
-<p></p>
+<figure>
+</figure>
+
 <p>现阶段，Github Pages 支持公共存储库的免费的托管；对于私有仓库，需要进行缴费。</p>
 <h3 id="hugo">Hugo</h3>
 <p>官方号称，<a href="https://gohugo.io/" target="_blank" rel="noopener noreffer ">Hugo</a> 是世界上最快的网站建设框架(The world’s fastest framework for building websites)。</p>
-<p></p>
+<figure>
+</figure>
+
 <h2 id="iv-steps">IV. Steps</h2>
 <h3 id="github-仓库创建">Github 仓库创建</h3>
 <p>需要创建两个仓库，一个用于网站源码管理(<code>sA</code>)，一个用于网站部署(<code>sB</code>):</p>

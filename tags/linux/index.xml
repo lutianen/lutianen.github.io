@@ -69,7 +69,9 @@
 <p><strong>并发模式，指的是 I/O 处理单元和多个逻辑单元之间协调完成任务的方法</strong></p>
 </blockquote>
 <h3 id="linux-epoll">Linux Epoll</h3>
-<p><a data-fancybox="gallery" href="/posts/netpoll-of-network-program-for-golang/Epoll-Linux.svg"></a></p>
+<figure>
+</figure>
+
 <ul>
 <li>
 <p>epoll 在内核里使用<strong>红黑树(Red-black tree)来跟踪进程所有待检测的文件描述字 <code>fd</code></strong>，把需要监控的 socket 通过 <code>epoll_ctl()</code> 函数加入内核中的红黑树里（红黑树是个高效的数据结构，增删改一般时间复杂度是 <code>O(logn)</code>）</p>
@@ -333,7 +335,9 @@
 <h2 id="iv-tcp-网络编程基本流程">IV. TCP 网络编程基本流程</h2>
 <p>本部分涉及众多函数调用，为了描述清晰，采用了图的形式，其中，每一块第一行表示该块所表示的函数名称，其他部分表示该函数中关键函数调用。</p>
 <h3 id="创建-tcp-socket-并监听-netlisten">创建 TCP socket 并监听: <code>net.Listen</code></h3>
-<p><a data-fancybox="gallery" href="/posts/netpoll-of-network-program-for-golang/golang-netpoll-listen.svg"></a></p>
+<figure>
+</figure>
+
 <blockquote>
 <p>NOTE</p>
 <p><strong>需要注意的是，在执行 <code>net.(*netFD).listenStream</code> 之前，由于 <code>maxListenerBacklog</code> 函数调用了 <code>open(&quot;/proc/sys/net/core/somaxconn&quot;)</code>，则会导致 epoll 底层红黑树的提前创建: <code>runtime.netpollinit</code> -&gt; <code>syscall.EpollCreate1</code> -&gt; <code>Syscall6(SYS_EPOLL_CREATE1, uintptr(flags), 0, 0, 0, 0, 0)</code></strong>.</p>
@@ -368,11 +372,17 @@
 </div>
 </div></blockquote>
 <h3 id="获取-tcp-连接-nettcplisteneraccept">获取 TCP 连接: <code>net.(*TCPListener).Accept</code></h3>
-<p><a data-fancybox="gallery" href="/posts/netpoll-of-network-program-for-golang/golang-netpoll-accept.svg"></a></p>
+<figure>
+</figure>
+
 <h3 id="tcp-连接读数据-nettcpconnread">TCP 连接读数据: <code>net.(*TCPConn).Read</code></h3>
-<p><a data-fancybox="gallery" href="/posts/netpoll-of-network-program-for-golang/golang-netpoll-read.svg"></a></p>
+<figure>
+</figure>
+
 <h3 id="tcp-连接写数据-nettcpconnwrite">TCP 连接写数据: <code>net.(*TCPConn).Write</code></h3>
-<p><a data-fancybox="gallery" href="/posts/netpoll-of-network-program-for-golang/golang-netpoll-write.svg"></a></p>
+<figure>
+</figure>
+
 <h2 id="v-netpoll-执行流程-netpoll">V. netpoll 执行流程: <code>netpoll</code></h2>
 <p>在调度和 GC 的关键点上都会检查一次 netpoll，确定是否存在 ready 状态的 FD：</p>
 <ul>
@@ -2178,15 +2188,21 @@
 <p>在博客网站搭建完成之后，有充分的理由相信，自己在未来很长一段时间内将不会再次重复建站。</p>
 <p><strong>常言道天有不测风云，为了防止各种意外情况发生，导致本博客网站无法正常使用，同时防止自己忘记搭建流程，记录于此。</strong></p>
 <h2 id="ii-效果">II. 效果</h2>
-<p></p>
+<figure>
+</figure>
+
 <h2 id="iii-相关知识简介">III. 相关知识简介</h2>
 <h3 id="github-pages">Github Pages</h3>
 <p>GitHub Pages 是一个免费的静态网站托管服务，它允许用户通过 GitHub 存储库来托管和发布网页，可以使用它来展示项目文档、博客或个人简历。</p>
-<p></p>
+<figure>
+</figure>
+
 <p>现阶段，Github Pages 支持公共存储库的免费的托管；对于私有仓库，需要进行缴费。</p>
 <h3 id="hugo">Hugo</h3>
 <p>官方号称，<a href="https://gohugo.io/" target="_blank" rel="noopener noreffer ">Hugo</a> 是世界上最快的网站建设框架(The world’s fastest framework for building websites)。</p>
-<p></p>
+<figure>
+</figure>
+
 <h2 id="iv-steps">IV. Steps</h2>
 <h3 id="github-仓库创建">Github 仓库创建</h3>
 <p>需要创建两个仓库，一个用于网站源码管理(<code>sA</code>)，一个用于网站部署(<code>sB</code>):</p>
