@@ -4,9 +4,79 @@
         <link>https://lutianen.github.io/</link>
         <description>Kyden&#39;s Blog Site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>tianen.xd@gmail.com (Kyden)</managingEditor>
-            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 28 Jul 2024 10:13:24 &#43;0800</lastBuildDate>
+            <webMaster>tianen.xd@gmail.com (Kyden)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 15 Aug 2024 22:41:50 &#43;0800</lastBuildDate>
             <atom:link href="https://lutianen.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Effective Go</title>
+    <link>https://lutianen.github.io/effective-go/</link>
+    <pubDate>Thu, 15 Aug 2024 22:41:50 &#43;0800</pubDate>
+    <author>Kyden</author>
+    <guid>https://lutianen.github.io/effective-go/</guid>
+    <description><![CDATA[<p>[简介]</p>
+<h2 id="formatting-格式化">Formatting 格式化</h2>
+<p>在 Golang 中，<code>gofmt</code> 以包未处理对象而非源文件，它将 Go 程序按照标准风格缩进、对齐，保留注释并在需要时重新格式化。</p>
+<ul>
+<li>Indentation 缩进：使用 <code>制表符 Tab</code> 缩进，<code>gofmt</code> 默认使用</li>
+<li>Line length 行长度：Go 对行的长度没有限制</li>
+<li>Parentheses 括号：控制结构（<code>if</code>, <code>for</code>, <code>switch</code>）在语法上并不需要圆括号</li>
+</ul>
+<h2 id="commentary-注释">Commentary 注释</h2>
+<p>Go 支持 C 风格的块注释 <code>/* */</code> 和 C++ 风格的单行注释 <code>//</code>，其中，<code>//</code> 注释更常用，而 <code>/* */</code> 则主要用于包的注释</p>
+<p><code>godoc</code> 即使一个程序，又是一个 Web 服务器，它对 Go 的源码进行处理，并提取包中的文档内容：
+出现在顶级声明之前，且与该声明之间没有空行的注释，将与该声明一起被提出来，作为该条目的说明文档。</p>
+<p>每个包都应包含一段包注释，即放置在包子句前的一个块注释。
+对于包含多个文件的包，包注释只需出现在其中的任一文件中即可。
+包注释应在整体上对该包进行介绍，并提供包的相关信息。
+它将出现在 <code>godoc</code> 页面中的最上面，并为紧随其后的内容建立详细的文档。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">Package regex implements a simple library for regular expressions.
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">The syntax of the regular expressions accepted is:
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">  regexp:
+</span></span></span><span class="line"><span class="cl"><span class="cm">    concatenation { &#39;|&#39; concatenation }
+</span></span></span><span class="line"><span class="cl"><span class="cm">  concatenation:
+</span></span></span><span class="line"><span class="cl"><span class="cm">    { closure }
+</span></span></span><span class="line"><span class="cl"><span class="cm">  closure:
+</span></span></span><span class="line"><span class="cl"><span class="cm">    term [ &#39;*&#39; | &#39;+&#39; | &#39;?&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="cm">  term:
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;^&#39;
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;$&#39;
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;.&#39;
+</span></span></span><span class="line"><span class="cl"><span class="cm">    character
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;[&#39; [ &#39;^&#39; ] character-range &#39;]&#39;
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;(&#39; regexp &#39;)&#39;
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">regex</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="names-命名">Names 命名</h2>]]></description>
+</item>
+<item>
     <title>Design Pattern</title>
     <link>https://lutianen.github.io/design-pattern/</link>
     <pubDate>Sun, 28 Jul 2024 10:13:24 &#43;0800</pubDate>
@@ -114,7 +184,8 @@
 <h2 id="iii-创建型设计模式">III. 创建型设计模式</h2>
 <h3 id="1-简单工厂模式">1. 简单工厂模式</h3>
 <p>亦称：虚拟构造函数、Virtual Constructor、Factory Method</p>
-<p>意图：它是一种创建型设计模式，<strong>其在父类中提供一个创建对象的方法，允许子类决定实例化对象的类型</strong></p>]]></description>
+<p>意图：它是一种创建型设计模式，<strong>其在父类中提供一个创建对象的方法，允许子类决定实例化对象的类型</strong></p>
+<p>NOTE: 由于 Golang 中缺少类和继承等 OOP 特性，因此，无法使用 Go 来实现经典的工厂方法模式，但我们仍能实现基础版本，即简单工厂。</p>]]></description>
 </item>
 <item>
     <title>Stardard Go Project Layout</title>

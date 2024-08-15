@@ -21,7 +21,7 @@
   <meta name="twitter:title" content="Design Pattern">
   <meta name="twitter:description" content="设计模式: 在特定环境下人们解决某类重复出现的一套成功或有效的解决方案.">
 <meta name="application-name" content="Kyden">
-<meta name="apple-mobile-web-app-title" content="Kyden"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://lutianen.github.io/design-pattern/" /><link rel="prev" href="https://lutianen.github.io/go-proj-layout/" /><link rel="stylesheet" href="/css/style.min.cf6878db51c51b2d04ae155284a4403dbee8db33e16c066f954c95279c271fcd.css" integrity="sha256-z2h421HFGy0ErhVShKRAPb7o2zPhbAZvlUyVJ5wnH80="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Kyden"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://lutianen.github.io/design-pattern/" /><link rel="prev" href="https://lutianen.github.io/go-proj-layout/" /><link rel="next" href="https://lutianen.github.io/effective-go/" /><link rel="stylesheet" href="/css/style.min.cf6878db51c51b2d04ae155284a4403dbee8db33e16c066f954c95279c271fcd.css" integrity="sha256-z2h421HFGy0ErhVShKRAPb7o2zPhbAZvlUyVJ5wnH80="><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/design-pattern\/"
-        },"image": ["https:\/\/lutianen.github.io\/Kyden.ico"],"genre": "posts","keywords": "Design Patten","wordcount":  79 ,
+        },"image": ["https:\/\/lutianen.github.io\/Kyden.ico"],"genre": "posts","keywords": "Design Patten","wordcount":  87 ,
         "url": "https:\/\/lutianen.github.io\/design-pattern\/","datePublished": "2024-07-28T10:13:24+08:00","dateModified": "2024-08-11T18:19:44+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
@@ -130,7 +130,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Design Pattern</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyden</a></span>&nbsp;<span class="post-category">included in <a href="/categories/design-patten/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Design Patten</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-28">2024-07-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;79 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-28">2024-07-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;87 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -254,7 +254,8 @@
 <h2 id="iii-创建型设计模式">III. 创建型设计模式</h2>
 <h3 id="1-简单工厂模式">1. 简单工厂模式</h3>
 <p>亦称：虚拟构造函数、Virtual Constructor、Factory Method</p>
-<p>意图：它是一种创建型设计模式，<strong>其在父类中提供一个创建对象的方法，允许子类决定实例化对象的类型</strong></p></div><div class="post-footer" id="post-footer">
+<p>意图：它是一种创建型设计模式，<strong>其在父类中提供一个创建对象的方法，允许子类决定实例化对象的类型</strong></p>
+<p>NOTE: 由于 Golang 中缺少类和继承等 OOP 特性，因此，无法使用 Go 来实现经典的工厂方法模式，但我们仍能实现基础版本，即简单工厂。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -279,7 +280,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/go-proj-layout/" class="prev" rel="prev" title="Stardard Go Project Layout"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Stardard Go Project Layout</a></div>
+    <div class="post-nav"><a href="/go-proj-layout/" class="prev" rel="prev" title="Stardard Go Project Layout"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Stardard Go Project Layout</a>
+            <a href="/effective-go/" class="next" rel="next" title="Effective Go">Effective Go<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.

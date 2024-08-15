@@ -112,7 +112,8 @@
 <h2 id="iii-创建型设计模式">III. 创建型设计模式</h2>
 <h3 id="1-简单工厂模式">1. 简单工厂模式</h3>
 <p>亦称：虚拟构造函数、Virtual Constructor、Factory Method</p>
-<p>意图：它是一种创建型设计模式，<strong>其在父类中提供一个创建对象的方法，允许子类决定实例化对象的类型</strong></p>]]></description>
+<p>意图：它是一种创建型设计模式，<strong>其在父类中提供一个创建对象的方法，允许子类决定实例化对象的类型</strong></p>
+<p>NOTE: 由于 Golang 中缺少类和继承等 OOP 特性，因此，无法使用 Go 来实现经典的工厂方法模式，但我们仍能实现基础版本，即简单工厂。</p>]]></description>
 </item>
 </channel>
 </rss>
