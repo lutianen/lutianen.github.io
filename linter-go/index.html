@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-04-19T11:24:23+08:00">
-    <meta property="article:modified_time" content="2024-08-18T23:37:54+08:00">
+    <meta property="article:modified_time" content="2024-08-18T23:46:54+08:00">
     <meta property="article:tag" content="Golang">
     <meta property="article:tag" content="Linter">
     <meta property="article:tag" content="Static Check">
@@ -36,7 +36,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/linter-go\/"
         },"image": ["https:\/\/lutianen.github.io\/Kyden.ico"],"genre": "posts","keywords": "Golang, Linter, Static Check, CI\/CD","wordcount":  1156 ,
-        "url": "https:\/\/lutianen.github.io\/linter-go\/","datePublished": "2024-04-19T11:24:23+08:00","dateModified": "2024-08-18T23:37:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "https:\/\/lutianen.github.io\/linter-go\/","datePublished": "2024-04-19T11:24:23+08:00","dateModified": "2024-08-18T23:46:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
@@ -170,12 +170,9 @@
       </ul>
     </li>
     <li><a href="#vi-goconst">VI. goconst</a></li>
-    <li><a href="#vii-ineffassign">VII. ineffassign</a>
-      <ul>
-        <li><a href="#viii-lll">VIII. lll</a></li>
-        <li><a href="#errcheck">errcheck</a></li>
-      </ul>
-    </li>
+    <li><a href="#vii-ineffassign">VII. ineffassign</a></li>
+    <li><a href="#viii-lll">VIII. lll</a></li>
+    <li><a href="#errcheck">errcheck</a></li>
     <li><a href="#四golangci-lint">四、GolangCI-Lint</a>
       <ul>
         <li><a href="#本地安装">本地安装</a></li>
@@ -750,7 +747,7 @@
 </span></span><span class="line"><span class="cl">    ^
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="viii-lll">VIII. lll</h3>
+</div><h2 id="viii-lll">VIII. lll</h2>
 <p>通过限制行的长度，lll 有助于确保代码在查看时不会横向滚动，提升代码的可读性。</p>
 <p>lll，主要用于检查代码行的长度，检查每一行的长度是否超过指定的最大值。
 默认情况下，lll 将最大行长度限制为 120 个字符。</p>
@@ -812,7 +809,7 @@
 </div><blockquote>
 <p>使用反引号（`）定义多行字符串，允许字符串跨越多行而不需要使用连接符</p>
 </blockquote>
-<h3 id="errcheck">errcheck</h3>
+<h2 id="errcheck">errcheck</h2>
 <p>errcheck，专门检查未处理的错误，确保开发者在调用可能返回错误的函数时，正确地检查和处理这些错误，从而提高代码的健壮性和可靠性。</p>
 <h2 id="四golangci-lint">四、GolangCI-Lint</h2>
 <p><code>golangci-lint</code> is a fast Go linters runner. It runs linters in parallel, uses caching, supports YAML configuration, integrates with all major IDEs, and includes over a hundred linters. <strong>生产级静态分析工具</strong></p>
@@ -890,8 +887,8 @@
         <div class="post-info-line">
             <div class="post-info-mod">
                 <span>Updated on 2024-08-18
-                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/583abead4a0379363f6c8f541cf3ecadaccdaa18" target="_blank" title="commit by 583abead4a0379363f6c8f541cf3ecadaccdaa18: Update: linter-go">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>583abea</a></span>
+                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/8e645149ea07d8555347909278b6822db82fb8df" target="_blank" title="commit by 8e645149ea07d8555347909278b6822db82fb8df: Fix: level error.">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>8e64514</a></span>
             </div><div class="post-info-license">
                 <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
             </div></div>
