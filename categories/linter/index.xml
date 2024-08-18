@@ -10,23 +10,25 @@
     <pubDate>Fri, 19 Apr 2024 11:24:23 &#43;0800</pubDate>
     <author>Kyden</author>
     <guid>https://lutianen.github.io/linter-go/</guid>
-    <description><![CDATA[<p>各种流行的 Go Linter 介绍，例如 Gocyclo、bodyclose、sqlrows、GolangCI-Lint、reviewdog等</p>
-<h2 id="一-gocyclo">一、 Gocyclo</h2>
-<p><strong>Gocyclo</strong>，函数圈复杂度(cyclomatic complexities)计算工具，计算方法：</p>
+    <description><![CDATA[<p>在 Golang 生态中存在许多高质量的 Linter，它们是代码风格和常见编码错误的检查工具，能在极大程度上提升开发者的编码质量，本文将介绍一些高质量 Linter。</p>
+<h2 id="i-何为-linter">I. 何为 Linter？</h2>
+<h2 id="ii-gocyclo">II. Gocyclo</h2>
+<p>Gocyclo 是一个 Go 语言的静态代码分析工具(linter)，主要用于分析函数的圈复杂度(cyclomatic complexity)。
+通过使用 Gocyclo，开发者可以识别需要重构的复杂函数，从而提高代码的可读性和可维护性。</p>
+<h3 id="函数圈复杂度cyclomatic-complexities">函数圈复杂度(cyclomatic complexities)</h3>
+<p>圈复杂度，是一种衡量代码复杂性的指标，通过计算代码中的决策点（如if语句、循环等）来评估函数的复杂度，具体计算方法如下：</p>
 <ul>
-<li><code>1</code> is the base complexity of a function</li>
-<li><code>+1</code> for each <code>if</code>, <code>for</code>, <code>case</code>, <code>&amp;&amp;</code> or <code>||</code></li>
+<li>一个函数的基本圈复杂度为 <code>1</code></li>
+<li>当函数中存在的每一个 <code>if</code>, <code>for</code>, <code>case</code>, <code>&amp;&amp;</code> or <code>||</code>，都会使得该函数的圈复杂度加 <code>1</code></li>
 </ul>
 <blockquote>
-<p><strong>NOTE</strong></p>
 <ol>
-<li>在 Go 语言中，由于 <code>if err != nil</code> 的特殊情况存在，因此，当圈复杂度超过 15 时，则表明函数较复杂；
-其他语言中圈复杂度阈值一般设置为 10；</li>
-<li><code>switch</code> 中的 <code>default</code> 并不会增加函数的圈复杂度；</li>
+<li>在 Go 语言中，由于 <code>if err != nil</code> 的特殊情况存在，因此，其圈复杂度阈值默认为 15，而其他编程语言中圈复杂度阈值一般默认为 10。</li>
+<li>在 Go 语言中，<code>switch</code> 中的 <code>default</code> 并不会增加函数的圈复杂度；</li>
 </ol>
 </blockquote>
-<h3 id="install">Install</h3>
-<p><code>gocyclo</code> commond tool</p>
+<p>通常，Gocyclo 可以作为命令行工具使用，也可以与其他 linter 工具（如 golangci-lint）一起使用，提供更全面的代码质量检查，也可以集成到 CI/CD 流程中。</p>
+<h3 id="install-安装">Install 安装</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -35,7 +37,7 @@
 <pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl">go install github.com/fzipp/gocyclo/cmd/gocyclo@latest
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="usage">Usage</h3>
+</div><h3 id="如何使用-gocyclo-linter-">如何使用 Gocyclo linter ？</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -105,9 +107,11 @@
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
+</span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="c1">// gocyclo-test/main.go 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
 </span></span><span class="line"><span class="cl"> <span class="s">&#34;fmt&#34;</span>
@@ -153,19 +157,21 @@
 </span></span><span class="line"><span class="cl"><span class="m">2</span> main f gocyclo-test/main.go:24:1
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="二bodyclose">二、bodyclose</h2>
-<p><code>bodyclose</code> 是检查 <code>res.Body</code> 是否被正确关闭的静态检查工具；</p>
-<h3 id="install-1">Install</h3>
+</div><h2 id="iii-bodyclose">III. bodyclose</h2>
+<p>在 Go 中，即使读取了所有的响应内容，也需要显式关闭响应体以释放资源，否则可能导致资源泄漏、连接池耗尽，进而影响应用性能。</p>
+<p><code>bodyclose</code> 主要关注于 HTTP 响应体的正确关闭，通过检查 <code>resp.Body</code> 是否被正确关闭。
+它既可以单独使用，也可以集成到其他 linter 工具（例如 golangci-lint）中。</p>
+<h3 id="安装">安装</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go install github.com/timakin/bodyclose
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go install github.com/timakin/bodyclose@latest
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="usage-1">Usage</h3>
-<p>这里借用 <code>GolangCI-Linter</code> 的方式使用 <code>bodyclose</code></p>
+</div><h3 id="如何使用-bodyclose-">如何使用 bodyclose ?</h3>
+<p>这里展示借助 <code>golangci-lint</code> 的方式使用 <code>bodyclose</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -187,9 +193,11 @@
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">Kyden</span>
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="c1">// main.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">kyden</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
 </span></span><span class="line"><span class="cl"> <span class="s">&#34;fmt&#34;</span>
@@ -202,7 +210,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">err</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// defer resp.Body.Close()
+</span></span><span class="line"><span class="cl">    <span class="c1">// defer resp.Body.Close() // &lt;&lt;&lt;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl">    <span class="nx">body</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">io</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">body</span><span class="p">)</span>
@@ -218,26 +226,13 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ golangci-lint run --disable-all -E bodyclose main.go
-</span></span><span class="line"><span class="cl">main.go:10:26: response body must be closed <span class="o">(</span>bodyclose<span class="o">)</span>
+</span></span><span class="line"><span class="cl">main.go:11:26: response body must be closed <span class="o">(</span>bodyclose<span class="o">)</span>
 </span></span><span class="line"><span class="cl">    resp, err :<span class="o">=</span> http.Get<span class="o">(</span><span class="s2">&#34;http://example.com/&#34;</span><span class="o">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p>Tip:
-避免使用 <code>http</code> 库中 <code>body</code> 忘记 <code>close</code> 的更优方案是：<strong>对 Go 官方提供的 <code>http</code> 进行封装，使 caller 不用显示调用 <code>close</code> 函数.</strong></p>
-</blockquote>
-<h2 id="三sqlrows">三、sqlrows</h2>
-<p><code>sqlrows</code> is a static code analyzer which helps uncover bugs by reporting a diagnostic for mistakes of sql.Rows usage.</p>
-<h3 id="install-2">Install</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go install github.com/gostaticanalysis/sqlrows
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="usage-2">Usage</h3>
+<p>避免使用 <code>http</code> 库中 <code>body</code> 忘记 <code>close</code> 的更优方案是:</p>
+<p><strong>对 Go 官方提供的 <code>http</code> 进行封装，使调用方（Caller）不用显示调用 <code>close</code> 函数.</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -264,9 +259,97 @@
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">sqlrowstest_test</span>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">httpclient</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;io/ioutil&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;net/http&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Client 是一个自定义的 HTTP 客户端结构体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Client</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">http</span><span class="p">.</span><span class="nx">Client</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Get 封装了 http.Get 方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Client</span><span class="p">)</span> <span class="nf">Get</span><span class="p">(</span><span class="nx">url</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">Client</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// 确保在函数返回时关闭响应体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">defer</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 读取响应内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">body</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">string</span><span class="p">(</span><span class="nx">body</span><span class="p">),</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h2 id="iv-sqlrows">IV. sqlrows</h2>
+<p>在 Go 的 <code>database/sql</code> 包中，<code>sql.Rows</code> 是一个类型，用于表示从数据库查询中返回的多行结果。
+它提供了一组方法，允许开发者逐行读取查询结果。</p>
+<ul>
+<li>迭代结果：使用 <code>Next()</code> 方法逐行遍历结果集。</li>
+<li>扫描数据：使用 <code>Scan()</code> 方法将当前行的列值复制到指定的变量中。</li>
+<li>关闭结果集：使用 <code>Close()</code> 方法释放与结果集相关的资源。</li>
+</ul>
+<p><code>sqlrows</code> is a static code analyzer which helps uncover bugs by reporting a diagnostic for mistakes of sql.Rows usage.</p>
+<h3 id="安装-1">安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go install github.com/gostaticanalysis/sqlrows@latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="如何使用-sqlrows-">如何使用 sqlrows ?</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="c1">// main.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">kyden</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
 </span></span><span class="line"><span class="cl"> <span class="s">&#34;context&#34;</span>
@@ -275,12 +358,12 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">f</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">db</span> <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span><span class="p">)</span> <span class="p">(</span><span class="kd">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">rows</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">QueryContext</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="s">&#34;SELECT * FROM users&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">defer</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">defer</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span> <span class="c1">// NG: using rows before checking for errors
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// defer rows.Close()
+</span></span><span class="line"><span class="cl">    <span class="c1">// defer rows.Close() // NG: this return will not release a connection.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">err</span> <span class="p">=</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Scan</span><span class="p">()</span>
@@ -316,7 +399,245 @@
 </span></span><span class="line"><span class="cl">./main.go:9:33: rows.Close must be called
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="四golangci-lint">四、GolangCI-Lint</h2>
+</div><h2 id="v-funlen">V. funlen</h2>
+<p><code>funlen</code>，用于检查函数的长度，确保函数的可读性和可维护性。
+默认情况下，funlen 将函数的最大行数限制(<code>lines</code>)为 60 行，最大语句数(<code>statements</code>)限制为 40 条。</p>
+<p>通常，funlen 会结合 golangci-lint 使用， 并集成到开发工作流中，提升代码质量.</p>
+<h3 id="安装-2">安装</h3>
+<p>funlen 可以通过 golangci-lint 安装: <code>go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest</code></p>
+<h3 id="如何使用-funlen-">如何使用 funlen ？</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">linters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disable-all</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">funlen</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">linters-settings</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">funlen</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">lines</span><span class="p">:</span><span class="w"> </span><span class="m">60</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">statements</span><span class="p">:</span><span class="w"> </span><span class="m">40</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="vi-goconst">VI. goconst</h2>
+<p>goconst 会扫描代码，识别出在多个地方重复出现的字符串。
+这些字符串通常是相同的文本，开发者通过将重复的字符串提取为常量，代码变得更加清晰，减少了硬编码的出现，降低了出错的可能性。
+可以根据项目需求自定义 goconst 的行为，例如设置字符串的最小长度、最小出现次数等。</p>
+<p>goconst 通常作为 golangci-lint 的一部分使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">linters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disable-all</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">goconst</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">linters-settings</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">goconst</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">min-len</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">min-occurrences</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// main.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">f</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span> <span class="o">:=</span> <span class="s">&#34;Hello&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">b</span> <span class="o">:=</span> <span class="s">&#34;Hello&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">c</span> <span class="o">:=</span> <span class="s">&#34;Hello&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ golangci-lint run
+</span></span><span class="line"><span class="cl">main.go:7:10: string <span class="sb">`</span>Hello<span class="sb">`</span> has <span class="m">3</span> occurrences, make it a constant <span class="o">(</span>goconst<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    a :<span class="o">=</span> <span class="s2">&#34;Hello&#34;</span>
+</span></span><span class="line"><span class="cl">         ^
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="vii-ineffassign">VII. ineffassign</h2>
+<p>ineffassign，主要用于检测代码中对现有变量的赋值操作是否未被使用。
+这种未使用的赋值通常是代码中的潜在错误，可能导致逻辑上的混乱或资源的浪费。</p>
+<p>通常作为 golangci-lint 的一部分使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">linters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disable-all</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">ineffassign</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// main.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">f</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span> <span class="o">:=</span> <span class="s">&#34;Hello&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span> <span class="p">=</span> <span class="s">&#34;kyden&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ golangci-lint run
+</span></span><span class="line"><span class="cl">main.go:7:5: ineffectual assignment to a <span class="o">(</span>ineffassign<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    a :<span class="o">=</span> <span class="s2">&#34;Hello&#34;</span>
+</span></span><span class="line"><span class="cl">    ^
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="viii-lll">VIII. lll</h3>
+<p>通过限制行的长度，lll 有助于确保代码在查看时不会横向滚动，提升代码的可读性。</p>
+<p>lll，主要用于检查代码行的长度，检查每一行的长度是否超过指定的最大值。
+默认情况下，lll 将最大行长度限制为 120 个字符。</p>
+<p>lll 通常作为 golangci-lint 的一部分使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">linters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disable-all</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">lll</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">linters-settings</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">lll</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">line-length</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// main.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">kyden</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">f</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span> <span class="o">:=</span> <span class="s">&#34;This is a very long line that exceeds the maximum line length set by the linter and should be broken up into smaller, more manageable lines.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">golangci-lint run
+</span></span><span class="line"><span class="cl">main.go:5: the line is <span class="m">151</span> characters long, which exceeds the maximum of <span class="m">80</span> characters. <span class="o">(</span>lll<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    a :<span class="o">=</span> <span class="s2">&#34;This is a very long line that exceeds the maximum line length set by the linter and should be broken up into smaller, more manageable lines.&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>使用反引号（`）定义多行字符串，允许字符串跨越多行而不需要使用连接符</p>
+</blockquote>
+<h3 id="errcheck">errcheck</h3>
+<p>errcheck，专门检查未处理的错误，确保开发者在调用可能返回错误的函数时，正确地检查和处理这些错误，从而提高代码的健壮性和可靠性。</p>
+<h2 id="四golangci-lint">四、GolangCI-Lint</h2>
 <p><code>golangci-lint</code> is a fast Go linters runner. It runs linters in parallel, uses caching, supports YAML configuration, integrates with all major IDEs, and includes over a hundred linters. <strong>生产级静态分析工具</strong></p>
 <h3 id="本地安装">本地安装</h3>
 <div class="highlight"><div class="chroma">
@@ -337,7 +658,7 @@
 </span></span><span class="line"><span class="cl">golangci-lint --version
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="usage-3">Usage</h3>
+</div><h3 id="usage">Usage</h3>
 <p>在不进行任何配置的情况下，GolangCI-Lint 将默认采用启动以下 Linters:
 <code>errcheck</code>, <code>gosimple</code>, <code>govet</code>, <code>ineffassign</code>, <code>staticcheck</code>, <code>unused</code></p>
 <figure>
@@ -377,6 +698,7 @@
 <blockquote>
 <p>将常用的 Linter 集成在 CI 上线流程中，可以保证项目代码质量的下限</p>
 </blockquote>
+<p>各种流行的 Go Linter 介绍，例如 Gocyclo、bodyclose、sqlrows、GolangCI-Lint、reviewdog等</p>
 <h2 id="六reference">六、Reference</h2>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" target="_blank" rel="noopener noreffer ">Cyclomatic complexity</a></li>
