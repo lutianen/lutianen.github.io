@@ -12,7 +12,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-04-19T11:24:23+08:00">
-    <meta property="article:modified_time" content="2024-08-18T23:46:54+08:00">
+    <meta property="article:modified_time" content="2024-08-20T23:51:22+08:00">
     <meta property="article:tag" content="Golang">
     <meta property="article:tag" content="Linter">
     <meta property="article:tag" content="Static Check">
@@ -35,8 +35,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/lutianen.github.io\/linter-go\/"
-        },"image": ["https:\/\/lutianen.github.io\/Kyden.ico"],"genre": "posts","keywords": "Golang, Linter, Static Check, CI\/CD","wordcount":  1156 ,
-        "url": "https:\/\/lutianen.github.io\/linter-go\/","datePublished": "2024-04-19T11:24:23+08:00","dateModified": "2024-08-18T23:46:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"image": ["https:\/\/lutianen.github.io\/Kyden.ico"],"genre": "posts","keywords": "Golang, Linter, Static Check, CI\/CD","wordcount":  1258 ,
+        "url": "https:\/\/lutianen.github.io\/linter-go\/","datePublished": "2024-04-19T11:24:23+08:00","dateModified": "2024-08-20T23:51:22+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Kyden","logo": "https:\/\/lutianen.github.io\/avatar.jpg"},"author": {
                 "@type": "Person",
@@ -133,7 +133,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linter for Go</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https:github.com/lutianen" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Kyden</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Golang</a>&nbsp;<a href="/categories/linter/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linter</a>&nbsp;<a href="/categories/static-check/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Static Check</a>&nbsp;<a href="/categories/ci/cd/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>CI/CD</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-19">2024-04-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1156 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-19">2024-04-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1258 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -172,16 +172,17 @@
     <li><a href="#vi-goconst">VI. goconst</a></li>
     <li><a href="#vii-ineffassign">VII. ineffassign</a></li>
     <li><a href="#viii-lll">VIII. lll</a></li>
-    <li><a href="#errcheck">errcheck</a></li>
-    <li><a href="#四golangci-lint">四、GolangCI-Lint</a>
+    <li><a href="#ix-errcheck">IX. errcheck</a></li>
+    <li><a href="#x-whitespace">X. whitespace</a></li>
+    <li><a href="#xi-golangci-lint">XI. GolangCI-Lint</a>
       <ul>
-        <li><a href="#本地安装">本地安装</a></li>
-        <li><a href="#usage">Usage</a></li>
+        <li><a href="#安装-3">安装</a></li>
+        <li><a href="#如何使用-golangci-lint-">如何使用 golangci-lint ?</a></li>
         <li><a href="#visual-studio-code-集成">Visual Studio Code 集成</a></li>
       </ul>
     </li>
-    <li><a href="#五reviewdog">五、reviewdog</a></li>
-    <li><a href="#六reference">六、Reference</a></li>
+    <li><a href="#xii-reviewdog">XII. reviewdog</a></li>
+    <li><a href="#xiii-reference">XIII. Reference</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>在 Golang 生态中存在许多高质量的 Linter，它们是代码风格和常见编码错误的检查工具，能在极大程度上提升开发者的编码质量，本文将介绍一些高质量 Linter。</p>
@@ -807,13 +808,19 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
+<p>解决方案</p>
 <p>使用反引号（`）定义多行字符串，允许字符串跨越多行而不需要使用连接符</p>
 </blockquote>
-<h2 id="errcheck">errcheck</h2>
+<h2 id="ix-errcheck">IX. errcheck</h2>
 <p>errcheck，专门检查未处理的错误，确保开发者在调用可能返回错误的函数时，正确地检查和处理这些错误，从而提高代码的健壮性和可靠性。</p>
-<h2 id="四golangci-lint">四、GolangCI-Lint</h2>
-<p><code>golangci-lint</code> is a fast Go linters runner. It runs linters in parallel, uses caching, supports YAML configuration, integrates with all major IDEs, and includes over a hundred linters. <strong>生产级静态分析工具</strong></p>
-<h3 id="本地安装">本地安装</h3>
+<blockquote>
+<p><code>errcheck</code> 通常作为 golangci-lint 的一部分使用</p>
+</blockquote>
+<ul>
+<li><code>errcheck</code> 会扫描 Go 代码，查找未检查错误的地方</li>
+<li>除了检查函数返回的错误,还可以检查类型断言是否被忽略</li>
+<li>可以检查是否将错误赋值给了空白标识符</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -822,23 +829,90 @@
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># binary will be $(go env GOPATH)/bin/golangci-lint</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.57.2 # 注意版本：`v1.57.2`</span>
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">linters-settings</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">errcheck</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">check-type-assertions</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># 检查类型断言是否被忽略,默认为 false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">check-blank</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># 检查是否将错误赋值给空白标识符,默认为 false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">disable-default-exclusions</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># 禁用默认的忽略函数列表,默认为 false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude-functions</span><span class="p">:</span><span class="w">  </span><span class="c"># 指定要忽略检查的函数列表</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">// ...</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// main.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">_</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;World&#34;</span><span class="p">)</span> <span class="c1">// 这里的错误被忽略了,errcheck 会报告这个问题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="x-whitespace">X. whitespace</h2>
+<p><code>whitespace</code> 是一个 Go 语言的 linter，主要用于检查代码中不必要的空行，即检查函数、条件语句（如 <code>if</code>、<code>for</code>）等开头和结尾的多余空行。</p>
+<p><code>whitespace</code> 也包含在 golangci-lint 中，只需在配置中启用即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">linters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disable-all</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">whitespace</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="xi-golangci-lint">XI. GolangCI-Lint</h2>
+<blockquote>
+<p>生产级静态分析工具</p>
+<p><code>golangci-lint</code> is a fast Go linters runner. It runs linters in parallel, uses caching, supports YAML configuration, integrates with all major IDEs, and includes over a hundred linters.</p>
+</blockquote>
+<p><code>golangci-lint</code> 是一款快速的 Go 语言 linter，它并行运行多个 linter 程序，使用缓存，支持 YAML 配置，与所有主流集成开发环境集成，并包含一百多个 linter 程序。</p>
+<h3 id="安装-3">安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">golangci-lint --version
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="usage">Usage</h3>
+</div><h3 id="如何使用-golangci-lint-">如何使用 golangci-lint ?</h3>
 <p>在不进行任何配置的情况下，GolangCI-Lint 将默认采用启动以下 Linters:
 <code>errcheck</code>, <code>gosimple</code>, <code>govet</code>, <code>ineffassign</code>, <code>staticcheck</code>, <code>unused</code></p>
-<figure><img src="/posts/linter-go/golangci-linter-default.png">
-</figure>
-
-<p>还可以通过传递 <code>-E</code>/<code>--enable</code> 参数来启动 Linter，传递 <code>-D</code>/<code>--disable</code> 来禁用 Linter</p>
+<p>可以通过传递 <code>-E</code>/<code>--enable</code> 参数来启动 Linter，传递 <code>-D</code>/<code>--disable</code> 来禁用 Linter</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -847,7 +921,10 @@
 <pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">golangci-lint run --disable-all -E errcheck
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="visual-studio-code-集成">Visual Studio Code 集成</h3>
+</div><figure><img src="/posts/linter-go/golangci-lint-default.png">
+</figure>
+
+<h3 id="visual-studio-code-集成">Visual Studio Code 集成</h3>
 <p>VSCode配置 <code>settings.json</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -863,17 +940,19 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">]</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p>Golangci-lint automatically discovers <code>.golangci.yml</code> config for edited file: Don&rsquo;t need to configure it in VS Code settings.</p>
+</div><p>当使用 Golangci-lint 时，它会自动在编辑的 Go 文件所在的目录或父目录中查找 <code>.golangci.yml</code> 配置文件。如果找到了配置文件，Golangci-lint 就会根据该配置文件的设置来运行 linter。</p>
+<p>因此，在 VS Code 的设置中，不需要专门配置 Golangci-lint。只需要在项目根目录或相应的目录下创建 <code>.golangci.yml</code> 配置文件，并在其中指定需要启用的 linter 和相关选项即可。</p>
+<blockquote>
+<p>Golangci-lint 同样支持 GoLang、NeoVim 的流行 IDE 集成.</p>
 </blockquote>
 <p>更多详细信息，请参考<a href="https://golangci-lint.run/" target="_blank" rel="noopener noreffer ">官方文档</a></p>
-<h2 id="五reviewdog">五、reviewdog</h2>
+<h2 id="xii-reviewdog">XII. reviewdog</h2>
 <p>A code review dog who keeps your codebase healthy.</p>
 <blockquote>
 <p>将常用的 Linter 集成在 CI 上线流程中，可以保证项目代码质量的下限</p>
 </blockquote>
 <p>各种流行的 Go Linter 介绍，例如 Gocyclo、bodyclose、sqlrows、GolangCI-Lint、reviewdog等</p>
-<h2 id="六reference">六、Reference</h2>
+<h2 id="xiii-reference">XIII. Reference</h2>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" target="_blank" rel="noopener noreffer ">Cyclomatic complexity</a></li>
 <li><a href="https://github.com/fzipp/gocyclo" target="_blank" rel="noopener noreffer ">Gocyclo</a></li>
@@ -886,9 +965,9 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-08-18
-                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/8e645149ea07d8555347909278b6822db82fb8df" target="_blank" title="commit by 8e645149ea07d8555347909278b6822db82fb8df: Fix: level error.">
-                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>8e64514</a></span>
+                <span>Updated on 2024-08-20
+                                &nbsp;<a class="git-hash" href="https://github.com/lutianen/Kyden-blog/commit/5da1b5316cb2c9936ba2416a589a0f276a9574df" target="_blank" title="commit by 5da1b5316cb2c9936ba2416a589a0f276a9574df: Update: golang linter">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>5da1b53</a></span>
             </div><div class="post-info-license">
                 <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
             </div></div>

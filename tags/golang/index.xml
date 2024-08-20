@@ -5369,13 +5369,19 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
+<p>解决方案</p>
 <p>使用反引号（`）定义多行字符串，允许字符串跨越多行而不需要使用连接符</p>
 </blockquote>
-<h2 id="errcheck">errcheck</h2>
+<h2 id="ix-errcheck">IX. errcheck</h2>
 <p>errcheck，专门检查未处理的错误，确保开发者在调用可能返回错误的函数时，正确地检查和处理这些错误，从而提高代码的健壮性和可靠性。</p>
-<h2 id="四golangci-lint">四、GolangCI-Lint</h2>
-<p><code>golangci-lint</code> is a fast Go linters runner. It runs linters in parallel, uses caching, supports YAML configuration, integrates with all major IDEs, and includes over a hundred linters. <strong>生产级静态分析工具</strong></p>
-<h3 id="本地安装">本地安装</h3>
+<blockquote>
+<p><code>errcheck</code> 通常作为 golangci-lint 的一部分使用</p>
+</blockquote>
+<ul>
+<li><code>errcheck</code> 会扫描 Go 代码，查找未检查错误的地方</li>
+<li>除了检查函数返回的错误,还可以检查类型断言是否被忽略</li>
+<li>可以检查是否将错误赋值给了空白标识符</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -5384,23 +5390,90 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># binary will be $(go env GOPATH)/bin/golangci-lint</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.57.2 # 注意版本：`v1.57.2`</span>
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">linters-settings</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">errcheck</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">check-type-assertions</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># 检查类型断言是否被忽略,默认为 false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">check-blank</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># 检查是否将错误赋值给空白标识符,默认为 false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">disable-default-exclusions</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># 禁用默认的忽略函数列表,默认为 false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude-functions</span><span class="p">:</span><span class="w">  </span><span class="c"># 指定要忽略检查的函数列表</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">// ...</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// main.go
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">_</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;World&#34;</span><span class="p">)</span> <span class="c1">// 这里的错误被忽略了,errcheck 会报告这个问题
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="x-whitespace">X. whitespace</h2>
+<p><code>whitespace</code> 是一个 Go 语言的 linter，主要用于检查代码中不必要的空行，即检查函数、条件语句（如 <code>if</code>、<code>for</code>）等开头和结尾的多余空行。</p>
+<p><code>whitespace</code> 也包含在 golangci-lint 中，只需在配置中启用即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">linters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">disable-all</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enable</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">whitespace</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="xi-golangci-lint">XI. GolangCI-Lint</h2>
+<blockquote>
+<p>生产级静态分析工具</p>
+<p><code>golangci-lint</code> is a fast Go linters runner. It runs linters in parallel, uses caching, supports YAML configuration, integrates with all major IDEs, and includes over a hundred linters.</p>
+</blockquote>
+<p><code>golangci-lint</code> 是一款快速的 Go 语言 linter，它并行运行多个 linter 程序，使用缓存，支持 YAML 配置，与所有主流集成开发环境集成，并包含一百多个 linter 程序。</p>
+<h3 id="安装-3">安装</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">golangci-lint --version
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="usage">Usage</h3>
+</div><h3 id="如何使用-golangci-lint-">如何使用 golangci-lint ?</h3>
 <p>在不进行任何配置的情况下，GolangCI-Lint 将默认采用启动以下 Linters:
 <code>errcheck</code>, <code>gosimple</code>, <code>govet</code>, <code>ineffassign</code>, <code>staticcheck</code>, <code>unused</code></p>
-<figure>
-</figure>
-
-<p>还可以通过传递 <code>-E</code>/<code>--enable</code> 参数来启动 Linter，传递 <code>-D</code>/<code>--disable</code> 来禁用 Linter</p>
+<p>可以通过传递 <code>-E</code>/<code>--enable</code> 参数来启动 Linter，传递 <code>-D</code>/<code>--disable</code> 来禁用 Linter</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -5409,7 +5482,10 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 <pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">golangci-lint run --disable-all -E errcheck
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="visual-studio-code-集成">Visual Studio Code 集成</h3>
+</div><figure>
+</figure>
+
+<h3 id="visual-studio-code-集成">Visual Studio Code 集成</h3>
 <p>VSCode配置 <code>settings.json</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -5425,17 +5501,19 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">]</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p>Golangci-lint automatically discovers <code>.golangci.yml</code> config for edited file: Don&rsquo;t need to configure it in VS Code settings.</p>
+</div><p>当使用 Golangci-lint 时，它会自动在编辑的 Go 文件所在的目录或父目录中查找 <code>.golangci.yml</code> 配置文件。如果找到了配置文件，Golangci-lint 就会根据该配置文件的设置来运行 linter。</p>
+<p>因此，在 VS Code 的设置中，不需要专门配置 Golangci-lint。只需要在项目根目录或相应的目录下创建 <code>.golangci.yml</code> 配置文件，并在其中指定需要启用的 linter 和相关选项即可。</p>
+<blockquote>
+<p>Golangci-lint 同样支持 GoLang、NeoVim 的流行 IDE 集成.</p>
 </blockquote>
 <p>更多详细信息，请参考<a href="https://golangci-lint.run/" target="_blank" rel="noopener noreffer ">官方文档</a></p>
-<h2 id="五reviewdog">五、reviewdog</h2>
+<h2 id="xii-reviewdog">XII. reviewdog</h2>
 <p>A code review dog who keeps your codebase healthy.</p>
 <blockquote>
 <p>将常用的 Linter 集成在 CI 上线流程中，可以保证项目代码质量的下限</p>
 </blockquote>
 <p>各种流行的 Go Linter 介绍，例如 Gocyclo、bodyclose、sqlrows、GolangCI-Lint、reviewdog等</p>
-<h2 id="六reference">六、Reference</h2>
+<h2 id="xiii-reference">XIII. Reference</h2>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" target="_blank" rel="noopener noreffer ">Cyclomatic complexity</a></li>
 <li><a href="https://github.com/fzipp/gocyclo" target="_blank" rel="noopener noreffer ">Gocyclo</a></li>
