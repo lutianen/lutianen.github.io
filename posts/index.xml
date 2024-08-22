@@ -4859,6 +4859,28 @@ channel 作为一种引用类型，声明时需要指定传输数据类型，声
     <guid>https://lutianen.github.io/linter-go/</guid>
     <description><![CDATA[<p>在 Golang 生态系统中，Linter 工具是开发者提升代码质量的关键。
 本文将深入介绍几款常用的 Linter 工具及其最佳实践，帮助您在开发中避免常见错误并提高代码的可维护性。</p>
+<h2 id="目录">目录</h2>
+<ul>
+<li><a href="#o-%e8%af%b4%e6%98%8e" rel="">说明</a></li>
+<li><a href="#i-%e4%bd%95%e4%b8%ba-linter" rel="">何为 Linter？</a></li>
+<li><a href="#ii-gocyclo" rel="">Gocyclo</a></li>
+<li><a href="#iii-bodyclose" rel="">bodyclose</a></li>
+<li><a href="#iv-sqlrows" rel="">sqlrows</a></li>
+<li><a href="#v-funlen" rel="">funlen</a></li>
+<li><a href="#vi-goconst" rel="">goconst</a></li>
+<li><a href="#vii-ineffassign" rel="">ineffassign</a></li>
+<li><a href="#viii-lll" rel="">lll</a></li>
+<li><a href="#ix-errcheck" rel="">errcheck</a></li>
+<li><a href="#x-whitespace" rel="">whitespace</a></li>
+<li><a href="#xi-golangci-lint" rel=""><strong>GolangCI-Lint</strong></a></li>
+<li><a href="#xii-reviewdog" rel="">reviewdog</a></li>
+<li><a href="#xiii-summary" rel="">Summary</a></li>
+<li><a href="#xiv-reference" rel="">Reference</a></li>
+</ul>
+<h2 id="o-说明">O. 说明</h2>
+<ul>
+<li>如特殊说明，文中代码已在在 Mac 和 Linux 系统下进行测试</li>
+</ul>
 <h2 id="i-何为-linter">I. 何为 Linter？</h2>
 <p>Linter 是一种静态代码分析工具，用于在编译前检查代码中的错误、风格问题及潜在的 Bug。
 在 Golang 生态中，Linter 工具帮助开发者在早期阶段就发现问题，从而避免后期修复的高成本。</p>
